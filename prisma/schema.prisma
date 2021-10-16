@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model photos {
+  id        Int      @id @default(autoincrement())
+  review_id Int?
+  url       String?  @db.VarChar
+  reviews   reviews? @relation(fields: [review_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([review_id], map: "photos_idx_reviews")
+}
+
+model reviews {
+  id         Int       @id @default(autoincrement())
+  first_name String?   @db.VarChar
+  title      String?   @db.VarChar
+  body       String?   @db.VarChar
+  date       DateTime? @db.Timestamp(6)
+  rating     Int?
+  helpful    Int?
+  reported   Int?
+  shop_id    String?   @db.VarChar
+  user_id    Int?
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  photos     photos[]
+
+  @@index([shop_id], map: "reviews_idx_shops")
+  @@index([user_id], map: "reviews_idx_users")
+}
+
+model users {
+  id        Int       @id @default(autoincrement())
+  name      String?   @db.VarChar
+  email     String?   @db.VarChar
+  photo_url String?   @db.VarChar
+  reviews   reviews[]
+}
