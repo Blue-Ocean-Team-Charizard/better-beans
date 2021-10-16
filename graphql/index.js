@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 const typeDefs = `
   type Query {
     hello(name: String, job: String): String!
+    getUser(id: Int): [User]
   }
 
   type User {
@@ -25,6 +26,19 @@ const typeDefs = `
 const resolvers = {
   Query: {
     hello: (_, { name, job }) => `Hello ${name || 'World'} with ${job || 'Unemployed'}`,
+    getUser: async (_, { id }) => {
+      const user = await prisma.users.findMany({});
+      return user;
+    },
+    // getUser: (_, { id }) => prisma.users.filter((user) => user.id === id)[0],
+    // getUser: (_, { id }) => {
+    //   return {
+    //     id: id,
+    //     name: 'Daniel',
+    //     email: 'dan@dan.com',
+    //     photo_url: 'hotpic.com'
+    //   };
+    // },
   },
 
   Mutation: {
