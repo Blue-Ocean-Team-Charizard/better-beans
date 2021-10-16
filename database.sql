@@ -1,52 +1,39 @@
-DROP DATABASE IF EXISTS betterbeans;
-CREATE DATABASE betterbeans
+DROP TABLE IF EXISTS photos;
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS shops;
 
-CREATE TABLE shops (
-  id serial,
-  google_id varchar,
-  PRIMARY KEY (id)
-);
+DROP INDEX IF EXISTS photos_idx_reviews;
+DROP INDEX IF EXISTS reviews_idx_users;
+DROP INDEX IF EXISTS reviews_idx_shops;
 
 CREATE TABLE users (
-  id serial,
+  id serial PRIMARY KEY,
   name varchar,
   email varchar,
-  photo_url varchar,
-  PRIMARY KEY (id)
+  photo_url varchar
 );
 
 CREATE TABLE reviews (
-  id serial,
+  id serial PRIMARY KEY,
   first_name varchar,
   title varchar,
   body varchar,
+  date timestamp,
   rating integer,
   helpful integer,
   reported integer,
   shop_id varchar,
-  user_id integer,
-  date timestamp,
-  PRIMARY KEY (id),
-  CONSTRAINT FK_reviews.user_id
-    FOREIGN KEY (user_id)
-      REFERENCES users(id),
-  CONSTRAINT FK_reviews.shop_id
-    FOREIGN KEY (shop_id)
-      REFERENCES shops(id)
+  user_id integer REFERENCES users(id)
 );
 
 CREATE TABLE photos (
-  id serial,
-  review_id integer,
-  url varchar,
-  PRIMARY KEY (id),
-  CONSTRAINT FK_photos.review_id
-    FOREIGN KEY (review_id)
-      REFERENCES reviews(id)
+  id serial PRIMARY KEY,
+  review_id integer REFERENCES reviews(id),
+  url varchar
 );
 
 
-
 CREATE INDEX photos_idx_reviews ON photos USING hash (review_id);
-CREATE INDEX reviews_idx_shops ON reviews USING hash (shop_id);
 CREATE INDEX reviews_idx_users ON reviews USING hash (user_id);
+CREATE INDEX reviews_idx_shops ON reviews USING hash (shop_id);
