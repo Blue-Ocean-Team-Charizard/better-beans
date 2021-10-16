@@ -7,7 +7,8 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb/hooks",
-        "airbnb"
+        "airbnb",
+        "plugin:react/jsx-runtime"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -24,5 +25,8 @@
         "react"
     ],
     "rules": {
+        "react/jsx-filename-extension": [
+            0
+        ]
     }
 }
