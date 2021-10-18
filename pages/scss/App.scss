@@ -1,0 +1,61 @@
+
+@import "custom";
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300&display=swap');
+
+$color-light: white;
+$color-dark: black;
+$color-gray:gray;
+
+html, body, p, div, h1, h2, h3, h4 {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color:$color-gray ;
+  color: $color-dark;
+}
+
+a {
+ color: $color-dark;
+}
+
+.container {
+  max-width: 375px;
+  padding: 20px 0px;
+  margin: 0px auto;
+  background-color:$color-light;
+  text-align: center;
+}
+
+.main {
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.seach {
+  margin: auto;
+  width: 100%;
+}
+
+.navbar {
+  justify-content: center;
+}
+
+header li {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+footer {
+  margin-top: 30px;
+  text-align: center;
+  padding: 20px;
+}
+

@@ -1,8 +1,18 @@
-import '../styles/globals.css';
-import { AuthUserProvider } from '../firebase/auth_context';
+import './scss/App.scss';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
-  return <AuthUserProvider><Component {...pageProps} /></AuthUserProvider>;
+  return (
+    <>
+      <Head>
+        <title>Blue Ocean</title>
+        <meta name="description" content="Blue Ocean" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
