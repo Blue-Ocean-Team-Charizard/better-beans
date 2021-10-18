@@ -7,28 +7,36 @@ export default class Search extends React.Component {
       currentLocation: '',
     };
 
-    this.getLocation = this.getLocation.bind(this);
+    this.searchCurrentLocation = this.searchCurrentLocation.bind(this);
   }
 
   componentDidMount() {
-    this.getLocation();
+    this.searchCurrentLocation();
   }
 
-  getLocation() {
-    function success(pos) {
-      const crd = pos.coords;
+  searchCurrentLocation() {
+    if(navigator.geolocation) {
+      function success(pos) {
+        const crd = pos.coords;
 
-      console.log('Your current position is:');
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      // this.setState({ currentLocation: crd });
+        console.log('Your current position is:');
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        // this.setState({ currentLocation: crd });
+        fetch(`api/search?location=${crd.latitude},${crd.longitude}`)
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err))
+      }
+
+      function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      }
+
+      navigator.geolocation.getCurrentPosition(success, error);
+
+    } else {
+      console.log('location is not enabled')
     }
-
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    }
-
-    navigator.geolocation.getCurrentPosition(success, error);
   }
 
   render() {
@@ -36,7 +44,7 @@ export default class Search extends React.Component {
       <div className="search">
         <input type="text" id="search" placeholder="Search location" />
         <button type="submit">GO</button>
-        <button onClick={this.getLocation}>search my location</button>
+        <button onClick={this.searchCurrentLocation}>search my location</button>
       </div>
     );
   }
