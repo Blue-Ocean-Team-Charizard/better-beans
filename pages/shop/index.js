@@ -1,4 +1,5 @@
-import Head from 'next/head';
+import Head from "next/head";
+import Shop from "../../components/Shop";
 
 export default function Shops() {
   return (
@@ -7,7 +8,7 @@ export default function Shops() {
         <title>Blue Ocean</title>
         <meta name="keywords" content="Blue Ocean" />
       </Head>
-      <h1>Shops page</h1>
+      <Shop />
     </div>
   );
 }
