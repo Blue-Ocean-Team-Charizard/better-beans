@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 const typeDefs = `
   type Query {
     hello(name: String, job: String): String!
-    getUser(id: Int): [User]
+    getUser(id: Int): User
   }
 
   type User {
@@ -20,14 +20,17 @@ const typeDefs = `
 
   type Mutation {
     setMessage(message: String): String!
+    createUser(name: String, email: String): String
   }
 `;
 
 const resolvers = {
   Query: {
-    hello: (_, { name, job }) => `Hello ${name || 'World'} with ${job || 'Unemployed'}`,
+    // hello: (_, { name, job }) => `Hello ${name || 'World'} with ${job || 'Unemployed'}`,
     getUser: async (_, { id }) => {
-      const user = await prisma.users.findMany({});
+      const user = await prisma.users.findUnique({
+        where: { id },
+      });
       return user;
     },
     // getUser: (_, { id }) => prisma.users.filter((user) => user.id === id)[0],
@@ -45,6 +48,12 @@ const resolvers = {
     setMessage: () => prisma.users.create({
       data: { name: 'Hello kitty' },
     }),
+    createUser: async (_, { name, email }) => {
+      await prisma.users.create({
+        data: { name, email },
+      });
+      return 'Created';
+    },
   },
 };
 
