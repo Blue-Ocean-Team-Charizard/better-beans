@@ -5,9 +5,9 @@ export default function Profile() {
     <div>
       <Head>
         <title>Blue Ocean</title>
-        <meta  name='keywords' content='Blue Ocean'/>
-       </Head>
-        <h1>Profile page</h1>
+        <meta name="keywords" content="Blue Ocean" />
+      </Head>
+      <h1>Profile page</h1>
     </div>
   );
 }

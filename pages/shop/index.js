@@ -5,9 +5,9 @@ export default function Shops() {
     <div>
       <Head>
         <title>Blue Ocean</title>
-        <meta  name='keywords' content='Blue Ocean'/>
-       </Head>
-        <h1>Shops page</h1>
+        <meta name="keywords" content="Blue Ocean" />
+      </Head>
+      <h1>Shops page</h1>
     </div>
   );
 }

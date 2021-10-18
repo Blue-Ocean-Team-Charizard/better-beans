@@ -1,4 +1,3 @@
-
 import Head from 'next/head';
 
 export default function Login() {
@@ -6,9 +5,9 @@ export default function Login() {
     <div>
       <Head>
         <title>Blue Ocean</title>
-        <meta  name='keywords' content='Blue Ocean'/>
-       </Head>
-        <h1>Welcome to Blue Ocean</h1>
+        <meta name="keywords" content="Blue Ocean" />
+      </Head>
+      <h1>Login page</h1>
     </div>
   );
 }
