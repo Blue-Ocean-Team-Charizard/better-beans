@@ -1,9 +1,9 @@
-import ReviewList from "./ReviewList";
-import CreateReview from "./CreateReview";
-import { useState } from "react";
+import { useState } from 'react';
+import ReviewList from './ReviewList';
+import CreateReview from './CreateReview';
 
 export default function Shop({ name, location, operational, reviews }) {
-  const open = operational === "OPERATIONAL";
+  const open = operational === 'OPERATIONAL';
   const user = true;
   const [showCreateReview, setShowCreateReview] = useState(false);
   const avgRating = (reviews) => {
@@ -16,12 +16,13 @@ export default function Shop({ name, location, operational, reviews }) {
     <div>
       <h2>{name}</h2>
       <span>Stars Rating Stand In ⭐️⭐️⭐️⭐️⭐️</span>
-      <span>{open ? "Open Now" : "Closed"}</span>
+      <span>{open ? 'Open Now' : 'Closed'}</span>
       <button
+        type="button"
         onClick={
           user
             ? () => setShowCreateReview(true)
-            : () => console.log("redirect to login page")
+            : () => console.log('redirect to login page')
         }
       >
         Write a Review
