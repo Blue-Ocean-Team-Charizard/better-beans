@@ -6,10 +6,26 @@ export default function Header() {
     <header>
       <div className="navbar navbar-dark shadow-sm">
         <ul>
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/">Shops</Link></li>
-          <li><Link href="login">Login</Link></li>
-          <li><Link href="profile">Profile</Link></li>
+          <li>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/">
+              <a>Shops</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="login">
+              <a>Login</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="profile">
+              <a>Profile</a>
+            </Link>
+          </li>
         </ul>
         <Search />
       </div>
