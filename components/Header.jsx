@@ -7,7 +7,6 @@ export default function Header() {
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="shops">Shops</a></li>
-          <li><a href="shopname">Shopname</a></li>
           <li><a href="login">Login</a></li>
           <li><a href="profile">Profile</a></li>
         </ul>
