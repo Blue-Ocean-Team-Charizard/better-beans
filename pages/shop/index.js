@@ -1,13 +1,13 @@
 import Head from 'next/head';
 
-export default function Home() {
+export default function Shops() {
   return (
     <div>
       <Head>
         <title>Blue Ocean</title>
         <meta name="keywords" content="Blue Ocean" />
       </Head>
-      <h1>Welcome to Blue Ocean</h1>
+      <h1>Shops page</h1>
     </div>
   );
 }
