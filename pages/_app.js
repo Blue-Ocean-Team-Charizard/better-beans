@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Blue Ocean</title>
         <meta name="description" content="Blue Ocean" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Component {...pageProps} />
