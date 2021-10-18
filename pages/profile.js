@@ -1,15 +1,13 @@
 import Header from './Components/Header';
 import Footer from './Components/Footer';
-import Search from './Components/Search';
-
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
+export default function Profile() {
   return (
     <div className="container">
       <Header />
       <div className="main">
-        {/* <Search /> */}
+        Profiile page
       </div>
       <Footer />
     </div>
