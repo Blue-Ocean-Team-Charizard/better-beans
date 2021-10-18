@@ -1,14 +1,13 @@
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Head from 'next/head';
 
 export default function Login() {
   return (
-    <div className="container">
-      <Header />
-      <div className="container">
-        Login Page
-      </div>
-      <Footer />
+    <div>
+      <Head>
+        <title>Blue Ocean</title>
+        <meta name="keywords" content="Blue Ocean" />
+      </Head>
+      <h1>Login page</h1>
     </div>
   );
 }

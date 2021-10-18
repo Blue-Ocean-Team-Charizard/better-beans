@@ -1,16 +1,13 @@
-import './scss/App.scss';
-import Head from 'next/head';
+// import Head from 'next/head';
+import Layout from '../components/Layout';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Head>
-        <title>Blue Ocean</title>
-        <meta name="description" content="Blue Ocean" />
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }
