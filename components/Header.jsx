@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Search from './Search';
 
 export default function Header() {
@@ -5,10 +6,10 @@ export default function Header() {
     <header>
       <div className="navbar navbar-dark shadow-sm">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="shops">Shops</a></li>
-          <li><a href="login">Login</a></li>
-          <li><a href="profile">Profile</a></li>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="shops">Shops</Link></li>
+          <li><Link href="login">Login</Link></li>
+          <li><Link href="profile">Profile</Link></li>
         </ul>
         <Search />
       </div>
