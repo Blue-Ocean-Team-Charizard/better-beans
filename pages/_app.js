@@ -1,7 +1,8 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import { AuthUserProvider } from '../firebase/auth_context';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <AuthUserProvider><Component {...pageProps} /></AuthUserProvider>;
 }
 
-export default MyApp
+export default MyApp;
