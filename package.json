@@ -10,6 +10,7 @@
     "graph": "nodemon graphql"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.12.6",
     "@prisma/client": "^3.2.1",
     "bootstrap": "^5.1.3",
     "graphql-yoga": "^1.18.3",
