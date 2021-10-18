@@ -1,5 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/globals.css';
+import './scss/App.scss';
 import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
