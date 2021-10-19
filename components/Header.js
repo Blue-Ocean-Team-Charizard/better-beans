@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import Head from 'next/head';
 import Search from './Search';
+import Head from 'next/head';
+import { SearchContext } from './SearchContext';
 
 export default function Header() {
   return (
@@ -34,7 +35,11 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-          <Search />
+          <SearchContext.Consumer>
+            {(context) => (
+              <Search updateList={context.updateList} updateCoords={context.updateCoords} />
+            )}
+          </SearchContext.Consumer>
         </div>
       </header>
     </>
