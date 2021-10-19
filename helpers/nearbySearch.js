@@ -1,0 +1,8 @@
+import APIKey from '../config/config';
+
+export default function getPlaces(coords) {
+  // console.log('inside getPlaces');
+  // console.log(typeof coords);
+  return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=coffeeshop&location=${coords}&rankby=distance&key=${APIKey.APIKey}`)
+    .then((res) => res.json());
+}
