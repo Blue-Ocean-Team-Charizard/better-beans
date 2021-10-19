@@ -15,6 +15,7 @@ class SearchContextProvider extends Component {
 
   updateList(list) {
     this.setState({ shopList: list });
+    // window.location.href = "http://localhost:3000/search";
   }
 
   render() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -40,8 +41,12 @@ export default class Search extends React.Component {
     return (
       <div className="search">
         <input type="text" id="search" placeholder="Search location" />
-        <button type="submit">GO</button>
-        <button type="button" onClick={this.searchCurrentLocation}>Search Near Me</button>
+        <Link href="/search">
+          <button type="submit">GO</button>
+        </Link>
+        <Link href="/search">
+          <button type="button" onClick={this.searchCurrentLocation}>Search Near Me</button>
+        </Link>
       </div>
     );
   }
