@@ -30,7 +30,6 @@ export default function Shop({ name, location, operational, reviews = dummyRevie
       <span> Located at: {location} </span>
       <br />
       <span>
-        {'Visited: '}
         <select>
           <option value="no">Haven't Bean</option>
           <option value="want">Want to Bean</option>
