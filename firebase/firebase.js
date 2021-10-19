@@ -1,5 +1,11 @@
+/* eslint-disable import/no-mutable-exports */
 // Import the functions you need from the SDKs you need
-import { initializeApp, getApp, getApps, firebaseApp } from 'firebase/app';
+import {
+  initializeApp,
+  getApp,
+  getApps,
+  firebaseApp,
+} from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
