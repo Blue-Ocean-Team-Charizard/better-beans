@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../firebase/auth_context';
-import Meta from "../../components/Meta";
+import Meta from '../../components/Meta';
 
 export default function Profile() {
   const { authUser, loading } = useAuth();

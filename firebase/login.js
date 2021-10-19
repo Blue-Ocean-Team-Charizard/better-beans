@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react';
-import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from 'firebase/auth';
+
 import app from './firebase';
 
 const auth = getAuth(app);
@@ -26,21 +34,20 @@ export default function Login() {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
-      if (!authUser) {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
         setAuthUser(null);
         setLoading(false);
         return;
       }
-      console.log('authUser', authUser);
+
       const userObj = {
-        uid: authUser.uid,
-        email: authUser.email,
+        uid: user.uid,
+        email: user.email,
       };
       setLoading(true);
       setAuthUser(userObj);
       setLoading(false);
-      console.log('userObj', userObj);
     });
     return () => unsubscribe();
   }, []);

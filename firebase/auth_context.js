@@ -1,4 +1,5 @@
-import { createContext, useContext, Context } from 'react';
+/* eslint-disable react/prop-types */
+import { createContext, useContext } from 'react';
 import Login from './login';
 
 const authUserContext = createContext({
