@@ -1,12 +1,9 @@
-import Head from 'next/head';
+import Meta from "../../components/Meta";
 
 export default function Profile() {
   return (
     <div>
-      <Head>
-        <title>Blue Ocean</title>
-        <meta name="keywords" content="Blue Ocean" />
-      </Head>
+      <Meta />
       <h1>Profile page</h1>
     </div>
   );
