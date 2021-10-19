@@ -87,6 +87,7 @@ export default function Shop({
         </span>
       </span>
       {showCreateReview ? <CreateReview /> : null}
+      <CreateReview />
       <ReviewList />
     </div>
   );

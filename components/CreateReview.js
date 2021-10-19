@@ -1,9 +1,11 @@
 import { useState } from 'react';
-// import BeanRating from './BeanRating.js';
+import BeanSelected from './BeanSelected.js';
 
 export default function CreateReview() {
   const [body, setBody] = useState('');
   const [photo, setPhoto] = useState([]);
+  // const [rating, setRating] = useState(0);
+  // const style = { width: `${roundedRating}%` };
 
   const handleSubmit = () => {
     axios.post(`the post API`, {params: `params`})
@@ -28,9 +30,7 @@ export default function CreateReview() {
     <div>
       <div id='review'>
         <form onSubmit={(e) => {e.preventDefault(); handleSubmit();}}>
-          <div className='beans-outer'>
-            Select your rating
-          </div>
+          <BeanSelected />
           <br />
           <label>
             Write your reviews down
