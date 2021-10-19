@@ -11,9 +11,9 @@ export default class Search extends React.Component {
     this.geoSuccess = this.geoSuccess.bind(this);
   }
 
-  componentDidMount() {
-    this.searchCurrentLocation();
-  }
+  // componentDidMount() {
+  //   this.searchCurrentLocation();
+  // }
 
   geoSuccess(pos) {
     const crd = pos.coords;
