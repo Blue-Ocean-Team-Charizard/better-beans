@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import keys from '../../config';
+import keys from '../../config/config';
 import data from './mockData';
 
 let map;

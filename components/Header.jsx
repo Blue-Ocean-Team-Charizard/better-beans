@@ -27,6 +27,11 @@ export default function Header() {
               <a>Profile</a>
             </Link>
           </li>
+          <li>
+            <Link href="/search">
+              <a>Search</a>
+            </Link>
+          </li>
         </ul>
         <SearchContext.Consumer>
           {(context) => (
