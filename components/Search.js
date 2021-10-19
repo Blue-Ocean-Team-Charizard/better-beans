@@ -14,6 +14,7 @@ export default class Search extends React.Component {
   // }
 
   geoSuccess(pos) {
+    const { updateCoords, updateList } = this.props;
     const crd = pos.coords;
 
     console.log('Your current position is:');
@@ -21,9 +22,14 @@ export default class Search extends React.Component {
     console.log(`Longitude: ${crd.longitude}`);
     // this.setState({ currentLocation: crd });
     // 34.05223,-118.24368
+    updateCoords({
+      lat: crd.latitude,
+      lng: crd.longitude,
+    });
+
     fetch(`/api/search?location=${crd.latitude},${crd.longitude}`)
       .then((res) => res.json())
-      .then((data) => this.props.updateList(data))
+      .then((data) => updateList(data))
       .catch((err) => console.log(err));
   }
 

@@ -27,15 +27,10 @@ export default function Header() {
               <a>Profile</a>
             </Link>
           </li>
-          <li>
-            <Link href="/search">
-              <a>Search</a>
-            </Link>
-          </li>
         </ul>
         <SearchContext.Consumer>
           {(context) => (
-            <Search updateList={context.updateList} />
+            <Search updateList={context.updateList} updateCoords={context.updateCoords} />
           )}
         </SearchContext.Consumer>
       </div>

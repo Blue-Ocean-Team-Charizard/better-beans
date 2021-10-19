@@ -13,9 +13,10 @@ export default function SearchResults() {
         {(context) => (
           <>
             <Meta />
-            <h1>Shops near me </h1>
+            <h1>Shops near me</h1>
             {showMap
-              ? <Map shopList={context.shopList} /> : <ShopList shopList={context.shopList} />}
+              ? <Map shopList={context.shopList} coords={context.currentCoords} />
+              : <ShopList shopList={context.shopList} />}
           </>
         )}
       </SearchContext.Consumer>
