@@ -8,7 +8,6 @@ class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      center: { lat: 35.1983, lng: -111.6513 },
       markers: data,
     };
     this.loader = new Loader({
@@ -25,10 +24,16 @@ class Map extends Component {
     this.addMarkers();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.shopList !== this.props.shopList) {
+      this.addMarkers();
+    }
+  }
+
   initMap() {
     this.loader.load().then(() => {
       map = new google.maps.Map(document.getElementById('map'), {
-        center: this.state.center,
+        center: this.props.coords,
         zoom: 14,
       });
     });
@@ -36,7 +41,7 @@ class Map extends Component {
 
   addMarkers() {
     this.loader.load().then(() => {
-      this.state.markers.forEach((shop) => {
+      this.props.shopList.forEach((shop) => {
         const info = `
         <div>${shop.name}</div>
         <div>${shop.vicinity}</div>`;
@@ -67,7 +72,7 @@ class Map extends Component {
 
   render() {
     return (
-      <div id="map" style={{ height: '800px', width: '1000px' }} />
+      <div id="map" style={{ height: '800px', width: '350px' }} />
     );
   }
 }

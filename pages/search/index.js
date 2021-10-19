@@ -5,7 +5,7 @@ import Map from '../../components/map/map';
 import { SearchContext } from '../../components/SearchContext';
 
 export default function SearchResults() {
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMap] = useState(true);
 
   return (
     <div>
