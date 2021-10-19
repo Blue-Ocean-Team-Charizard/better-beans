@@ -9,7 +9,7 @@ const dummyReviews = [
 ];
 
 export default function Shop({ name, location, operational, reviews = dummyReviews }) {
-  const open = operational === 'OPERATIONAL';
+  const open = operational || true;
   const user = true;
   const [showCreateReview, setShowCreateReview] = useState(false);
   const avgRating = () => {
@@ -29,6 +29,16 @@ export default function Shop({ name, location, operational, reviews = dummyRevie
       <br />
       <span> Located at: {location} </span>
       <br />
+      <span>
+        {'Visited: '}
+        <select>
+          <option value="no">Haven't Bean</option>
+          <option value="want">Want to Bean</option>
+          <option value="yes">Already Bean</option>
+        </select>
+      </span>
+      <br />
+
       <button
         type="button"
         onClick={
@@ -39,15 +49,6 @@ export default function Shop({ name, location, operational, reviews = dummyRevie
       >
         Write a Review
       </button>
-      <br />
-      <span>
-        {'Visited: '}
-        <select>
-          <option value="no">Haven't Bean</option>
-          <option value="want">Want to Bean</option>
-          <option value="yes">Already Bean</option>
-        </select>
-      </span>
       {showCreateReview ? <CreateReview /> : null}
       <ReviewList />
     </div>
