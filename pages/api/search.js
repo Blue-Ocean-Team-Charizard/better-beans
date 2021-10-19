@@ -1,4 +1,13 @@
+import getPlaces from '../../helpers/nearbySearch';
+
 export default function handler(req, res) {
-  console.log(req.query.location);
-  res.status(200).json({ location: req.query.location });
+  getPlaces(req.query.location)
+    .then((places) => {
+      console.log(places);
+      res.status(200).json(places);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 }
