@@ -4,9 +4,15 @@ import { TiThumbsUp } from "react-icons/ti";
 import { MdReportGmailerrorred } from "react-icons/md";
 
 export default function Review() {
-
+  const [helpful, setHelpful] = useState(0)
+  const [report, setReport] = useState(0)
   // const review = data.map((review, index)=> {});
-
+  const handleHelpfulButton = () => {
+    setHelpful(helpful + 1);
+  }
+  const handleReportButton = () => {
+    setReport(report + 1)
+  }
   return (
     <div id="review">
       <div id="review-user-info">
@@ -26,10 +32,16 @@ export default function Review() {
       {/* pictures for review */}
 
       <div id="review-btns">
-        <button id="helpful-btn">
+        <button
+          id="helpful-btn"
+          onClick={() => handleHelpfulButton()}
+        >
           <TiThumbsUp/>
         </button>
-        <button id="report-btn">
+        <button
+          id="report-btn"
+          onClick={() => handleReportButton()}
+        >
           <MdReportGmailerrorred/>
         </button>
       </div>
