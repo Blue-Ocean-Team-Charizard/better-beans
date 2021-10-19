@@ -35,5 +35,33 @@ footer {
   padding: 20px;
 }
 
+.beans-outer{
+  display: inline-block;
+  position: relative;
+}
+
+.beans-outer::before {
+  width: 20px;
+  height: 20px;
+  /* content: '\219 \219 \219 \219 \219'; */
+  content: url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg');
+}
+
+.beans-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  /* width:25%; */
+}
+
+.beans-inner::before {
+  content: url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg');
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+
+}
+
+
 
 
