@@ -17,7 +17,8 @@ export default function CreateReview() {
   const handleImage = (e) => {
     e.preventDefault();
     if(e.target.files) {
-      let file = Array.from
+      let file = Array.from(e.target.files);
+      setPhoto(prevPhoto => prevPhoto.concat(file));
     }
   }
 
