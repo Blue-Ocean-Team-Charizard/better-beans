@@ -1,10 +1,11 @@
 import Meta from "../../components/Meta";
+import Shop from "../../components/Shop";
 
-export default function Login() {
+export default function Shops() {
   return (
     <div>
       <Meta />
-      <h1>Login page</h1>
+      <Shop />
     </div>
   );
 }
