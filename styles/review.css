@@ -1,21 +1,23 @@
 #reviews {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 #gi-coffee-beans-icon {
   font-size: 15px;
 }
 #reviews-title {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-left: 20px;
 }
 
 #review {
   border: 1px solid black;
   border-radius: 4px;
-  width: 95%;
+  min-width: 350px;
+  max-width: 350px;
   margin: 5px;
   padding: 5px;
 }
