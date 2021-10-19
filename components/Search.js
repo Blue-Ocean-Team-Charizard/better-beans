@@ -15,9 +15,20 @@ export default class Search extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.searchCurrentLocation();
-  // }
+  handleChange(e) {
+    this.setState({ query: e.target.value });
+  }
+
+  handleSubmit(e) {
+    const { updateList } = this.props;
+    const { query } = this.state;
+    e.preventDefault();
+
+    fetch(`/api/textsearch?query=${query}`)
+      .then((res) => res.json())
+      .then((data) => updateList(data))
+      .catch((err) => console.log(err));
+  }
 
   geoSuccess(pos) {
     const { updateCoords, updateList } = this.props;
@@ -47,15 +58,6 @@ export default class Search extends React.Component {
     } else {
       console.log('location is not enabled');
     }
-  }
-
-  handleChange(e) {
-    this.setState({ query: e.target.value });
-  }
-
-  handleSubmit(e) {
-    const { query } = this.state;
-    e.preventDefault();
   }
 
   render() {
