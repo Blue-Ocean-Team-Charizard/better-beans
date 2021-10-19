@@ -12,10 +12,18 @@ export default function Shop({ name, location, operational, reviews = dummyRevie
   const open = operational || true;
   const user = true;
   const [showCreateReview, setShowCreateReview] = useState(false);
+  const [showLoginMsg, setShowLoginMsg] = useState(false);
+  const [visited, setVisited] = useState('maybe');
   const avgRating = () => {
     let ratings = 0;
     reviews.map(review => ratings += review.rating);
     return ratings / reviews.length;
+  };
+
+  const handleVisited = (e) => {
+    e.preventDefault();
+    setVisited(e.target.value);
+
   };
 
   const shopRating = avgRating();
@@ -30,7 +38,7 @@ export default function Shop({ name, location, operational, reviews = dummyRevie
       <span> Located at: {location} </span>
       <br />
       <span>
-        <select>
+        <select className="visited" onChange={ }>
           <option value="no">Haven't Bean</option>
           <option value="want">Want to Bean</option>
           <option value="yes">Already Bean</option>
@@ -43,11 +51,15 @@ export default function Shop({ name, location, operational, reviews = dummyRevie
         onClick={
           user
             ? () => setShowCreateReview(true)
-            : () => console.log('redirect to login page')
+            : () => {
+              setShowLoginMsg(true);
+              console.log('redirect to login page');
+            }
         }
       >
         Write a Review
       </button>
+      <span>{showLoginMsg ? 'Please Login first here' : null} </span>
       {showCreateReview ? <CreateReview /> : null}
       <ReviewList />
     </div>
