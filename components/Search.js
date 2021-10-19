@@ -5,8 +5,14 @@ export default class Search extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      query: '',
+    };
+
     this.searchCurrentLocation = this.searchCurrentLocation.bind(this);
     this.geoSuccess = this.geoSuccess.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // componentDidMount() {
@@ -43,10 +49,24 @@ export default class Search extends React.Component {
     }
   }
 
+  handleChange(e) {
+    this.setState({ query: e.target.value });
+  }
+
+  handleSubmit(e) {
+    const { query } = this.state;
+    e.preventDefault();
+  }
+
   render() {
     return (
       <div className="search">
-        <input type="text" id="search" placeholder="Search location" />
+        <input
+          type="text"
+          id="search"
+          placeholder="coffee in Los Angeles"
+          onChange={this.handleChange}
+        />
         <Link href="/search">
           <button type="submit">GO</button>
         </Link>
