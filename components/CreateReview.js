@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import BeanRating from './BeanRating.js';
 
 export default function CreateReview() {
   const [body, setBody] = useState('');
@@ -27,6 +28,10 @@ export default function CreateReview() {
     <div>
       <div id='review'>
         <form onSubmit={(e) => {e.preventDefault(); handleSubmit();}}>
+          <div>
+            <BeanRating /> Select your rating
+          </div>
+          <br />
           <label>
             Write your reviews down
           </label>
