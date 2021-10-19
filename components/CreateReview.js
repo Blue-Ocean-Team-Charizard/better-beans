@@ -33,6 +33,7 @@ export default function CreateReview() {
           <label>
             Your photos(optional)
           </label>
+          <br />
           <button type='submit'> Submit Review</button>
         </form>
       </div>
