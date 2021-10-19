@@ -1,14 +1,31 @@
-import Search from './Search';
+import Link from "next/link";
+import Search from "./Search";
 
 export default function Header() {
   return (
     <header>
       <div className="navbar navbar-dark shadow-sm">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="shops">Shops</a></li>
-          <li><a href="login">Login</a></li>
-          <li><a href="profile">Profile</a></li>
+          <li>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/shop">
+              <a>Shop</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="login">
+              <a>Login</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="profile">
+              <a>Profile</a>
+            </Link>
+          </li>
         </ul>
         <Search />
       </div>
