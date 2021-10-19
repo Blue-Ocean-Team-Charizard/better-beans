@@ -43,7 +43,7 @@
   margin-left: 10px;
   font-size: 12px;
 }
-#reviewer-date  {
+#reviewer-date {
   font-size: 12px;
   margin-right: 5px;
 }
@@ -59,7 +59,7 @@
   font-size: 14px;
 }
 #review-body {
- font-size: 13px;
+  font-size: 13px;
 }
 
 /* review buttons */
@@ -81,4 +81,34 @@
   height: 25px;
   background-color: transparent;
   border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* review bean rating */
+#review-beans-outer {
+  display: inline-block;
+  position: relative;
+}
+#review-beans-outer::before {
+  width: 16px;
+  height: 16px;
+  content: url("../public/bean-xsmall.svg") url("../public/bean-xsmall.svg")
+    url("../public/bean-xsmall.svg") url("../public/bean-xsmall.svg")
+    url("../public/bean-xsmall.svg");
+  filter: invert(96%) sepia(7%) saturate(2145%) hue-rotate(9deg) brightness(88%)
+    contrast(81%);
+}
+#review-beans-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  /* width:25%; */
+}
+#review-beans-inner::before {
+  content: url("../public/bean-xsmall.svg") url("../public/bean-xsmall.svg")
+    url("../public/bean-xsmall.svg") url("../public/bean-xsmall.svg")
+    url("../public/bean-xsmall.svg");
+  filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg)
+    brightness(101%) contrast(87%);
 }
