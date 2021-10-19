@@ -9,11 +9,17 @@ class SearchContextProvider extends Component {
     this.state = {
       shopList: [],
     };
+
+    this.updateList = this.updateList.bind(this);
+  }
+
+  updateList(list) {
+    this.setState({ shopList: list });
   }
 
   render() {
     return (
-      <SearchContext.Provider value={{ ...this.state }}>
+      <SearchContext.Provider value={{ ...this.state, updateList: this.updateList }}>
         {this.props.children}
       </SearchContext.Provider>
     );

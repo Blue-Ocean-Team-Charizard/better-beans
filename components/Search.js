@@ -25,7 +25,7 @@ export default class Search extends React.Component {
     // 34.05223,-118.24368
     fetch(`/api/search?location=${crd.latitude},${crd.longitude}`)
       .then((res) => res.json())
-      .then((data) => this.setState({ shops: data }))
+      .then((data) => this.props.updateList(data))
       .catch((err) => console.log(err));
   }
 
