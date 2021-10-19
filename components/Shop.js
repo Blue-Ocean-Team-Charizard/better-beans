@@ -23,7 +23,6 @@ export default function Shop({ name, location, operational, reviews = dummyRevie
   const handleVisited = (e) => {
     e.preventDefault();
     setVisited(e.target.value);
-
   };
 
   const shopRating = avgRating();
@@ -38,7 +37,7 @@ export default function Shop({ name, location, operational, reviews = dummyRevie
       <span> Located at: {location} </span>
       <br />
       <span>
-        <select className="visited" onChange={ }>
+        <select className="visited" onChange={(e) => handleVisited(e)}>
           <option value="no">Haven't Bean</option>
           <option value="want">Want to Bean</option>
           <option value="yes">Already Bean</option>
