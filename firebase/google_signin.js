@@ -1,43 +1,56 @@
-// import React, { useCallback } from 'react';
-// import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import app from './firebase';
 
-// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-// // import { auth } from './firebase';
+const auth = getAuth(app);
 
-// const GoogleSignIn = () => {
-//   const Router = useRouter();
+export default function Login() {
+  const [authUser, setAuthUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-//   const loginHandler = useCallback(async () => {
-//     const provider = new GoogleAuthProvider();
-//     // additional scopes can be added as per requirement
+  const clear = () => {
+    setAuthUser(null);
+    setLoading(true);
+  };
 
-//     try {
-//       await signInWithPopup(provider);
-//       Router.push('/index.js');
-//     } catch (error) {
-//       console.log('error');
-//       alert(error);
-//     }
-//   }, [Router]);
-//   return (
-//     <button
-//       className="p-3 shadow-lg rounded-lg border-2 flex cursor-pointer hover:bg-gray-100 hover:shadow-2xl transition-all duration-500"
-//       onClick={loginHandler}
-//     >
-//       <div className="flex items-center">
-//         <img
-//           className="w-8 h-8  "
-//           src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-//           alt="google"
-//           w="200"
-//           h="200"
-//         />
-//         <h3 className="ml-4 text-blue-600 text-lg font-semibold  my-auto ">
-//           Continue with Google
-//         </h3>
-//       </div>
-//     </button>
-//   );
-// };
+  const signInWithFirebase = async () => {
+    try {
+      await signInWithPopup(auth, new GoogleAuthProvider())
+        .then((results)=>console.log(results));
+    } catch (err) {
+      console.error(err);
+    }
+    // .then((results) => console.log(results));
+  };
 
-// export default GoogleSignIn;
+  const logOff = async () => {
+    signOut(auth).then(clear);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (!authUser) {
+        setAuthUser(null);
+        setLoading(false);
+        return;
+      }
+      console.log('authUser', authUser);
+      const userObj = {
+        uid: authUser.uid,
+        email: authUser.email,
+      };
+      setLoading(true);
+      setAuthUser(userObj);
+      setLoading(false);
+      console.log('userObj', userObj);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  return {
+    authUser,
+    loading,
+    signInWithFirebase,
+    logOff,
+  };
+}
