@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Search from './Search';
+import Link from "next/link";
+import Search from "./Search";
 
 export default function Header() {
   return (
@@ -12,12 +12,12 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="/">
-              <a>Shops</a>
+            <Link href="/shop">
+              <a>Shop</a>
             </Link>
           </li>
           <li>
-            <Link href="login">
+            <Link href="/login">
               <a>Login</a>
             </Link>
           </li>
