@@ -23,6 +23,7 @@ export default class Search extends React.Component {
         console.log(`Latitude : ${crd.latitude}`);
         console.log(`Longitude: ${crd.longitude}`);
         // this.setState({ currentLocation: crd });
+        // 34.05223, -118.24368
         fetch(`api/search?location=${crd.latitude},${crd.longitude}`)
           .then((data) => console.log(data))
           .catch((err) => console.log(err))
