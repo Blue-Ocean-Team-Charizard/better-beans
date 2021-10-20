@@ -25,6 +25,9 @@ class Map extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (prevProps.coords !== this.props.coords) {
+      this.initMap();
+    }
     if (prevProps.shopList !== this.props.shopList) {
       this.addMarkers();
     }

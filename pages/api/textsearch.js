@@ -1,4 +1,5 @@
 import getQueryResults from '../../helpers/textSearch';
+import getGeocode from '../../helpers/getGeocode';
 import chains from '../../helpers/chains';
 
 export default function handler(req, res) {
@@ -8,6 +9,9 @@ export default function handler(req, res) {
       // console.log(filtered);
       res.status(200).json(filtered);
     })
+    // .then((filtered) => {
+    //   getGeocode(req.query.query)
+    // })
     .catch((err) => {
       console.log(err);
       res.status(500).send('Error getting places');

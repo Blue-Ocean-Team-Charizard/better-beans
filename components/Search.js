@@ -6,7 +6,7 @@ export default class Search extends React.Component {
     super(props);
 
     this.state = {
-      query: '',
+      location: '',
     };
 
     this.searchCurrentLocation = this.searchCurrentLocation.bind(this);
@@ -16,15 +16,15 @@ export default class Search extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({ query: e.target.value });
+    this.setState({ location: e.target.value });
   }
 
   handleSubmit(e) {
     const { updateList } = this.props;
-    const { query } = this.state;
+    const { location } = this.state;
     e.preventDefault();
 
-    fetch(`/api/textsearch?query=${query}`)
+    fetch(`/api/textsearch?query=${location}`)
       .then((res) => res.json())
       .then((data) => updateList(data))
       .catch((err) => console.log(err));
