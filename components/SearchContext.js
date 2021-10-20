@@ -9,10 +9,12 @@ class SearchContextProvider extends Component {
     this.state = {
       shopList: [],
       currentCoords: { lat: 35.1983, lng: -111.6513 },
+      selectedShop: {},
     };
 
     this.updateList = this.updateList.bind(this);
     this.updateCoords = this.updateCoords.bind(this);
+    this.selectShop = this.selectShop.bind(this);
   }
 
   updateList(list) {
@@ -23,12 +25,17 @@ class SearchContextProvider extends Component {
     this.setState({ currentCoords: coords });
   }
 
+  selectShop(shop) {
+    this.setState({ selectedShop: shop });
+  }
+
   render() {
     return (
       <SearchContext.Provider value={{
         ...this.state,
         updateList: this.updateList,
         updateCoords: this.updateCoords,
+        selectShop: this.selectShop,
       }}
       >
         {this.props.children}
