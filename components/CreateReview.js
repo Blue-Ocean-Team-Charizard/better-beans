@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
+import BeanSelected from './BeanSelected';
+import axios from 'axios';
 
 export default function CreateReview() {
   const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
+  const [files, setFiles] = useState([]);
 
   const CREATE_REVIEW = gql`
     mutation CreateReview(
@@ -68,25 +71,71 @@ export default function CreateReview() {
   const handleImage = (e) => {
     e.preventDefault();
     if (e.target.files) {
-      let file = Array.from(e.target.files);
-      setPhotos(prevPhoto => prevPhoto.concat(file));
+      const fileArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+      const selectedFileArray = Array.from(e.target.files);
+      setFiles(prevFile => prevFile.concat(selectedFileArray));
+      setPhotos(prevImg => prevImg.concat(fileArray));
+      Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
     }
   };
 
+  const renderImg = (source) => {
+    return source.map(image => {
+      return <img src={image} key={image} height="80" id="upload-image" onClick = {handleAPI}></img>;
+    });
+  };
+
+  // transfer photos to URL
+  const handleAPI = () => {
+    let URLs = [];
+    for (let i = 0; i < files.length; i++) {
+      let formData = new FormData();
+      formData.append('file', files[i]);
+      formData.append('upload_preset', 'asosdlts');
+
+      axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
+        .then((data) => {
+          URLs.push({url: data.data.secure_url});
+          if (URLs.length === files.length) {
+            console.log(URLs);
+          }
+        })
+        .catch((err) => console.log('tranfer URL err', err));
+    }
+}
+
+
+
   return (
-    // the modal component should be adding option
     <div>
       <div id="review">
         <form onSubmit={(e) => { handleSubmit(e); }}>
-          <label>
-            Write your reviews down
-          </label>
-          <br />
-          <label>
-            Your photos(optional)
-          </label>
-          <br />
-          <button type="submit"> Submit Review</button>
+          <BeanSelected />
+            <br />
+            <label>
+              Title:
+            </label>
+            <label>
+              Write your reviews down
+              <br/>
+              <textarea onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}/>
+            </label>
+            <br />
+            <label>
+              Your photos(optional)
+            </label>
+            <br />
+
+            <input type='file' multiple={true} onChange={(e) => handleImage(e)}></input>
+              <div>
+                {renderImg(photos)}
+              </div>
+
+            <button type="submit"> Submit Review</button>
+
+
+
+
         </form>
       </div>
     </div>
