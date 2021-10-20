@@ -28,7 +28,6 @@ export default function Profile() {
         <button type="button" className="btn btn-review"> Write a Review</button>
       </h1>
 
-
       <button
         type="button"
         onClick={logOff}
