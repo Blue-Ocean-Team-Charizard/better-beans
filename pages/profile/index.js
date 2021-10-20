@@ -5,7 +5,7 @@ import Meta from '../../components/Meta';
 import ReviewList from '../../components/ReviewList';
 
 export default function Profile() {
-  const { authUser, loading } = useAuth();
+  const { authUser, loading, logOff } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -18,11 +18,16 @@ export default function Profile() {
     <div className="profile">
       <Meta />
       <h1>Profile Page</h1>
+      {(authUser) ? <img className="profile-photo" src={authUser.photo} alt="avatar" /> : null}
       <span>
-        Logged in as
         {(authUser) ? ` ${authUser.name}` : ''}
       </span>
-      {(authUser) ? <img className="profile-photo" src={authUser.photo} alt="avatar" /> : null}
+      <button
+        type="button"
+        onClick={logOff}
+      >
+        Log Off!
+      </button>
       <br />
       <ReviewList />
     </div>
