@@ -4,6 +4,7 @@ import Meta from '../../components/Meta';
 export default function LoginPage() {
   const { signInWithFirebase } = useAuth();
   return (
+    <>
     <Meta />
     <button
       type="button"
@@ -23,5 +24,6 @@ export default function LoginPage() {
         </h3>
       </div>
     </button>
+</>
   );
 }
