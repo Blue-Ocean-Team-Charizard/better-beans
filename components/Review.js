@@ -1,39 +1,15 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { TiThumbsUp } from "react-icons/ti";
 import { MdReportGmailerrorred } from "react-icons/md";
 
-const data = [
-  {
-  'firstName': 'Stormi',
-  'date': 'Oct 18, 2021',
-  'default_pic': '',
-  'rating': 4,
-  'title': 'Awesome beans',
-  'body': 'This is place has the best beans. I would recommend this cafe to anyone who loves authentic coffee!',
-  'helpful': 0,
-  'report': 0,
-  'photos': []
-  },{
-  'firstName': 'Stormi',
-  'date': 'Oct 18, 2021',
-  'default_pic': '',
-  'rating': 4,
-  'title': 'Awesome beans',
-  'body': 'This is place has the best beans. I would recommend this cafe to anyone who loves authentic coffee!',
-  'helpful': 0,
-  'report': 0,
-  'photos': []
-  }
-]
-
 export default function Review() {
 
-  const review = data.map((review, index)=> {});
+  // const review = data.map((review, index) => {});
 
   return (
     <div id="review">
       <div id="review-user-info">
-        <img src="" id=""reviewer-photo/>
+        {/* <img src="" id="reviewer-photo"/> */}
         <div id="review-user-info-inner">
           <div id="reviewer-first-name">first name</div>
           <div id="reviewer-date">date</div>
