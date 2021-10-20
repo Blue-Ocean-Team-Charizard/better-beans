@@ -11,6 +11,7 @@ export default function handler(req, res) {
     })
     // .then((filtered) => {
     //   getGeocode(req.query.query)
+    //     .then((geocode) => geocode.results[0])
     // })
     .catch((err) => {
       console.log(err);
