@@ -1,18 +1,21 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 // import { GraphQLServer } from 'graphql-yoga'
 // ... or using `require()`
-const { GraphQLServer } = require('graphql-yoga');
+// const { GraphQLServer } = require('graphql-yoga');
+const { gql } = require('apollo-server-micro');
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const typeDefs = `
+export const typeDefs = gql`
   type Query {
     hello(name: String, job: String): String!
     getUser(id: Int): User
     getReviews: [Review]
-    getReviewsByShop(shop_id: String!): [Review]
-    getReviewsByUser(user_id: Int!): [Review]
+    getReviewsByShop(shop_id: String!): [Review]!
+    getReviewsByUser(user_id: Int!): [Review]!
     getPhotos: [Photo]
   }
 
@@ -44,7 +47,7 @@ const typeDefs = `
 
   type Mutation {
     setMessage(message: String): String!
-    createUser(name: String, email: String, photo_url: String): String
+    createUser(name: String, email: String, photo_url: String): User!
     createReview(
       first_name: String,
       title: String,
@@ -52,42 +55,40 @@ const typeDefs = `
       rating: Int,
       shop_id: String,
       user_id: Int,
-      photos: [String]
-    ): String!
-    createPhoto(review_id: Int!, url: String!): String!
+    ): Review!
+    createPhoto(review_id: Int!, url: String!): Photo!
   }
 `;
 
-const resolvers = {
+export const resolvers = {
   Query: {
-    // hello: (_, { name, job }) => `Hello ${name || 'World'} with ${job || 'Unemployed'}`,
-    getUser: async (_, { id }) => {
+    getUser: async (_, { id }, ctx) => {
       try {
-        return await prisma.users.findUnique({
+        return await ctx.prisma.users.findUnique({
           where: { id },
         });
       } catch (e) {
         console.error(e);
       }
     },
-    getReviews: async () => {
-      const reviews = await prisma.reviews.findMany();
+    getReviews: async (_, args, ctx) => {
+      const reviews = await ctx.prisma.reviews.findMany();
       return reviews;
     },
-    getReviewsByShop: async (_, { shop_id }) => {
-      const reviews = await prisma.reviews.findMany({
+    getReviewsByShop: async (_, { shop_id }, ctx) => {
+      const reviews = await ctx.prisma.reviews.findMany({
         where: { shop_id },
       });
       return reviews;
     },
-    getReviewsByUser: async (_, { user_id }) => {
-      const reviews = await prisma.reviews.findMany({
+    getReviewsByUser: async (_, { user_id }, ctx) => {
+      const reviews = await ctx.prisma.reviews.findMany({
         where: { user_id },
       });
       return reviews;
     },
-    getPhotos: async () => {
-      const photos = await prisma.photos.findMany();
+    getPhotos: async (_, args, ctx) => {
+      const photos = await ctx.prisma.photos.findMany();
       return photos;
     },
   },
@@ -96,17 +97,17 @@ const resolvers = {
     setMessage: () => prisma.users.create({
       data: { name: 'Hello kitty' },
     }),
-    createUser: async (_, { name, email, photo_url }) => {
-      await prisma.users.create({
+    createUser: async (_, { name, email, photo_url }, ctx) => {
+      const user = await ctx.prisma.users.create({
         data: { name, email, photo_url },
       });
-      return 'User Created';
+      return user;
     },
     createReview: async (_, {
-      first_name, title, body, rating, shop_id, user_id, photos,
-    }) => {
+      first_name, title, body, rating, shop_id, user_id,
+    }, ctx) => {
       const now = new Date();
-      const review = prisma.reviews.create({
+      const review = await ctx.prisma.reviews.create({
         data: {
           first_name,
           title,
@@ -125,25 +126,16 @@ const resolvers = {
           // }
         },
       });
-      const images = photos.map((photo) => prisma.photos.create({
-        data: {
-          review_id: review.id,
-          url: photo.url,
-        },
-      }));
-      await review;
-      await images;
-      return 'Review Created';
+      return review;
     },
-    createPhoto: async (_, { review_id, url }) => {
-      await prisma.photos.create({
+    createPhoto: async (_, { review_id, url }, ctx) => {
+      const photo = await ctx.prisma.photos.create({
         data: { review_id, url },
       });
-      return 'Photo Created';
+      return photo;
     },
   },
 };
 
-const server = new GraphQLServer({ typeDefs, resolvers });
-
-server.start(() => console.log('Server is running on localhost:4000'));
+// server.start(() => console.log('Server is running on localhost:4000'));
+export default prisma;
