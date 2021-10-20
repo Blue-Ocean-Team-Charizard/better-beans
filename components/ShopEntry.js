@@ -4,7 +4,7 @@ import styles from '../styles/Shoplist.module.css';
 import BeanRating from './BeanRating';
 
 const ShopEntry = ({ shop }) => {
-  console.log(shop);
+  // console.log(shop);
   return (
     <SearchContext.Consumer>
       {(context) => (

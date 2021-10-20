@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import router from 'next/router';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -20,13 +21,18 @@ export default class Search extends React.Component {
   }
 
   handleSubmit(e) {
-    const { updateList } = this.props;
+    const { updateList, updateCoords } = this.props;
     const { location } = this.state;
     e.preventDefault();
+    router.push('/search');
 
     fetch(`/api/textsearch?query=${location}`)
       .then((res) => res.json())
-      .then((data) => updateList(data))
+      .then((data) => {
+        // console.log('in search by text');
+        updateList(data.places);
+        updateCoords(data.coords);
+      })
       .catch((err) => console.log(err));
   }
 
@@ -52,6 +58,7 @@ export default class Search extends React.Component {
 
   searchCurrentLocation() {
     if (navigator.geolocation) {
+      console.log('getting current location');
       navigator.geolocation.getCurrentPosition(this.geoSuccess, (err) => {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       });
@@ -69,9 +76,7 @@ export default class Search extends React.Component {
           placeholder="Los Angeles"
           onChange={this.handleChange}
         />
-        <Link href="/search">
-          <button type="submit">GO</button>
-        </Link>
+        <button type="button" onClick={this.handleSubmit}>GO</button>
         <Link href="/search">
           <button type="button" onClick={this.searchCurrentLocation}>Search Near Me</button>
         </Link>
