@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import keys from '../../config/config';
 import data from './mockData';
+// import Image from 'next/image';
 
 let map;
 class Map extends Component {
@@ -63,6 +64,7 @@ class Map extends Component {
           title: 'cafe',
           visible: true,
           map,
+          icon: '/cafeMarker.svg',
         });
         map.addListener('click', () => {
           infoWindow.close();
