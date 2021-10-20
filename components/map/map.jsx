@@ -80,7 +80,7 @@ class Map extends Component {
 
   render() {
     return (
-      <div id="map" style={{ height: '800px', width: '350px' }} />
+      <div id="map" />
     );
   }
 }

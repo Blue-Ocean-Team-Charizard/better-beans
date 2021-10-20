@@ -69,16 +69,18 @@ export default class Search extends React.Component {
 
   render() {
     return (
-      <div className="search">
+      <div className="input-group search">
         <input
           type="text"
           id="search"
+          className="form-control"
           placeholder="Los Angeles"
+          aria-label="Search location"
           onChange={this.handleChange}
         />
-        <button type="button" onClick={this.handleSubmit}>GO</button>
+        <button className="btn btn-outline-secondary" type="button" onClick={this.handleSubmit}>GO</button>
         <Link href="/search">
-          <button type="button" onClick={this.searchCurrentLocation}>Search Near Me</button>
+          <button className="btn btn-outline-secondary btn-near-me" type="button" onClick={this.searchCurrentLocation}>Near Me</button>
         </Link>
       </div>
     );

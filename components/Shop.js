@@ -42,30 +42,31 @@ export default function Shop({ googleData, reviews }) {
 
   return (
     <div>
-      <h2 className="shop-name">{googleData.name || 'SHOP NAME'}</h2>
-      <BeanRating rating={shopRating} />
-      <br />
-      <span className="open-now">{googleData.opening_hours ? googleData.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</span>
-      <br />
-      <span className="shop-location">
-        {' '}
-        Located at:
-        {' '}
-        {googleData.vicinity}
-        {' '}
-      </span>
-      <br />
-      <span>
-        <select className="visited" onChange={(e) => handleVisited(e)}>
-          <option value="no" selected={visited === 'no' ? 'selected' : null}>Haven't Bean</option>
-          <option value="want" selected={visited === 'want' ? 'selected' : null}>Want to Bean</option>
-          <option value="yes" selected={visited === 'yes' ? 'selected' : null}>Already Bean</option>
-        </select>
-      </span>
-      <br />
-      <span>
+      <div className="card">
+        <h3 className="name">{googleData.name || 'SHOP NAME'}</h3>
+        <BeanRating rating={shopRating} />
+        <div className="opening_hours">{googleData.opening_hours ? googleData.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</div>
+        <div className="location">
+          {' '}
+          Located at:
+          {' '}
+          {googleData.vicinity}
+          {' '}
+        </div>
+        <span>
+          <select className="visited" onChange={(e) => handleVisited(e)}>
+            <option value="no" selected={visited === 'no' ? 'selected' : null}>Haven't Bean</option>
+            <option value="want" selected={visited === 'want' ? 'selected' : null}>Want to Bean</option>
+            <option value="yes" selected={visited === 'yes' ? 'selected' : null}>Already Bean</option>
+          </select>
+        </span>
+        <br />
+      </div>
+
+      <h1 className="title">
+        Reviews
         <button
-          className="write-review-btn"
+          className="btn btn-review"
           type="button"
           onClick={
             user
@@ -78,12 +79,12 @@ export default function Shop({ googleData, reviews }) {
         >
           Write a Review
         </button>
-        <br />
-        <span className="login-msg">
+      </h1>
+      <div className="login-msg">
           {showLoginMsg ? 'Please login first here' : null}
           {' '}
-        </span>
-      </span>
+        </div>
+
       {showCreateReview ? <CreateReview /> : null}
       <ReviewList />
     </div>
