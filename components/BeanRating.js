@@ -1,5 +1,20 @@
-export default function BeanRating({ rating }) {
-  const convertedRating = rating / 5 * 100;
+export default function BeanRating({ rating, reviews }) {
+  const usedRating = 0;
+  if (rating) {
+    const usedRating = rating;
+  } else if (reviews) {
+    const avgRating = () => {
+      let ratings = 0;
+      reviews.map((review) => {
+        ratings += review.rating;
+        return null;
+      });
+      return ratings / reviews.length;
+    };
+    const usedRating = avgRating();
+  }
+
+  const convertedRating = usedRating / 5 * 100;
   const roundedRating = (Math.round(convertedRating / 5) * 5);
   const style = { width: `${roundedRating}%` };
   return (

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import { useState, useEffect } from 'react';
 import ReviewList from './ReviewList';
 import CreateReview from './CreateReview';
 import BeanRating from './BeanRating';
@@ -9,22 +10,50 @@ const dummyReviews = [
   { rating: 5 }, { rating: 4 },
 ];
 
-export default function Shop({ googleData, reviews }) {
+export default function Shop({ googleData, id }) {
   const { authUser } = useAuth();
+  const shopId = id;
   const [showCreateReview, setShowCreateReview] = useState(false);
   const [showLoginMsg, setShowLoginMsg] = useState(false);
   const [visited, setVisited] = useState('no');
 
+  const GET_REVIEWS = gql`
+  query ReviewByShop($shop_id: String!) {
+    reviewByShop(shop_id: $shop_id) {
+      name
+      body
+      rating
+      helpful
+      reported
+      shop_id
+      user_id
+    }
+  }
+`;
+  console.log('THE ID IS:', shopId);
+
+  const { data, loading, err } = useQuery(GET_REVIEWS, {
+    variables: {
+      shop_id: shopId,
+    },
+  });
+
+  if (loading) return 'Loading...';
+  if (err) return `Error! ${err.message}!`;
+
+  // const reviews = data.reviewsByShop;
+
+  // useEffect(() => {
+  //   getReviews({
+  //     variables: {
+  //       shop_id: shopId,
+  //     },
+  //   });
+  // });
+
   // const open = operational || true;
   const user = authUser;
-  const avgRating = () => {
-    let ratings = 0;
-    reviews.map((review) => {
-      ratings += review.rating;
-      return null;
-    });
-    return ratings / reviews.length;
-  };
+
   // console.log(authUser);
 
   const handleVisited = (e) => {
@@ -38,13 +67,13 @@ export default function Shop({ googleData, reviews }) {
     }
   };
 
-  const shopRating = (reviews.length > 0) ? avgRating() : 0;
+  // const shopRating = (reviews.length > 0) ? avgRating() : 0;
 
   return (
     <div>
       <div className="card">
         <h3 className="name">{googleData.name || 'SHOP NAME'}</h3>
-        <BeanRating rating={shopRating} />
+        <BeanRating rating={null} reviews={data.reviewsByShop} />
         <div className="opening_hours">{googleData.opening_hours ? googleData.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</div>
         <div className="location">
           {' '}
@@ -81,12 +110,12 @@ export default function Shop({ googleData, reviews }) {
         </button>
       </h1>
       <div className="login-msg">
-          {showLoginMsg ? 'Please login first here' : null}
-          {' '}
-        </div>
+        {showLoginMsg ? 'Please login first here' : null}
+        {' '}
+      </div>
 
-      {showCreateReview ? <CreateReview /> : null}
-      <ReviewList />
+      {showCreateReview ? <CreateReview shopId={shopId} /> : null}
+      <ReviewList reviews={data.reviewsByShop} />
     </div>
   );
 }
