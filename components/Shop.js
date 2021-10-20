@@ -9,9 +9,9 @@ const dummyReviews = [
   { rating: 5 }, { rating: 4 },
 ];
 
-export default function Shop({ googleData }) {
+export default function Shop({ googleData, id }) {
   const { authUser } = useAuth();
-  const shopId = googleData.place_id;
+  const shopId = id;
   const [showCreateReview, setShowCreateReview] = useState(false);
   const [showLoginMsg, setShowLoginMsg] = useState(false);
   const [visited, setVisited] = useState('no');
@@ -39,13 +39,13 @@ export default function Shop({ googleData }) {
     }
   };
 
-  const shopRating = (reviews.length > 0) ? avgRating() : 0;
+  // const shopRating = (reviews.length > 0) ? avgRating() : 0;
 
   return (
     <div>
       <div className="card">
         <h3 className="name">{googleData.name || 'SHOP NAME'}</h3>
-        <BeanRating rating={shopRating} />
+        {/* <BeanRating rating={shopRating} /> */}
         <div className="opening_hours">{googleData.opening_hours ? googleData.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</div>
         <div className="location">
           {' '}

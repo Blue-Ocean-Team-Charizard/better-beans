@@ -17,6 +17,7 @@ class Map extends Component {
     });
     this.initMap = this.initMap.bind(this);
     this.addMarkers = this.addMarkers.bind(this);
+    this.changeCenter = this.changeCenter.bind(this);
   }
 
   componentDidMount() {
@@ -26,11 +27,15 @@ class Map extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.coords !== this.props.coords) {
-      this.initMap();
+      this.changeCenter();
     }
     if (prevProps.shopList !== this.props.shopList) {
       this.addMarkers();
     }
+  }
+
+  changeCenter() {
+    map.panTo(this.props.coords);
   }
 
   initMap() {

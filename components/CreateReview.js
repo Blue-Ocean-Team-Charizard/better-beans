@@ -19,16 +19,14 @@ export default function CreateReview(props) {
 
   const CREATE_REVIEW = gql`
     mutation CreateReview(
-      $first_name: String!
-      $title: String
+      $name: String!
       $body: String!
       $rating: Int
       $shop_id: String!
-      $user_id: Int!
+      $user_id: String!
     ){
       createReview(
-        first_name: $first_name
-        title: $title
+        name: $name
         body: $body
         rating: $rating
         shop_id: $shop_id
@@ -61,11 +59,10 @@ export default function CreateReview(props) {
     handleAPI()
     createReview({
       variables: {
-        first_name: authUser.name,
-        title: title,
+        name: authUser.name,
         body: body,
         rating: rating,
-        shop_id: props.shopId,
+        shop_id: 'Simple',
         user_id: authUser.uid,
       },
     })
