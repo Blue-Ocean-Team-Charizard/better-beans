@@ -1,24 +1,3 @@
-import { useRouter } from 'next/router';
-import Meta from '../../../components/Meta';
-import Shop from '../../../components/Shop';
-
-export default function Shops(props) {
-  const router = useRouter();
-  const { id } = router.query;
-
-  return (
-    <div>
-      <Meta />
-      {/* This is
-      {' '}
-      {id} */}
-      {/* {console.log(shop)}; */}
-      {/* {console.log('props', props)}; */}
-      <Shop googleData={props.googleData} reviews={props.reviews} />
-    </div>
-  );
-}
-
 const dummyAPIdata = {
   business_status: 'OPERATIONAL',
   geometry: {
@@ -92,27 +71,10 @@ const dummyReviews = [
   },
 ];
 
-export async function getServerSideProps(context) {
-  const { id } = context.params;
-  console.log(id);
-  //cannot fetch from API route
-  // const res = await fetch(`http://localhost:3000/api/shop/${id}`);
+export default function handler(req, res) {
+  const { id } = req.query;
+  // get the shop information from either google or the state
 
-  // instead fetch from db.
-  // const res = await fetch(`DB QUERY URL???`);
-  // const shop = await res.json();
-  // console.log(shop);
-  // // if there is no info from data, create empty object for reviews
-
-  //ACCESS GOOGLE INFO FROM SOMEWHERE???
-
-  const shop = {
-    googleData: dummyAPIdata,
-    reviews: dummyReviews,
-  };
-
-  return ({
-    props: shop,
-  }
-  );
-};
+  // get the reivews from the db
+  res.status(200).json({ googleData: dummyAPIdata, reviews: dummyReviews });
+}
