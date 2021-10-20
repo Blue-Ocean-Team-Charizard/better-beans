@@ -3,13 +3,17 @@ import { AuthUserProvider } from '../firebase/auth_context'
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 import '../styles/review.css';
+import { ApolloProvider } from '@apollo/client';
+import apolloClient from '../graphql/apollo.js';
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthUserProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ApolloProvider client={apolloClient}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
     </AuthUserProvider>
   );
 }

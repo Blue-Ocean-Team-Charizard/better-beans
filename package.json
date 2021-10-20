@@ -10,6 +10,7 @@
     "graph": "nodemon graphql"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@googlemaps/js-api-loader": "^1.12.6",
     "@prisma/client": "^3.2.1",
     "apollo-server-micro": "^3.4.0",
