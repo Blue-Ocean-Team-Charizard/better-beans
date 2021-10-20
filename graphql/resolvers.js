@@ -3,15 +3,6 @@
 /* eslint-disable camelcase */
 export const resolvers = {
   Query: {
-    user: async (_, { id }, ctx) => {
-      try {
-        return await ctx.prisma.users.findUnique({
-          where: { id },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-    },
     reviews: async (_, args, ctx) => {
       const reviews = await ctx.prisma.reviews.findMany();
       return reviews;
@@ -35,12 +26,6 @@ export const resolvers = {
   },
 
   Mutation: {
-    createUser: async (_, { name, email, photo_url }, ctx) => {
-      const user = await ctx.prisma.users.create({
-        data: { name, email, photo_url },
-      });
-      return user;
-    },
     createReview: async (_, {
       first_name, title, body, rating, shop_id, user_id,
     }, ctx) => {

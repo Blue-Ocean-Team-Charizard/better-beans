@@ -8,18 +8,10 @@ const prisma = new PrismaClient();
 
 export const typeDefs = gql`
   type Query {
-    user(id: Int): User
     reviews: [Review]
     reviewsByShop(shop_id: String!): [Review]!
     reviewsByUser(user_id: Int!): [Review]!
     photos: [Photo]
-  }
-
-  type User {
-    id: Int!
-    name: String!
-    email: String
-    photo_url: String
   }
 
   type Review {
@@ -42,7 +34,6 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(name: String, email: String, photo_url: String): User!
     createReview(
       first_name: String,
       title: String,
