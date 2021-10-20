@@ -25,7 +25,7 @@ export default function BeanSelected() {
       {/* <BeanRating rating={rating}/> */}
       Select your rating
       <div create-beans-outer></div>
-      <img src={Bean} onClick={() => selectRating(1)} style = {style}/>
+      <img src={Bean} onClick={() => selectRating(1)} />
       <img src={Bean} onClick={() => selectRating(2)} />
       <img src={Bean} onClick={() => selectRating(3)} />
       <img src={Bean} onClick={() => selectRating(4)} />
