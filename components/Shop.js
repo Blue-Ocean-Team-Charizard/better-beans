@@ -18,8 +18,8 @@ export default function Shop({ googleData, id }) {
   const [visited, setVisited] = useState('no');
 
   const GET_REVIEWS = gql`
-  query ReviewByShop($shop_id: String!) {
-    reviewByShop(shop_id: $shop_id) {
+  query ReviewsByShop($shop_id: String!) {
+    reviewsByShop(shop_id: $shop_id) {
       name
       body
       rating
@@ -69,6 +69,8 @@ export default function Shop({ googleData, id }) {
 
   // const shopRating = (reviews.length > 0) ? avgRating() : 0;
 
+  // console.log(data);
+
   return (
     <div>
       <div className="card">
@@ -113,7 +115,6 @@ export default function Shop({ googleData, id }) {
         {showLoginMsg ? 'Please login first here' : null}
         {' '}
       </div>
-
       {showCreateReview ? <CreateReview shopId={shopId} /> : null}
       <ReviewList reviews={data.reviewsByShop} />
     </div>
