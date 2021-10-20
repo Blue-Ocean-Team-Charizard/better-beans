@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export default function CreateReview() {
   const [body, setBody] = useState('');
+  const [title, setTitle] = useState('');
   const [photos, setPhotos] = useState([]);
   const [files, setFiles] = useState([]);
 
@@ -49,6 +50,7 @@ export default function CreateReview() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleAPI()
     createReview({
       variables: {
         first_name: 'Qinyu for you',
@@ -75,7 +77,7 @@ export default function CreateReview() {
       const selectedFileArray = Array.from(e.target.files);
       setFiles(prevFile => prevFile.concat(selectedFileArray));
       setPhotos(prevImg => prevImg.concat(fileArray));
-      Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
+      Array.from(e.target.files).map((file) => URL.revokeObjectURL(file))
     }
   };
 
@@ -88,6 +90,7 @@ export default function CreateReview() {
   // transfer photos to URL
   const handleAPI = () => {
     let URLs = [];
+    console.log(files);
     for (let i = 0; i < files.length; i++) {
       let formData = new FormData();
       formData.append('file', files[i]);
@@ -114,6 +117,9 @@ export default function CreateReview() {
             <br />
             <label>
               Title:
+              <br />
+              <input onChange={(e) => {e.preventDefault(); setTitle(e.target.value)}}>
+              </input>
             </label>
             <label>
               Write your reviews down
@@ -126,10 +132,10 @@ export default function CreateReview() {
             </label>
             <br />
 
-            <input type='file' multiple={true} onChange={(e) => handleImage(e)}></input>
-              <div>
+            <input type='file' multiple={true} onChange={(e) => {handleImage(e); renderImg(photos)}}></input>
+              {/* <div>
                 {renderImg(photos)}
-              </div>
+              </div> */}
 
             <button type="submit"> Submit Review</button>
 
