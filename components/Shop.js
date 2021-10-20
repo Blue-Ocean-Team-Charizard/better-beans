@@ -45,7 +45,7 @@ export default function Shop({ googleData, reviews }) {
       <h2 className="shop-name">{googleData.name || 'SHOP NAME'}</h2>
       <BeanRating rating={shopRating} />
       <br />
-      <span className="open-now">{googleData.opening_hours.open_now ? 'Open Now' : 'Closed'}</span>
+      <span className="open-now">{googleData.opening_hours ? googleData.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</span>
       <br />
       <span className="shop-location">
         {' '}
