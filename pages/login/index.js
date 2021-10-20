@@ -1,8 +1,10 @@
 import { useAuth } from '../../firebase/auth_context';
+import Meta from '../../components/Meta';
 
 export default function LoginPage() {
   const { signInWithFirebase } = useAuth();
   return (
+    <Meta />
     <button
       type="button"
       className="google-btn-container"
