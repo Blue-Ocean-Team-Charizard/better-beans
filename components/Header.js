@@ -13,28 +13,12 @@ export default function Header() {
 
       <header>
         <div className="navbar navbar-dark shadow-sm">
-          <ul>
-            <li>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/shop">
-                <a>Shop</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/login">
-                <a>Login</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="profile">
-                <a>Profile</a>
-              </Link>
-            </li>
-          </ul>
+          <div>
+            <div className="logo"></div>
+            <div className="loginBtn">
+              <button type="button" className="btn btn-light">Light</button>
+            </div>
+          </div>
           <SearchContext.Consumer>
             {(context) => (
               <Search updateList={context.updateList} updateCoords={context.updateCoords} />

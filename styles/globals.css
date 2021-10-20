@@ -1,3 +1,12 @@
+
+/* red: #B61C07
+redDark: #440C04
+gold: #A57C52
+bgColor: #0D0401
+white: #FFF
+*/
+
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300&display=swap');
 
 html, body, p, div, h1, h2, h3, h4 {
@@ -7,12 +16,34 @@ html, body, p, div, h1, h2, h3, h4 {
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color:gray ;
-  color: black;
+  background-color: #0D0401 ;
+  color: #FFF;
 }
 
 a {
- color:black;
+ color:#FFF;
+}
+
+/*** For Container ***/
+.container {
+  max-width: 1200px;
+  margin: 0px auto;
+  min-height: 100vh;
+  position: relative;
+  padding: 0px 0px 100px 0px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*** For Header ***/
+header .logo {
+  /* background: url('../public/'); */
 }
 
 .seach {
@@ -29,11 +60,18 @@ header li {
   padding-right: 10px;
 }
 
+/*** For Footer ***/
 footer {
   margin-top: 30px;
   text-align: center;
-  padding: 20px;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
 }
+
+
+
+
 
 .beans-outer{
   display: inline-block;
