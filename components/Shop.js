@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import Link from 'next/link';
 import ReviewList from './ReviewList';
 import CreateReview from './CreateReview';
 import BeanRating from './BeanRating';
@@ -55,20 +54,35 @@ export default function Shop({ googleData, reviews }) {
         {googleData.vicinity}
         {' '}
       </span>
-
-
-      {/* <span>
+      <br />
+      <span>
         <select className="visited" onChange={(e) => handleVisited(e)}>
           <option value="no" selected={visited === 'no' ? 'selected' : null}>Haven't Bean</option>
           <option value="want" selected={visited === 'want' ? 'selected' : null}>Want to Bean</option>
           <option value="yes" selected={visited === 'yes' ? 'selected' : null}>Already Bean</option>
         </select>
-      </span> */}
-      {/* <br /> */}
-
-      <span className="login-msg">
-        {showLoginMsg ? 'Please login first here' : null}
-        {' '}
+      </span>
+      <br />
+      <span>
+        <button
+          className="write-review-btn"
+          type="button"
+          onClick={
+            user
+              ? () => setShowCreateReview(true)
+              : () => {
+                setShowLoginMsg(true);
+                console.log('redirect to login page');
+              }
+          }
+        >
+          Write a Review
+        </button>
+        <br />
+        <span className="login-msg">
+          {showLoginMsg ? 'Please login first here' : null}
+          {' '}
+        </span>
       </span>
       {showCreateReview ? <CreateReview /> : null}
       <ReviewList />
