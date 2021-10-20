@@ -26,12 +26,7 @@ export default function Profile() {
         <button type="button" className="btn btn-review"> Write a Review</button>
       </h1>
 
-      <Meta />
-      <h1>Profile Page</h1>
-      {(authUser) ? <img className="profile-photo" src={authUser.photo} alt="avatar" /> : null}
-      <span>
-        {(authUser) ? ` ${authUser.name}` : ''}
-      </span>
+
       <button
         type="button"
         onClick={logOff}
