@@ -45,13 +45,13 @@ export default class Search extends React.Component {
 
   render() {
     return (
-      <div className="search">
-        <input type="text" id="search" placeholder="Search location" />
+      <div className="input-group search">
+        <input type="text" id="search" className="form-control" placeholder="Search location" aria-label="Search location" />
         <Link href="/search">
-          <button type="submit">GO</button>
+          <button className="btn btn-outline-secondary" type="button">GO</button>
         </Link>
         <Link href="/search">
-          <button type="button" onClick={this.searchCurrentLocation}>Search Near Me</button>
+          <button className="btn btn-outline-secondary btn-near-me" type="button" onClick={this.searchCurrentLocation}>Near Me</button>
         </Link>
       </div>
     );

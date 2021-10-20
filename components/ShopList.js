@@ -1,37 +1,6 @@
 import React from 'react';
 import ShopEntry from './ShopEntry';
 
-const dataShop = [
-  {
-    id: '1',
-    name: 'Sightglass Coffee',
-    review: '3.5',
-    opening_hours: 'Close now',
-    location: 'Downtown',
-  },
-  {
-    id: '2',
-    name: '1Sightglass Coffee',
-    review: '3.5',
-    opening_hours: 'Close now',
-    location: 'Downtown',
-  },
-  {
-    id: '3',
-    name: '2Sightglass Coffee',
-    review: '3.5',
-    opening_hours: 'Close now',
-    location: 'Downtown',
-  },
-  {
-    id: '4',
-    name: '3Sightglass Coffee',
-    review: '3.5',
-    opening_hours: 'Close now',
-    location: 'Downtown',
-  },
-];
-
 class ShopList extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +10,7 @@ class ShopList extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         { this.props.shopList.map((shop) => <ShopEntry shop={shop} key={shop.id} />)}
       </div>
     );
