@@ -8,6 +8,7 @@ white: #FFF
 
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@100;200;300;400;500&display=swap');
 
 html, body, p, div, h1, h2, h3, h4 {
   margin: 0px;
@@ -21,11 +22,13 @@ body {
   font-size: 16px;
   font-weight: 300;
   line-height: 140%;
+  position: relative;
 }
 
 /*** Common ***/
 a:link, a:visited{
   color:#FFF;
+  text-decoration: none;
  }
 
 .title {
@@ -45,11 +48,10 @@ a:link, a:visited{
 .btn {
   font-weight: 300;
   border: 1px solid #FFF;
-  min-width: 80px;
   color: white;
   transform: scale(1);
   transition: .2s ease-in-out;
-  padding: 3px 20px;
+  padding: 3px 15px;
   background-color: transparent;
 }
 
@@ -64,12 +66,12 @@ a:link, a:visited{
 .container {
   max-width: 1200px;
   margin: 0px auto;
-  min-height: 100vh;
+  min-height: 600px;
   position: relative;
   padding: 0px 0px 100px 0px
 }
 main {
-  padding: 50px;
+  padding: 30px;
 }
 
 /*** For Header ***/
@@ -82,7 +84,8 @@ header {
   display: block;
   overflow: hidden;
   width: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
+  margin-top: -15px;
 }
 
 .shadow-sm {
@@ -143,7 +146,7 @@ header li {
   border: none;
 }
 
-.nav-tabs .nav-link:hover {
+.nav-tabs .nav-link:hover, .btn-google:hover {
   background-color: rgba(102, 16, 5, 0.8);
 }
 
@@ -157,14 +160,117 @@ header li {
   border-radius: 10px !important;
 }
 
-.nav-tabs:nth-child(2){
-  margin-left: -20px;
-}
-
 #map {
   width: 100%;
   min-height: 500px;
+  color: black;
 }
+
+.card {
+  position: relative;
+  display: block;
+  background-color: #440C04;
+  border: 0px solid rgba(0,0,0,.125);
+  border-radius: 10px;
+  margin-bottom: 25px;
+  padding: 20px 20px 15px 20px;
+  transform: scale(1);
+  transition: 0.5s ease-out;
+}
+
+.card a>div, .name {
+  margin-bottom: 5px;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card.shop {
+  background-color:rgba(68, 12, 4, 0.7);
+}
+
+#check-bean, .btn-review {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+h3, .name {
+  font-family: 'Bitter', serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.location::before,.btn-near-me::before, .opening_hours::before , .btnBack::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f3c5";
+  color: #B61C07;
+  margin-right: 5px;
+}
+
+.opening_hours::before {
+  content: "\f017";
+}
+
+.btn-near-me::before {
+  color: white;
+}
+
+.btnBack::before {
+  color: white;
+  content: "\f30a";
+}
+
+.btn-google {
+  background-color: #B61C07;
+  color: #fff;
+  border: none;
+  width: 100%;
+  border-radius: 10px !important;
+  padding: 10px 0px;
+  margin:20px auto;
+  transition: transparent .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+/*** For Shop ***/
+.btnBack {
+  margin-bottom: 20px;
+}
+
+/*** For Shop ***/
+#login {
+  text-align: center;
+  padding-top: 150px;
+}
+
+/*** For Profile ***/
+#account {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+#account .photo img {
+  border-radius: 50%;
+  width: 100px;
+  float: left;
+  margin-right: 20px;
+}
+
+#account .photo {
+  float: left;
+}
+
 
 /*** For Footer ***/
 footer {
@@ -174,9 +280,6 @@ footer {
   bottom: 20px;
   width: 100%;
 }
-
-
-
 
 
 .beans-outer{
@@ -205,7 +308,7 @@ footer {
 .beans-inner::before {
   content: url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg');
 
- filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(101%) contrast(87%);
+ filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(140%) contrast(87%);
  /* HEX: 6b3e2e */
 
 }

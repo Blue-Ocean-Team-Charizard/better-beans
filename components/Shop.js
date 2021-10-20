@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import Link from 'next/link';
 import ReviewList from './ReviewList';
 import CreateReview from './CreateReview';
 import BeanRating from './BeanRating';
@@ -44,7 +45,36 @@ export default function Shop({
 
   return (
     <div>
-      <h2 className="shop-name">{name || 'SHOP NAME'}</h2>
+      <div className="btnBack"><Link href="/search"><a>Back to list</a></Link></div>
+      <div className="card shop">
+        <h3 className="name">{name || 'SHOP NAME'}</h3>
+        <BeanRating rating={shopRating} />
+        <div className="opening_hours">Closed</div>
+        {/* {shop.opening_hours ?
+          shop.opening_hours.open_now ? <div className="opening_hours">Open</div> :
+            <div className="opening_hours">Closed</div> :
+          null} */}
+        <div className="location">shop.vicinity</div>
+        <div id="check-bean">
+          <select className="visited" onChange={(e) => handleVisited(e)}>
+            <option value="no" selected={visited === 'no' ? 'selected' : null}>Haven't Bean</option>
+            <option value="want" selected={visited === 'want' ? 'selected' : null}>Want to Bean</option>
+            <option value="yes" selected={visited === 'yes' ? 'selected' : null}>Already Bean</option>
+          </select>
+        </div>
+      </div>
+
+      <h1 className="title">Review
+        <button type="button" className="btn btn-review" onClick={user ? () => setShowCreateReview(true) : () => {
+          setShowLoginMsg(true);
+          // console.log('redirect to login page');
+        }}
+        > Write a Review
+        </button>
+      </h1>
+
+
+      {/* <h2 className="shop-name">{name || 'SHOP NAME'}</h2>
       <BeanRating rating={shopRating} />
       <br />
       <span className="open-now">{open ? 'Open Now' : 'Closed'}</span>
@@ -55,36 +85,21 @@ export default function Shop({
         {' '}
         {location}
         {' '}
-      </span>
-      <br />
-      <span>
+      </span> */}
+
+
+      {/* <span>
         <select className="visited" onChange={(e) => handleVisited(e)}>
           <option value="no" selected={visited === 'no' ? 'selected' : null}>Haven't Bean</option>
           <option value="want" selected={visited === 'want' ? 'selected' : null}>Want to Bean</option>
           <option value="yes" selected={visited === 'yes' ? 'selected' : null}>Already Bean</option>
         </select>
-      </span>
-      <br />
-      <span>
-        <button
-          className="write-review-btn"
-          type="button"
-          onClick={
-            user
-              ? () => setShowCreateReview(true)
-              : () => {
-                setShowLoginMsg(true);
-                console.log('redirect to login page');
-              }
-          }
-        >
-          Write a Review
-        </button>
-        <br />
-        <span className="login-msg">
-          {showLoginMsg ? 'Please login first here' : null}
-          {' '}
-        </span>
+      </span> */}
+      {/* <br /> */}
+
+      <span className="login-msg">
+        {showLoginMsg ? 'Please login first here' : null}
+        {' '}
       </span>
       {showCreateReview ? <CreateReview /> : null}
       <ReviewList />

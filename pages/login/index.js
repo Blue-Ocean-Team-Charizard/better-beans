@@ -1,26 +1,24 @@
 import { useAuth } from '../../firebase/auth_context';
-import Meta from '../../components/Meta';
 
 export default function LoginPage() {
   const { signInWithFirebase, logOff } = useAuth();
   return (
-    <div className="container">
-      <Meta />
-      <div className="container">
-        <h1>Login page</h1>
-        <button
-          type="button"
-          onClick={signInWithFirebase}
+    <div id="login">
+      <p>Sign up today to save your better <br /> and best beans</p>
+      <button className="btn btn-google"
+        type="button"
+        onClick={signInWithFirebase}
         >
-          Click Me!
-        </button>
+        Sign In With Google
+      </button>
+      <div>
         <button
           type="button"
           onClick={logOff}
         >
           Log Off!
         </button>
-      </div>
+        </div>
     </div>
   );
 }

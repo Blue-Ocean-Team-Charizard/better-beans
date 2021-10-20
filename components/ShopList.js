@@ -10,7 +10,7 @@ class ShopList extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         { this.props.shopList.map((shop) => <ShopEntry shop={shop} key={shop.id} />)}
       </div>
     );
