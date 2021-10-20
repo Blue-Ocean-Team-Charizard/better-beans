@@ -3,6 +3,7 @@ import styles from '../styles/Shoplist.module.css';
 import BeanRating from './BeanRating';
 
 const ShopEntry = ({ shop }) => {
+  console.log(shop);
   return (
     <div className="card">
       <Link href="#">
