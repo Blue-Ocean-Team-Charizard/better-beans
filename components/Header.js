@@ -13,10 +13,10 @@ export default function Header() {
 
       <header>
         <div className="navbar navbar-dark shadow-sm">
-          <div>
-            <div className="logo"></div>
+          <div id="nav">
+            <Link href="/"><a><div className="logo"></div></a></Link>
             <div className="loginBtn">
-              <button type="button" className="btn btn-light">Light</button>
+              <button type="button" className="btn">Login</button>
             </div>
           </div>
           <SearchContext.Consumer>

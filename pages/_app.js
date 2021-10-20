@@ -1,4 +1,3 @@
-// import Head from 'next/head';
 import { AuthUserProvider } from '../firebase/auth_context';
 import SearchContextProvider from '../components/SearchContext';
 import Layout from '../components/Layout';

@@ -13,7 +13,7 @@ export default function SearchResults() {
         {(context) => (
           <>
             <Meta />
-            <h1>Shops near me</h1>
+            <h1 className="title">Shops near me</h1>
             <div className="container">
               <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
