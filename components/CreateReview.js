@@ -113,9 +113,6 @@ export default function CreateReview() {
           <BeanSelected />
             <br />
             <label>
-              Title:
-            </label>
-            <label>
               Write your reviews down
               <br/>
               <textarea onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}/>

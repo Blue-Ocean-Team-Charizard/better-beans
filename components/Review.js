@@ -16,7 +16,7 @@ export default function Review() {
   return (
     <div id="review">
       <div id="review-user-info">
-        {/* <img src="" id="reviewer-photo"/> */}
+        <img src="" id="reviewer-photo"/>
         <div id="review-user-info-inner">
           <div id="reviewer-first-name">first name</div>
           <div id="reviewer-date">date</div>
@@ -25,7 +25,6 @@ export default function Review() {
 
       <div id="review-center">
         <ReviewBeanRating />
-        <div id="review-title">title</div>
         <div id="review-body">body</div>
       </div>
 
