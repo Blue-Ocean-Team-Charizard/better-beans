@@ -4,13 +4,13 @@ import Meta from '../../components/Meta';
 export default function LoginPage() {
   const { signInWithFirebase } = useAuth();
   return (
-    <div className="container">
+    <>
       <Meta />
-      <div className="container">
-        <h1>Login page</h1>
+      <div id="login">
+        <p>Sign up today to save your better <br /> and best beans</p>
         <button
           type="button"
-          className="google-btn-container"
+          className="google-btn-container btn btn-google"
           onClick={signInWithFirebase}
         >
           <div className="google-btn">
@@ -27,6 +27,6 @@ export default function LoginPage() {
           </div>
         </button>
       </div>
-    </div>
+    </>
   );
 }

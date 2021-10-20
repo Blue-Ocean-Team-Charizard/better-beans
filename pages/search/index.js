@@ -1,37 +1,32 @@
-import { useState } from 'react';
 import Meta from '../../components/Meta';
 import ShopList from '../../components/ShopList';
 import Map from '../../components/map/map';
 import { SearchContext } from '../../components/SearchContext';
 
 export default function SearchResults() {
-  // const [showMap, setShowMap] = useState(true);
-
   return (
     <div>
       <SearchContext.Consumer>
         {(context) => (
           <>
             <Meta />
-            <h1>Shops near me</h1>
-            <div className="container">
-              <ul className="nav nav-tabs" id="myTab" role="tablist">
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link active" id="map-tab" data-bs-toggle="tab" data-bs-target="#map-container" type="button" role="tab" aria-controls="map" aria-selected="true">Map</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="shops-tab" data-bs-toggle="tab" data-bs-target="#shops" type="button" role="tab" aria-controls="shops" aria-selected="false">
-                    List
-                  </button>
-                </li>
-              </ul>
-              <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="map-container" role="tabpanel" aria-labelledby="home-tab">
-                  <Map shopList={context.shopList} coords={context.currentCoords} />
-                </div>
-                <div className="tab-pane fade" id="shops" role="tabpanel" aria-labelledby="profile-tab">
-                  <ShopList shopList={context.shopList} />
-                </div>
+            <h1 className="title">Shops near me</h1>
+            <ul className="nav nav-tabs" id="myTab" role="tablist">
+              <li className="nav-item" role="presentation">
+                <button className="nav-link active" id="map-tab" data-bs-toggle="tab" data-bs-target="#map-container" type="button" role="tab" aria-controls="map" aria-selected="true">Map</button>
+              </li>
+              <li className="nav-item" role="presentation">
+                <button className="nav-link" id="shops-tab" data-bs-toggle="tab" data-bs-target="#shops" type="button" role="tab" aria-controls="shops" aria-selected="false">
+                  List
+                </button>
+              </li>
+            </ul>
+            <div className="tab-content" id="myTabContent">
+              <div className="tab-pane fade show active" id="map-container" role="tabpanel" aria-labelledby="home-tab">
+                <Map shopList={context.shopList} coords={context.currentCoords} />
+              </div>
+              <div className="tab-pane fade" id="shops" role="tabpanel" aria-labelledby="profile-tab">
+                <ShopList shopList={context.shopList} />
               </div>
             </div>
           </>

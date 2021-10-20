@@ -1,4 +1,14 @@
+
+/* red: #B61C07
+redDark: #440C04
+gold: #A57C52
+bgColor: #0D0401
+white: #FFF
+*/
+
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@100;200;300;400;500&display=swap');
 
 html, body, p, div, h1, h2, h3, h4 {
   margin: 0px;
@@ -7,13 +17,100 @@ html, body, p, div, h1, h2, h3, h4 {
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color:gray ;
-  color: black;
+  background-color: #0D0401 ;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 140%;
+  position: relative;
 }
 
-a {
- color:black;
+/*** Common ***/
+a:link, a:visited{
+  color:#FFF;
+  text-decoration: none;
+ }
+
+.title {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 200%;
+  margin-bottom: 30px;
+  position: relative;
+  padding-left: 32px;
+  background: url('../public/icon.svg') no-repeat left;
 }
+
+.form-control, .btn, .nav-item {
+  border-radius: 10px;
+}
+
+.btn {
+  font-weight: 300;
+  border: 1px solid #FFF;
+  color: white;
+  transform: scale(1);
+  transition: .2s ease-in-out;
+  padding: 3px 15px;
+  background-color: transparent;
+}
+
+.btn:hover {
+  background-color: #B61C07;
+  color: white;
+  border-color: white;
+}
+
+
+/*** For Container ***/
+.container {
+  max-width: 1200px;
+  margin: 0px auto;
+  position: relative;
+  padding: 0px 0px 0px 0px;
+  min-height: calc(100vh - 60px);
+  padding-bottom: 50px;
+}
+main {
+  padding: 30px;
+}
+
+/*** For Header ***/
+header {
+  background-image: linear-gradient(#88694a, #A57C52);
+  padding: 30px;
+}
+
+#nav {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 30px;
+  margin-top: -15px;
+}
+
+.shadow-sm {
+  box-shadow: 0 0rem 0rem rgba(255, 255, 255, 0)!important;
+}
+
+#nav .logo {
+  background: url('../public/logo.png') no-repeat center;
+  background-size: cover;
+  width: 70px;
+  height: 70px;
+  float: left;
+  transform: scale(1);
+  transition: 0.8s ease-out;
+}
+
+#nav .logo:hover  {
+  transform: scale(1.02);
+}
+
+#nav .loginBtn {
+  float: right;
+}
+
 
 .search {
   margin: auto;
@@ -29,11 +126,185 @@ header li {
   padding-right: 10px;
 }
 
+/*** For Shops ***/
+.nav-tabs {
+  border: none;
+  margin-bottom: 30px;
+  background-color: #440C04;
+  border-radius: 10px !important;
+}
+
+.nav-item, .nav-tabs .nav-link {
+  width: 50%;
+  border: none;
+  color: #FFF;
+  transition: transparent .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  background-color: #B61C07;
+  color: #fff;
+  border: none;
+}
+
+.nav-tabs .nav-link:hover, .btn-google:hover {
+  background-color: rgba(102, 16, 5, 0.8);
+}
+
+.nav-tabs .nav-link:focus, .nav-link.active:hover {
+  border: none;
+  background-color: rgba(182, 28, 7, 0.5);
+}
+
+.nav-tabs .nav-link {
+  width: 100%;
+  border-radius: 10px !important;
+}
+
+#map {
+  width: 100%;
+  min-height: 500px;
+  color: black;
+}
+
+.card {
+  position: relative;
+  display: block;
+  background-color: #440C04;
+  border: 0px solid rgba(0,0,0,.125);
+  border-radius: 10px;
+  margin-bottom: 25px;
+  padding: 20px 20px 15px 20px;
+  transform: scale(1);
+  transition: 0.5s ease-out;
+}
+
+.card a>div, .card>div, .name {
+  margin-bottom: 5px;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card.shop {
+  background-color:rgba(68, 12, 4, 0.7);
+}
+
+#check-bean, .btn-review, select.visited {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+select.visited  {
+  padding: 2px;
+  border-radius: 7px;
+  background-color: rgba(255,255,255, 0.8);
+}
+
+h3, .name {
+  font-family: 'Bitter', serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.icon::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.location::before,.btn-near-me::before, .opening_hours::before , .btnBack::before, .btnDelete::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f3c5";
+  color: #B61C07;
+  margin-right: 5px;
+}
+
+.opening_hours::before {
+  content: "\f017";
+}
+
+.btn-near-me::before {
+  color: white;
+}
+
+.btnBack::before {
+  color: white;
+  content: "\f30a";
+}
+
+.btnDelete::before {
+  content: "\f2ed";
+}
+
+.btnDelete {
+  margin-top:30px;
+  transform: scale(0.8);
+  margin-left: -60px;
+}
+
+.btn-google {
+  background-color: #B61C07;
+  color: #fff;
+  border: none;
+  width: 100%;
+  border-radius: 10px !important;
+  padding: 5px 0px;
+  margin:40px auto;
+  transition: transparent .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+  max-width: 300px;
+}
+
+/*** For Shop ***/
+.btnBack {
+  margin-bottom: 20px;
+}
+
+/*** For Shop ***/
+.login-msg {
+  text-align: center;
+  margin: 30px auto;
+}
+
+#login {
+  text-align: center;
+  padding-top: 150px;
+}
+
+/*** For Profile ***/
+#account {
+  display: block;
+  overflow: hidden;
+  padding-top: 20px;
+  margin-bottom: 50px;
+}
+
+#account .photo img {
+  border-radius: 50%;
+  width: 100px;
+  float: left;
+  margin-right: 20px;
+}
+
+#account .photo {
+  float: left;
+}
+
+
+/*** For Footer ***/
 footer {
   margin-top: 30px;
   text-align: center;
-  padding: 20px;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
 }
+
 
 .beans-outer{
   display: inline-block;
@@ -61,28 +332,28 @@ footer {
 .beans-inner::before {
   content: url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg') url('../public/bean-small.svg');
 
- filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(101%) contrast(87%);
+ filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(140%) contrast(87%);
  /* HEX: 6b3e2e */
 
 }
 
 .google-btn-container {
-  width: 75%;
+  /* width: 75%;
   background-color: white;
   border-radius: 9px;
   border-color: rgb(211, 208, 208);
-  border-style: solid;
-  box-shadow: 1px 1px 10px 3px #eeecec;
+  border-style: solid; */
+  box-shadow: 1px 1px 5px 1px #835757;
 }
 
-.google-btn-container:hover {
+/* .google-btn-container:hover {
   box-shadow: 1px 1px 10px 3px #e3e0e0;
-}
+} */
 
-.google-btn {
+/* .google-btn {
   width: 100%;
 
-}
+} */
 
 .google-logo {
   margin-right: 0%;
@@ -92,7 +363,7 @@ footer {
 
 .google-signin {
   display: inline;
-  color: rgb(42, 80, 235);
+  color: rgb(255, 255, 255);
   font-size: 15px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;

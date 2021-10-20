@@ -1,10 +1,11 @@
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Meta from '../../../components/Meta';
 import Shop from '../../../components/Shop';
+import { SearchContext } from '../../../components/SearchContext';
 
 export default function Shops(props) {
-  const router = useRouter();
-  const { id } = router.query;
+  // const router = useRouter();
+  // const { id } = router.query;
 
   return (
     <div>
@@ -14,7 +15,11 @@ export default function Shops(props) {
       {id} */}
       {/* {console.log(shop)}; */}
       {/* {console.log('props', props)}; */}
-      <Shop googleData={props.googleData} reviews={props.reviews} />
+      <SearchContext.Consumer>
+        {(context) => (
+          <Shop googleData={context.selectedShop} reviews={props.reviews} />
+        )}
+      </SearchContext.Consumer>
     </div>
   );
 }
