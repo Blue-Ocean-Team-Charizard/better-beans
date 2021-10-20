@@ -31,6 +31,7 @@ export default function CreateReview() {
       <div id='review'>
         <form onSubmit={(e) => {e.preventDefault(); handleSubmit();}}>
           <BeanSelected />
+          <img src='../public/bean.svg' />
           <br />
           <label>
             Write your reviews down
