@@ -260,6 +260,11 @@ h3, .name {
 }
 
 /*** For Shop ***/
+.login-msg {
+  text-align: center;
+  margin: 30px auto;
+}
+
 #login {
   text-align: center;
   padding-top: 150px;

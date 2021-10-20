@@ -6,7 +6,7 @@ const ShopEntry = ({ shop }) => {
   console.log(shop);
   return (
     <div className="card">
-      <Link href="#">
+      <Link href={`shop/${shop.place_id}`}>
         <a className="">
           <h3 className="name">{shop.name}</h3>
           <BeanRating rating={shop.rating} />
