@@ -6,7 +6,6 @@ import axios from 'axios';
 
 export default function CreateReview() {
   const photoAPIKey = APIKey.photoAPIKey;
-  console.log(photoAPIKey);
   const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
   const [files, setFiles] = useState([]);
@@ -79,8 +78,6 @@ export default function CreateReview() {
       setFiles(prevFile => prevFile.concat(selectedFileArray));
       setPhotos(prevImg => prevImg.concat(fileArray));
       Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
-      console.log('files', files);
-      console.log('photos', photos)
     }
   };
 
@@ -100,43 +97,18 @@ export default function CreateReview() {
 
       axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
         .then((data) => {
-          console.log(data);
-          URLs.push(data.data.secure_url);
+          URLs.push({url: data.data.secure_url});
           if (URLs.length === files.length) {
             console.log(URLs);
           }
         })
         .catch((err) => console.log('tranfer URL err', err));
-      console.log(formData);
     }
-  //   var photoAPI = (filesArr, callback) => {
-  //     for (let i = 0; i < filesArr.length; i++) {
-  //       let formData = new formData();
-  //       formData.append('file', filesArr[i]);
-  //       formData.append('upload_preset', photoAPIKey);
-  //     }
-
-  //   axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
-  //     .then((data) => {
-  //       console.log(data);
-  //       URLs.push(data.data.secure_url);
-  //       if (URLs.length === filesArr.length) {
-  //         console.log(URLs);
-  //         return callback(null, URLs)
-  //       }
-  //     })
-  //     .catch((err) => console.log('transfer URL err', err))
-  // }
-
-  // photoAPI(files, (err, data) => {
-  //   console.log(data)
-  // })
 }
 
 
 
   return (
-    // the modal component should be adding option
     <div>
       <div id="review">
         <form onSubmit={(e) => { handleSubmit(e); }}>
@@ -148,20 +120,25 @@ export default function CreateReview() {
             </label>
             <label>
               Write your reviews down
+              <br/>
+              <textarea onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}/>
             </label>
             <br />
             <label>
               Your photos(optional)
             </label>
             <br />
-            <button type="submit"> Submit Review</button>
 
-            <form onSubmit={(e) => {e.preventDefault(); handleAPI(); }}>
-              <input type='file' multiple={true} onChange={(e) => handleImage(e)}></input>
+            <input type='file' multiple={true} onChange={(e) => handleImage(e)}></input>
               <div>
                 {renderImg(photos)}
               </div>
-            </form>
+
+            <button type="submit"> Submit Review</button>
+
+
+
+
         </form>
       </div>
     </div>
