@@ -66,7 +66,7 @@ export default class Search extends React.Component {
         <input
           type="text"
           id="search"
-          placeholder="coffee in Los Angeles"
+          placeholder="Los Angeles"
           onChange={this.handleChange}
         />
         <Link href="/search">
