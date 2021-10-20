@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import Bean from '../public/bean-small.svg';
-import { AiFillStar } from 'react-icons/fa'
+import BeanRating from './BeanRating.js'
 
 export default function BeanSelected() {
   // const [rating, setRating] = useState(0);
-  let rating = 0;
+  //let rating = 0;
+  const [beans, setBeans] = useState(0);
+  const [rating, setRatings] = useState(0);
   const selectRating = (value) => {
-    rating = value;
-    console.log(rating);
-  }
+    setRatings(value)
+  };
+  console.log(rating);
   const convertedRating = rating / 5 * 100;
   const roundedRating = (Math.round(convertedRating / 5) * 5);
   const style = { width: `${roundedRating}%` };
@@ -17,13 +19,9 @@ export default function BeanSelected() {
 
   return (
     <div>
-      <div className='beans-outer'>
-        {/* <div className="beans-inner" style={style}>
-        </div> */}
-        Select your rating
-
-      </div>
-
+      <BeanRating rating={rating}/>
+      Select your rating
+      <div create-beans-outer></div>
       <img src={Bean} onClick={() => selectRating(1)} />
       <img src={Bean} onClick={() => selectRating(2)} />
       <img src={Bean} onClick={() => selectRating(3)} />
