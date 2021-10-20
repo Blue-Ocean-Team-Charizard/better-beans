@@ -1,18 +1,20 @@
-import getQueryResults from '../../helpers/textSearch';
+import getPlaces from '../../helpers/nearbySearch';
 import getGeocode from '../../helpers/getGeocode';
 import chains from '../../helpers/chains';
 
 export default function handler(req, res) {
-  getQueryResults(req.query.query)
+  let response = {};
+  getGeocode(req.query.query)
+    .then((coords) => {
+      response.coords = coords;
+      return getPlaces(`${coords.lat},${coords.lng}`);
+    })
     .then((places) => {
       const filtered = places.results.filter((place) => (chains.chains.indexOf(place.name) === -1));
       // console.log(filtered);
-      res.status(200).json(filtered);
+      response.places = filtered;
+      res.status(200).json(response);
     })
-    // .then((filtered) => {
-    //   getGeocode(req.query.query)
-    //     .then((geocode) => geocode.results[0])
-    // })
     .catch((err) => {
       console.log(err);
       res.status(500).send('Error getting places');
