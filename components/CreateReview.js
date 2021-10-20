@@ -61,12 +61,12 @@ export default function CreateReview(props) {
     handleAPI()
     createReview({
       variables: {
-        first_name: 'Qinyu for you',
-        title: 'very yummy coffee!',
-        body: 'i like coffee',
-        rating: 5,
-        shop_id: 'Simple',
-        user_id: 1,
+        first_name: authUser.name,
+        title: title,
+        body: body,
+        rating: rating,
+        shop_id: this.props.shopId,
+        user_id: authUser.uid,
       },
     })
       // .then((res) => {
