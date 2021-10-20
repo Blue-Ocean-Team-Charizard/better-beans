@@ -16,3 +16,11 @@
   overflow: hidden;
   /* width:25%; */
 }
+
+.create-beans-inner::before {
+  content: url('../public/bean-small.svg');
+
+ filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(101%) contrast(87%);
+ /* HEX: 6b3e2e */
+
+}
