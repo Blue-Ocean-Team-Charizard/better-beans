@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '../styles/Shoplist.module.css';
+import BeanRating from './BeanRating';
 
 const ShopEntry = ({ shop }) => {
   return (
@@ -7,8 +8,8 @@ const ShopEntry = ({ shop }) => {
       <Link href="#">
         <a className="">
           <h3 className="name">{shop.name}</h3>
-          <div className="review">{shop.review}</div>
-          <div className="time">{shop.status}</div>
+          <BeanRating rating={shop.rating}/>
+          <div className="opening_hours">{shop.opening_hours.open_now}</div>
           <div className="location">{shop.location}</div>
         </a>
       </Link>
