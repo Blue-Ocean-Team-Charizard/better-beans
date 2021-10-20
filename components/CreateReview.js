@@ -1,28 +1,15 @@
 import { useState } from 'react';
-<<<<<<< HEAD
-import BeanSelected from './BeanSelected.js';
-
-export default function CreateReview() {
-  const [body, setBody] = useState('');
-  const [photo, setPhoto] = useState([]);
-  // const [rating, setRating] = useState(0);
-  // const style = { width: `${roundedRating}%` };
-
-  const handleSubmit = () => {
-    axios.post(`the post API`, {params: `params`})
-      .then(response => {
-        return (
-          console.log('added')
-        )
-      })
-      .catch(err => console.log('add review err', err));
-  }
-=======
 import { gql, useMutation } from '@apollo/client';
+import BeanSelected from './BeanSelected';
+import APIKey from '../config/config.js';
+import axios from 'axios';
 
 export default function CreateReview() {
+  const photoAPIKey = APIKey.photoAPIKey;
+  console.log(photoAPIKey);
   const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
+  const [files, setFiles] = useState([]);
 
   const CREATE_REVIEW = gql`
     mutation CreateReview(
@@ -83,41 +70,98 @@ export default function CreateReview() {
       // });
     // .then((result) => console.log('Created review:', result));
   };
->>>>>>> a310a61eece18cbe4ce701bcdac72cdf2a339b0b
 
   const handleImage = (e) => {
     e.preventDefault();
     if (e.target.files) {
-      let file = Array.from(e.target.files);
-      setPhotos(prevPhoto => prevPhoto.concat(file));
+      const fileArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+      const selectedFileArray = Array.from(e.target.files);
+      setFiles(prevFile => prevFile.concat(selectedFileArray));
+      setPhotos(prevImg => prevImg.concat(fileArray));
+      Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
+      console.log('files', files);
+      console.log('photos', photos)
     }
   };
+
+  const renderImg = (source) => {
+    return source.map(image => {
+      return <img src={image} key={image} height="80" id="upload-image" onClick = {handleAPI}></img>;
+    });
+  };
+
+  // transfer photos to URL
+  const handleAPI = () => {
+    let URLs = [];
+    for (let i = 0; i < files.length; i++) {
+      let formData = new FormData();
+      formData.append('file', files[i]);
+      formData.append('upload_preset', 'asosdlts');
+
+      axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
+        .then((data) => {
+          console.log(data);
+          URLs.push(data.data.secure_url);
+          if (URLs.length === files.length) {
+            console.log(URLs);
+          }
+        })
+        .catch((err) => console.log('tranfer URL err', err));
+      console.log(formData);
+    }
+  //   var photoAPI = (filesArr, callback) => {
+  //     for (let i = 0; i < filesArr.length; i++) {
+  //       let formData = new formData();
+  //       formData.append('file', filesArr[i]);
+  //       formData.append('upload_preset', photoAPIKey);
+  //     }
+
+  //   axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+  //     .then((data) => {
+  //       console.log(data);
+  //       URLs.push(data.data.secure_url);
+  //       if (URLs.length === filesArr.length) {
+  //         console.log(URLs);
+  //         return callback(null, URLs)
+  //       }
+  //     })
+  //     .catch((err) => console.log('transfer URL err', err))
+  // }
+
+  // photoAPI(files, (err, data) => {
+  //   console.log(data)
+  // })
+}
+
+
 
   return (
     // the modal component should be adding option
     <div>
-<<<<<<< HEAD
-      <div id='review'>
-        <form onSubmit={(e) => {e.preventDefault(); handleSubmit();}}>
-          <BeanSelected />
-          <img src='../public/bean.svg'/>
-          <br />
-          <label>
-            Title:
-          </label>
-=======
       <div id="review">
         <form onSubmit={(e) => { handleSubmit(e); }}>
->>>>>>> a310a61eece18cbe4ce701bcdac72cdf2a339b0b
-          <label>
-            Write your reviews down
-          </label>
-          <br />
-          <label>
-            Your photos(optional)
-          </label>
-          <br />
-          <button type="submit"> Submit Review</button>
+          <BeanSelected />
+            <img src='../public/bean.svg'/>
+            <br />
+            <label>
+              Title:
+            </label>
+            <label>
+              Write your reviews down
+            </label>
+            <br />
+            <label>
+              Your photos(optional)
+            </label>
+            <br />
+            <button type="submit"> Submit Review</button>
+
+            <form onSubmit={(e) => {e.preventDefault(); handleAPI(); }}>
+              <input type='file' multiple={true} onChange={(e) => handleImage(e)}></input>
+              <div>
+                {renderImg(photos)}
+              </div>
+            </form>
         </form>
       </div>
     </div>
