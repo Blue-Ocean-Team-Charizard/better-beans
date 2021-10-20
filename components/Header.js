@@ -9,7 +9,7 @@ export default function Header() {
       <Head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
-        <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet"></link>
+        <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet" />
         {/* <script src="https://kit.fontawesome.com/02899377c4.js" crossOrigin="anonymous"></script> */}
       </Head>
       <header>
@@ -17,7 +17,9 @@ export default function Header() {
           <div id="nav">
             <Link href="/"><a><div className="logo"></div></a></Link>
             <div className="loginBtn">
-              <button type="button" className="btn">Login</button>
+              <Link href="/login">
+                <button type="button" className="btn">Login</button>
+              </Link>
             </div>
           </div>
           <SearchContext.Consumer>
