@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import BeanSelected from './BeanSelected';
-import APIKey from '../config/config.js';
 import axios from 'axios';
 
 export default function CreateReview() {
-  const photoAPIKey = APIKey.photoAPIKey;
   const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
   const [files, setFiles] = useState([]);

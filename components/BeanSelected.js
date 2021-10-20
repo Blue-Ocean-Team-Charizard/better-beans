@@ -1,10 +1,8 @@
 import { useState } from 'react';
-// import './bean-small.svg';
 import BeanRating from './BeanRating.js'
 import { AiOutlineStar } from "react-icons/ai"
 
 export default function BeanSelected() {
-  // const [rating, setRating] = useState(0);
   let empty = [];
   const Bean = './bean-small.svg'
   const [beans, setBeans] = useState(0);
@@ -22,7 +20,6 @@ export default function BeanSelected() {
 
   return (
     <div>
-      {/* <BeanRating rating={rating}/> */}
       Select your rating
       <div create-beans-outer></div>
       <img src={Bean} onClick={() => selectRating(1)} />
