@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../firebase/auth_context';
+import Meta from '../../components/Meta';
 import ReviewList from '../../components/ReviewList';
 
 export default function Profile() {
@@ -14,6 +15,7 @@ export default function Profile() {
   }, [authUser, loading, router]);
 
   return (
+    <Meta />
     <div className="profile">
       <div id="account">
         <div className="photo">
