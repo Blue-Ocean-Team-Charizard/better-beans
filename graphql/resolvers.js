@@ -27,13 +27,12 @@ export const resolvers = {
 
   Mutation: {
     createReview: async (_, {
-      first_name, title, body, rating, shop_id, user_id,
+      name, body, rating, shop_id, user_id,
     }, ctx) => {
       const now = new Date();
       const review = await ctx.prisma.reviews.create({
         data: {
-          first_name,
-          title,
+          name,
           body,
           rating,
           date: now,

@@ -16,8 +16,7 @@ export const typeDefs = gql`
 
   type Review {
     id: Int!
-    first_name: String
-    title: String
+    name: String
     body: String!
     date: String
     rating: Int
@@ -35,8 +34,7 @@ export const typeDefs = gql`
 
   type Mutation {
     createReview(
-      first_name: String,
-      title: String,
+      name: String,
       body: String,
       rating: Int,
       shop_id: String,
