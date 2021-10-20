@@ -14,9 +14,26 @@ export default function SearchResults() {
           <>
             <Meta />
             <h1>Shops near me</h1>
-            {showMap
-              ? <Map shopList={context.shopList} coords={context.currentCoords} />
-              : <ShopList shopList={context.shopList} />}
+            <div className="container">
+              <ul className="nav nav-tabs" id="myTab" role="tablist">
+                <li className="nav-item" role="presentation">
+                  <button className="nav-link active" id="map-tab" data-bs-toggle="tab" data-bs-target="#map-container" type="button" role="tab" aria-controls="map" aria-selected="true">Map</button>
+                </li>
+                <li className="nav-item" role="presentation">
+                  <button className="nav-link" id="shops-tab" data-bs-toggle="tab" data-bs-target="#shops" type="button" role="tab" aria-controls="shops" aria-selected="false">
+                    List
+                  </button>
+                </li>
+              </ul>
+              <div className="tab-content" id="myTabContent">
+                <div className="tab-pane fade show active" id="map-container" role="tabpanel" aria-labelledby="home-tab">
+                  <Map shopList={context.shopList} coords={context.currentCoords} />
+                </div>
+                <div className="tab-pane fade" id="shops" role="tabpanel" aria-labelledby="profile-tab">
+                  <ShopList shopList={context.shopList} />
+                </div>
+              </div>
+            </div>
           </>
         )}
       </SearchContext.Consumer>
