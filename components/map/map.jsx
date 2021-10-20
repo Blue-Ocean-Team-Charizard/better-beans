@@ -38,8 +38,14 @@ class Map extends Component {
       map = new google.maps.Map(document.getElementById('map'), {
         center: this.props.coords,
         zoom: 14,
+        mapTypeControl: false,
+        streetViewControl: false,
       });
     });
+  }
+
+  changeCenter(coords) {
+    map.panTo(coords);
   }
 
   addMarkers() {
