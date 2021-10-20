@@ -10,16 +10,14 @@ export default function CreateReview() {
 
   const CREATE_REVIEW = gql`
     mutation CreateReview(
-      $first_name: String!
-      $title: String
+      $name: String!
       $body: String!
       $rating: Int
       $shop_id: String!
-      $user_id: Int!
+      $user_id: String!
     ){
       createReview(
-        first_name: $first_name
-        title: $title
+        name: $name
         body: $body
         rating: $rating
         shop_id: $shop_id
@@ -51,12 +49,11 @@ export default function CreateReview() {
     e.preventDefault();
     createReview({
       variables: {
-        first_name: 'Qinyu for you',
-        title: 'very yummy coffee!',
+        name: 'Qinyu for you',
         body: 'i like coffee',
         rating: 5,
         shop_id: 'Simple',
-        user_id: 1,
+        user_id: 'user id',
       },
     })
       // .then((res) => {
