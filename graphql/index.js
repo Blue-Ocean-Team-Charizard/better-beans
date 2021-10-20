@@ -10,7 +10,7 @@ export const typeDefs = gql`
   type Query {
     reviews: [Review]
     reviewsByShop(shop_id: String!): [Review]!
-    reviewsByUser(user_id: Int!): [Review]!
+    reviewsByUser(user_id: String!): [Review]!
     photos: [Photo]
   }
 
@@ -23,7 +23,7 @@ export const typeDefs = gql`
     helpful: Int
     reported: Int
     shop_id: String
-    user_id: Int
+    user_id: String
   }
 
   type Photo {
@@ -38,7 +38,7 @@ export const typeDefs = gql`
       body: String,
       rating: Int,
       shop_id: String,
-      user_id: Int,
+      user_id: String,
     ): Review!
     createPhoto(review_id: Int!, url: String!): Photo!
   }

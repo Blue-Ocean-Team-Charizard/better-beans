@@ -14,7 +14,7 @@ export default function CreateReview() {
       $body: String!
       $rating: Int
       $shop_id: String!
-      $user_id: Int!
+      $user_id: String!
     ){
       createReview(
         name: $name
@@ -53,7 +53,7 @@ export default function CreateReview() {
         body: 'i like coffee',
         rating: 5,
         shop_id: 'Simple',
-        user_id: 1,
+        user_id: 'user id',
       },
     })
       // .then((res) => {
