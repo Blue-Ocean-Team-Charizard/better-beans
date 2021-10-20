@@ -15,8 +15,8 @@ export default function Profile() {
   }, [authUser, loading, router]);
 
   return (
-    <Meta />
     <div className="profile">
+      <Meta />
       <div id="account">
         <div className="photo">
           {(authUser) ? <img className="profile-photo" src={authUser.photo} alt="avatar" /> : null}
