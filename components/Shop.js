@@ -9,8 +9,9 @@ const dummyReviews = [
   { rating: 5 }, { rating: 4 },
 ];
 
-export default function Shop({ googleData, reviews }) {
+export default function Shop({ googleData }) {
   const { authUser } = useAuth();
+  const shopId = googleData.place_id;
   const [showCreateReview, setShowCreateReview] = useState(false);
   const [showLoginMsg, setShowLoginMsg] = useState(false);
   const [visited, setVisited] = useState('no');
@@ -85,7 +86,7 @@ export default function Shop({ googleData, reviews }) {
           {' '}
         </div>
 
-      {showCreateReview ? <CreateReview /> : null}
+      {showCreateReview ? <CreateReview shopId={shopId} /> : null}
       <ReviewList />
     </div>
   );
