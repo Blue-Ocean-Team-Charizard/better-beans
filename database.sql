@@ -7,24 +7,16 @@ DROP INDEX IF EXISTS photos_idx_reviews;
 DROP INDEX IF EXISTS reviews_idx_users;
 DROP INDEX IF EXISTS reviews_idx_shops;
 
-CREATE TABLE users (
-  id serial PRIMARY KEY,
-  name varchar,
-  email varchar,
-  photo_url varchar
-);
-
 CREATE TABLE reviews (
   id serial PRIMARY KEY,
-  first_name varchar,
-  title varchar,
+  name varchar,
   body varchar,
   date timestamp,
   rating integer,
   helpful integer,
   reported integer,
   shop_id varchar,
-  user_id integer REFERENCES users(id)
+  user_id varchar
 );
 
 CREATE TABLE photos (
@@ -33,7 +25,14 @@ CREATE TABLE photos (
   url varchar
 );
 
+CREATE TABLE visited (
+  id serial PRIMARY KEY,
+  user_id varchar,
+  shop_id varchar,
+  shop_name varchar,
+  visited boolean
+);
 
 CREATE INDEX photos_idx_reviews ON photos USING hash (review_id);
-CREATE INDEX reviews_idx_users ON reviews USING hash (user_id);
 CREATE INDEX reviews_idx_shops ON reviews USING hash (shop_id);
+CREATE INDEX visited_idx_user_id ON visited USING hash (user_id);
