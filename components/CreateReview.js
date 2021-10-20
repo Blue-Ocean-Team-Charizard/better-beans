@@ -1,13 +1,21 @@
 import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import BeanSelected from './BeanSelected';
+// import BeanSelected from './BeanSelected';
 import axios from 'axios';
+import { useAuth } from '../firebase/auth_context';
 
-export default function CreateReview() {
-  const [body, setBody] = useState('');
+export default function CreateReview(props) {
+  const Bean = '/bean-small.svg';
+  const [rating, setRatings] = useState(0);
   const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
   const [files, setFiles] = useState([]);
+  const { authUser } = useAuth();
+
+  const selectRating = (value) => {
+    setRatings(value);
+  };
 
   const CREATE_REVIEW = gql`
     mutation CreateReview(
@@ -82,6 +90,7 @@ export default function CreateReview() {
   };
 
   const renderImg = (source) => {
+    console.log(authUser);
     return source.map(image => {
       return <img src={image} key={image} height="80" id="upload-image" onClick = {handleAPI}></img>;
     });
@@ -90,7 +99,6 @@ export default function CreateReview() {
   // transfer photos to URL
   const handleAPI = () => {
     let URLs = [];
-    console.log(files);
     for (let i = 0; i < files.length; i++) {
       let formData = new FormData();
       formData.append('file', files[i]);
@@ -101,6 +109,7 @@ export default function CreateReview() {
           URLs.push({url: data.data.secure_url});
           if (URLs.length === files.length) {
             console.log(URLs);
+            return URLs;
           }
         })
         .catch((err) => console.log('tranfer URL err', err));
@@ -110,10 +119,22 @@ export default function CreateReview() {
 
 
   return (
+
     <div>
+      {authUser.name}
       <div id="review">
         <form onSubmit={(e) => { handleSubmit(e); }}>
-          <BeanSelected />
+        <div>
+            Select your rating
+            <br />
+            <img src={Bean} className={rating >= 1 ? 'selected' : 'selectBean' } onClick={() => selectRating(1)} />
+            <img src={Bean} className={rating >=2 ? 'selected' : 'selectBean'} onClick={() => selectRating(2)} />
+            <img src={Bean} className={rating >=3 ? 'selected' : 'selectBean'} onClick={() => selectRating(3)} />
+            <img src={Bean} className={rating >=4 ? 'selected' : 'selectBean'} onClick={() => selectRating(4)} />
+            <img src={Bean} className={rating >=5 ? 'selected' : 'selectBean'} onClick={() => selectRating(5)} />
+            <br />
+            {rating}
+          </div>
             <br />
             <label>
               Title:
@@ -132,15 +153,13 @@ export default function CreateReview() {
             </label>
             <br />
 
-            <input type='file' multiple={true} onChange={(e) => {handleImage(e); renderImg(photos)}}></input>
-              {/* <div>
+            <input type='file' multiple={true} onChange={(e) => {handleImage(e)}}></input>
+              <div>
                 {renderImg(photos)}
-              </div> */}
+              </div>
+              <div onClick = {handleAPI}> confirm photo</div>
 
             <button type="submit"> Submit Review</button>
-
-
-
 
         </form>
       </div>
