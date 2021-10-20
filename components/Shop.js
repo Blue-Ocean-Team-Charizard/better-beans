@@ -85,7 +85,7 @@ export default function Shop({ googleData, reviews }) {
         </span>
       </span>
       {showCreateReview ? <CreateReview /> : null}
-      <ReviewList reviews={reviews} />
+      <ReviewList />
     </div>
   );
 }
