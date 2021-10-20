@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import Meta from '../../components/Meta';
 import ShopList from '../../components/ShopList';
 import Map from '../../components/map/map';
 import { SearchContext } from '../../components/SearchContext';
 
 export default function SearchResults() {
-  const [showMap, setShowMap] = useState(false);
-
   return (
     <div>
       <SearchContext.Consumer>
