@@ -9,12 +9,12 @@ export default function Shops(props) {
   return (
     <div>
       <Meta />
-      This is
+      {/* This is
       {' '}
-      {id}
+      {id} */}
       {/* {console.log(shop)}; */}
-      {console.log('props', props)};
-      <Shop googleData={props.googleData} reviewData={props.reviewData} />
+      {/* {console.log('props', props)}; */}
+      <Shop googleData={props.googleData} reviews={props.reviews} />
     </div>
   );
 }
@@ -81,12 +81,14 @@ const dummyReviews = [
     first_name: 'Hello',
     title: 'dummy',
     body: 'great cofeee',
+    rating: 1,
   },
   {
     id: '2',
     first_name: 'World',
     title: 'dummy',
     body: 'great cofeee',
+    rating: 2,
   },
 ];
 
@@ -96,15 +98,17 @@ export async function getServerSideProps(context) {
   //cannot fetch from API route
   // const res = await fetch(`http://localhost:3000/api/shop/${id}`);
 
-  //instead fetch from db.
+  // instead fetch from db.
   // const res = await fetch(`DB QUERY URL???`);
   // const shop = await res.json();
   // console.log(shop);
+  // // if there is no info from data, create empty object for reviews
 
   //ACCESS GOOGLE INFO FROM SOMEWHERE???
+
   const shop = {
     googleData: dummyAPIdata,
-    reviewData: dummyReviews,
+    reviews: dummyReviews,
   };
 
   return ({

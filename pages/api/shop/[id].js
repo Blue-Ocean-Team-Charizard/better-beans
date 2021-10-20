@@ -1,9 +1,3 @@
-const dummyShop = {
-  id: 1,
-  name: 'Dummy Shop',
-  vicinity: '111 Main St',
-};
-
 const dummyAPIdata = {
   business_status: 'OPERATIONAL',
   geometry: {
@@ -66,12 +60,14 @@ const dummyReviews = [
     first_name: 'Hello',
     title: 'dummy',
     body: 'great cofeee',
+    rating: 1,
   },
   {
     id: '2',
     first_name: 'World',
     title: 'dummy',
     body: 'great cofeee',
+    rating: 2,
   },
 ];
 
@@ -80,5 +76,5 @@ export default function handler(req, res) {
   // get the shop information from either google or the state
 
   // get the reivews from the db
-  res.status(200).json({ googleData: dummyAPIdata, reviewData: dummyReviews });
+  res.status(200).json({ googleData: dummyAPIdata, reviews: dummyReviews });
 }

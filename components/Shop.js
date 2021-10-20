@@ -9,15 +9,13 @@ const dummyReviews = [
   { rating: 5 }, { rating: 4 },
 ];
 
-export default function Shop({
-  name, location, operational, reviews = dummyReviews,
-}) {
-  const { authUser, loading } = useAuth();
+export default function Shop({ googleData, reviews }) {
+  const { authUser } = useAuth();
   const [showCreateReview, setShowCreateReview] = useState(false);
   const [showLoginMsg, setShowLoginMsg] = useState(false);
   const [visited, setVisited] = useState('no');
 
-  const open = operational || true;
+  // const open = operational || true;
   const user = authUser;
   const avgRating = () => {
     let ratings = 0;
@@ -27,33 +25,33 @@ export default function Shop({
     });
     return ratings / reviews.length;
   };
-  console.log(authUser);
+  // console.log(authUser);
 
   const handleVisited = (e) => {
     e.preventDefault();
-    console.log('set visited to:', e.target.value);
+    // console.log('set visited to:', e.target.value);
     if (user) {
       setVisited(e.target.value);
-      // API CALL TO THE VISITED OF USER
+      // DB CALL TO THE VISITED OF USER
     } else {
       // redirect to login
     }
   };
 
-  const shopRating = avgRating();
+  const shopRating = (reviews.length > 0) ? avgRating() : 0;
 
   return (
     <div>
-      <h2 className="shop-name">{name || 'SHOP NAME'}</h2>
+      <h2 className="shop-name">{googleData.name || 'SHOP NAME'}</h2>
       <BeanRating rating={shopRating} />
       <br />
-      <span className="open-now">{open ? 'Open Now' : 'Closed'}</span>
+      <span className="open-now">{googleData.opening_hours.open_now ? 'Open Now' : 'Closed'}</span>
       <br />
       <span className="shop-location">
         {' '}
         Located at:
         {' '}
-        {location}
+        {googleData.vicinity}
         {' '}
       </span>
       <br />
@@ -87,7 +85,7 @@ export default function Shop({
         </span>
       </span>
       {showCreateReview ? <CreateReview /> : null}
-      <ReviewList />
+      <ReviewList reviews={reviews} />
     </div>
   );
 }
