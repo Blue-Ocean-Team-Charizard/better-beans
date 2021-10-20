@@ -1,14 +1,18 @@
-// import { GraphQLServer  }from 'graphql-yoga'
-// ... or using `require()`
-const { GraphQLServer } = require('graphql-yoga');
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable consistent-return */
+/* eslint-disable camelcase */
+const { gql } = require('apollo-server-micro');
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const typeDefs = `
+export const typeDefs = gql`
   type Query {
-    hello(name: String, job: String): String!
-    getUser(id: Int): User
+    user(id: Int): User
+    reviews: [Review]
+    reviewsByShop(shop_id: String!): [Review]!
+    reviewsByUser(user_id: Int!): [Review]!
+    photos: [Photo]
   }
 
   type User {
@@ -18,44 +22,37 @@ const typeDefs = `
     photo_url: String
   }
 
+  type Review {
+    id: Int!
+    first_name: String
+    title: String
+    body: String!
+    date: String
+    rating: Int
+    helpful: Int
+    reported: Int
+    shop_id: String
+    user_id: Int
+  }
+
+  type Photo {
+    id: Int!
+    review_id: Int!
+    url: String
+  }
+
   type Mutation {
-    setMessage(message: String): String!
-    createUser(name: String, email: String): String
+    createUser(name: String, email: String, photo_url: String): User!
+    createReview(
+      first_name: String,
+      title: String,
+      body: String,
+      rating: Int,
+      shop_id: String,
+      user_id: Int,
+    ): Review!
+    createPhoto(review_id: Int!, url: String!): Photo!
   }
 `;
 
-const resolvers = {
-  Query: {
-    // hello: (_, { name, job }) => `Hello ${name || 'World'} with ${job || 'Unemployed'}`,
-    getUser: async (_, { id }) => {
-      const user = await prisma.users.findUnique({
-        where: { id },
-      });
-      return user;
-    },
-    // getUser: (_, { id }) => prisma.users.filter((user) => user.id === id)[0],
-    // getUser: (_, { id }) => {
-    //   return {
-    //     id: id,
-    //     name: 'Daniel',
-    //     email: 'dan@dan.com',
-    //     photo_url: 'hotpic.com'
-    //   };
-    // },
-  },
-
-  Mutation: {
-    setMessage: () => prisma.users.create({
-      data: { name: 'Hello kitty' },
-    }),
-    createUser: async (_, { name, email }) => {
-      await prisma.users.create({
-        data: { name, email },
-      });
-      return 'Created';
-    },
-  },
-};
-
-const server = new GraphQLServer({ typeDefs, resolvers });
-server.start(() => console.log('Server is running on localhost:4000'));
+export default prisma;
