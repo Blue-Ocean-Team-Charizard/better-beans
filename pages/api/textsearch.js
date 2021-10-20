@@ -3,7 +3,7 @@ import getGeocode from '../../helpers/getGeocode';
 import chains from '../../helpers/chains';
 
 export default function handler(req, res) {
-  let response = {};
+  const response = {};
   getGeocode(req.query.query)
     .then((coords) => {
       response.coords = coords;
