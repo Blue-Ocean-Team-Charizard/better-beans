@@ -19,7 +19,8 @@ export default function Profile() {
         <div className="photo">
           {(authUser) ? <img className="profile-photo" src={authUser.photo} alt="avatar" /> : null}
         </div>
-        <div className="info">{(authUser) ? ` ${authUser.name}` : ''}</div>
+        <h3 className="info name">{(authUser) ? ` ${authUser.name}` : ''}</h3>
+        <div className="btnDelete">Delete account</div>
       </div>
       <h1 className="title">Review
         <button type="button" className="btn btn-review"> Write a Review</button>
