@@ -14,7 +14,7 @@ const ShopEntry = ({ shop }) => {
           <div className="opening_hours">Closed</div> :
           null}
           {/* <div className="opening_hours">{shop.opening_hours.open_now}</div> */}
-          <div className="location">{shop.location}</div>
+          <div className="location">{shop.vicinity}</div>
         </a>
       </Link>
     </div>
