@@ -1,13 +1,14 @@
-import Header from "./Header";
-import Footer from "./Footer";
-import styles from "../styles/Home.module.css";
+import Header from './Header';
+import Footer from './Footer';
+import Meta from '../components/Meta';
 
 const Layout = ({ children }) => {
   return (
     <>
-      <div className={styles.container}>
+      <Meta />
+      <div className="container">
         <Header />
-        <main className={styles.main}>{children}</main>
+        <main className="main">{children}</main>
         <Footer />
       </div>
     </>
