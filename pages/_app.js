@@ -10,19 +10,13 @@ import apolloClient from '../graphql/apollo.js';
 function MyApp({ Component, pageProps }) {
   return (
     <AuthUserProvider>
-<<<<<<< HEAD
       <ApolloProvider client={apolloClient}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <SearchContextProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SearchContextProvider>
       </ApolloProvider>
-=======
-      <SearchContextProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </SearchContextProvider>
->>>>>>> e04aa53ba834d02f94e7ce67bff2562e23cae19a
     </AuthUserProvider>
   );
 }

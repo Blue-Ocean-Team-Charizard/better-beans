@@ -17,14 +17,9 @@
     "axios": "^0.23.0",
     "bootstrap": "^5.1.3",
     "firebase": "^9.1.3",
-<<<<<<< HEAD
     "graphql": "^15.6.1",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
-=======
-    "graphql-yoga": "^1.18.3",
-    "install": "^0.13.0",
->>>>>>> e04aa53ba834d02f94e7ce67bff2562e23cae19a
     "next": "11.1.2",
     "node-sass": "^4.14.1",
     "react": "17.0.2",
