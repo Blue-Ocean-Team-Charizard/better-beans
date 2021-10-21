@@ -1,11 +1,24 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Search from './Search';
 import { SearchContext } from './SearchContext';
 import { useAuth } from '../firebase/auth_context';
 
-export default function Header() {
+export default function Header(props) {
   const { authUser, logOff } = useAuth();
+  const [checkbox, setCheckbox] = useState(false);
+
+  const handleOnClick = (e) => {
+    const { checked } = e.target;
+    setCheckbox(!checkbox);
+    if (checked) {
+      props.toggleTheme('container');
+    } else {
+      props.toggleTheme('container light-mode')
+    }
+  }
+
   return (
     <>
       <Head>
@@ -28,6 +41,19 @@ export default function Header() {
                   <button type="button" className="btn">Log in</button>
                 </Link>
               )}
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="toggle"
+                className="toggle--checkbox"
+                checked = {checkbox}
+                onClick={handleOnClick}
+              />
+              <label for="toggle" className="toggle--label">
+                <span className="toggle--label-background"></span>
+              </label>
+              {/* <div class="darkModeIcon iconMode" onClick={() => setLightMode(!lightMode)}></div> */}
             </div>
           </div>
           <SearchContext.Consumer>
