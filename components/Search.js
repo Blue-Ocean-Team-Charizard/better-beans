@@ -43,8 +43,6 @@ export default class Search extends React.Component {
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
-    // this.setState({ currentLocation: crd });
-    // 34.05223,-118.24368
     updateCoords({
       lat: crd.latitude,
       lng: crd.longitude,
