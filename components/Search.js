@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import router from 'next/router';
+import { Loader } from '@googlemaps/js-api-loader';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -9,7 +10,11 @@ export default class Search extends React.Component {
     this.state = {
       location: '',
     };
-
+    this.loader = new Loader({
+      apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
+      version: 'weekly',
+      libraries: ['drawing', 'geometry', 'places'],
+    });
     this.searchCurrentLocation = this.searchCurrentLocation.bind(this);
     this.geoSuccess = this.geoSuccess.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -43,8 +48,6 @@ export default class Search extends React.Component {
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
-    // this.setState({ currentLocation: crd });
-    // 34.05223,-118.24368
     updateCoords({
       lat: crd.latitude,
       lng: crd.longitude,
@@ -58,13 +61,27 @@ export default class Search extends React.Component {
 
   searchCurrentLocation() {
     if (navigator.geolocation) {
-      console.log('getting current location');
+      // console.log('getting current location');
       navigator.geolocation.getCurrentPosition(this.geoSuccess, (err) => {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       });
     } else {
       console.log('location is not enabled');
     }
+  }
+
+  componentDidMount() {
+    this.loader.load().then((google) => {
+      this.google = google;
+      const input = document.getElementById('search');
+      const options = {
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+      }
+      const autocomplete = new google.maps.places.Autocomplete(input, options);
+      autocomplete.setFields(["place_id", "geometry", "name"]);
+
+    })
   }
 
   render() {
@@ -74,7 +91,7 @@ export default class Search extends React.Component {
           type="text"
           id="search"
           className="form-control"
-          placeholder="Los Angeles"
+          placeholder="Search for a location"
           aria-label="Search location"
           onChange={this.handleChange}
         />

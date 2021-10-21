@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { gql, useQuery } from '@apollo/client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ReviewList from './ReviewList';
 import CreateReview from './CreateReview';
 import BeanRating from './BeanRating';
