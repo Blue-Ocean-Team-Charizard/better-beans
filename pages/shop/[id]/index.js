@@ -1,19 +1,15 @@
 import Meta from '../../../components/Meta';
 import Shop from '../../../components/Shop';
 import { SearchContext } from '../../../components/SearchContext';
+import { APIKey } from '../../../config/config';
 
-export default function Shops(props) {
+export default function Shops({ id, shopData }) {
   return (
     <div>
       <Meta />
-      {/* This is
-      {' '}
-      {id} */}
-      {/* {console.log(shop)}; */}
-      {/* {console.log('props', props)}; */}
       <SearchContext.Consumer>
         {(context) => (
-          <Shop googleData={context.selectedShop} id={props.id} />
+          <Shop googleData={context.selectedShop} id={id} shopData={shopData} />
         )}
       </SearchContext.Consumer>
     </div>
@@ -22,45 +18,14 @@ export default function Shops(props) {
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
-  console.log(id);
-
-
-
-  //cannot fetch from API route
-  // const res = await fetch(`http://localhost:3000/api/shop/${id}`);
-
-  // instead fetch from db.
-  // const res = await fetch(`DB QUERY URL???`);
-  // const shop = await res.json();
-  // console.log(shop);
-  // // if there is no info from data, create empty object for reviews
-
-  //ACCESS GOOGLE INFO FROM SOMEWHERE???
-
-  const shop = {
-    id,
-  };
+  const res = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${id}&key=${APIKey}`);
+  const shopInfo = await res.json();
 
   return ({
-    props: shop,
+    props: {
+      id,
+      shopData: shopInfo.result,
+    },
   }
   );
-};
-
-// would call db query to get all reviews
-// const dummyReviews = [
-//   {
-//     id: '1',
-//     first_name: 'Hello',
-//     title: 'dummy',
-//     body: 'great cofeee',
-//     rating: 1,
-//   },
-//   {
-//     id: '2',
-//     first_name: 'World',
-//     title: 'dummy',
-//     body: 'great cofeee',
-//     rating: 2,
-//   },
-// ];
+}
