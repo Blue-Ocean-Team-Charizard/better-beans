@@ -21,7 +21,7 @@ export default function VisitBeanList({ flag, userId }) {
     },
   });
 
-  if (loading) return 'Loading...';
+  // if (loading) return 'Loading...';
   if (err) return `Error! ${err.message}!`;
 
   data ? console.log(data.beansByUser) : null;
@@ -29,7 +29,11 @@ export default function VisitBeanList({ flag, userId }) {
   return (
     <div>
       {/* {data ? data.beansByUser : null} */}
-      {data ? data.beansByUser.map((shop) => <VisitBeanEntry shop={shop} />) : null}
+      {data ?
+        data.beansByUser.length === 0 ?
+          'Discover more shops first!' :
+          data.beansByUser.map((shop) => <VisitBeanEntry shop={shop} />) : null}
+      {/* {!data ? 'Discover more shops!' : null} */}
     </div>
   );
 }

@@ -49,7 +49,12 @@ export default function Profile() {
           {(authUser) ? <img className="profile-photo" src={authUser.photo} alt="avatar" /> : null}
         </div>
         <h3 className="info name">{(authUser) ? ` ${authUser.name}` : ''}</h3>
+
       </div>
+      <h1 className="title">
+        My Better Beans
+      </h1>
+      <br />
       <ul className="nav nav-tabs" id="myTab" role="tablist">
         <li className="nav-item" role="presentation" style={{ width: 'calc(100% / 3)' }}>
           <button className="nav-link active" id="map-tab" data-bs-toggle="tab" data-bs-target="#want-bean" type="button" role="tab" aria-controls="map" aria-selected="true">
@@ -69,27 +74,27 @@ export default function Profile() {
       </ul>
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active" id="want-bean" role="tabpanel" aria-labelledby="home-tab">
-          <h1 className="title">
+          {/* <h1 className="title">
             Want to Bean
-          </h1>
+          </h1> */}
           <VisitBeanList
             userId={authUser ? "Jan" : ""}
             flag={false}
           />
         </div>
         <div className="tab-pane fade" id="already-bean" role="tabpanel" aria-labelledby="profile-tab">
-          <h1 className="title">
+          {/* <h1 className="title">
             Already Bean
-          </h1>
+          </h1> */}
           <VisitBeanList
             userId={authUser ? "Jan" : ""}
             flag={true}
           />
         </div>
         <div className="tab-pane fade" id="my-reviews" role="tabpanel" aria-labelledby="profile-tab">
-          <h1 className="title">
+          {/* <h1 className="title">
             Reviews
-          </h1>
+          </h1> */}
           <ReviewList reviews={data ? data.reviewsByUser : []} />
         </div>
       </div>
