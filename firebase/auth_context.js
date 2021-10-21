@@ -8,6 +8,7 @@ const authUserContext = createContext({
   signInWithFirebase: async () => {},
   logOff: async () => {},
   deleteAccount: async () => {},
+  signInWithFacebook: async () => {},
 });
 
 export function AuthUserProvider({ children }) {
