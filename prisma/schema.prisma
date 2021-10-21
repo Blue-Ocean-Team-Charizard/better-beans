@@ -17,27 +17,26 @@ model photos {
 }
 
 model reviews {
-  id         Int       @id @default(autoincrement())
-  first_name String?   @db.VarChar
-  title      String?   @db.VarChar
-  body       String?   @db.VarChar
-  date       DateTime? @db.Timestamp(6)
-  rating     Int?
-  helpful    Int?
-  reported   Int?
-  shop_id    String?   @db.VarChar
-  user_id    Int?
-  users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  photos     photos[]
+  id       Int       @id @default(autoincrement())
+  name     String?   @db.VarChar
+  body     String?   @db.VarChar
+  date     DateTime? @db.Timestamp(6)
+  rating   Int?
+  helpful  Int?
+  reported Int?
+  shop_id  String?   @db.VarChar
+  user_id  String?   @db.VarChar
+  photos   photos[]
 
   @@index([shop_id], map: "reviews_idx_shops")
-  @@index([user_id], map: "reviews_idx_users")
 }
 
-model users {
-  id        Int       @id @default(autoincrement())
-  name      String?   @db.VarChar
-  email     String?   @db.VarChar
-  photo_url String?   @db.VarChar
-  reviews   reviews[]
+model visited {
+  id        Int      @id @default(autoincrement())
+  user_id   String?  @db.VarChar
+  shop_id   String?  @db.VarChar
+  shop_name String?  @db.VarChar
+  visited   Boolean?
+
+  @@index([user_id], map: "visited_idx_user_id")
 }

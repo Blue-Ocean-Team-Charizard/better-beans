@@ -1,10 +1,12 @@
+// import Head from 'next/head';
+import { ApolloProvider } from '@apollo/client';
 import { AuthUserProvider } from '../firebase/auth_context';
 import SearchContextProvider from '../components/SearchContext';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 import '../styles/review.css';
-import { ApolloProvider } from '@apollo/client';
-import apolloClient from '../graphql/apollo.js';
+import '../styles/map.css';
+import apolloClient from '../graphql/apollo';
 
 function MyApp({ Component, pageProps }) {
   return (
