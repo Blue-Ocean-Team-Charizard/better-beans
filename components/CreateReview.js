@@ -120,7 +120,6 @@ export default function CreateReview() {
             onChange={(e) => handleImage(e)}>
           </input>
         <div>{renderImg(photos)}</div>
-
         <button id="submit-review-btn" type="submit"> Submit Review</button>
       </form>
     </div>
