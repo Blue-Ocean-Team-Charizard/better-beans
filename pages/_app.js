@@ -4,6 +4,7 @@ import { AuthUserProvider } from '../firebase/auth_context';
 import SearchContextProvider from '../components/SearchContext';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
+import '../styles/light-mode.css';
 import '../styles/review.css';
 import '../styles/createReview.css';
 import '../styles/map.css';
