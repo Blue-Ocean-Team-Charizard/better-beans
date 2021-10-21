@@ -83,7 +83,7 @@ export default function CreateReview(props) {
         name: authUser.name,
         body: body,
         rating: rating,
-        shop_id: 'Simple',
+        shop_id: props.shopId,
         user_id: authUser.uid,
       },
     })
