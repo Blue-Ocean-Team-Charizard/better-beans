@@ -7,6 +7,7 @@ const authUserContext = createContext({
   loading: true,
   signInWithFirebase: async () => {},
   logOff: async () => {},
+  deleteAccount: async () => {},
 });
 
 export function AuthUserProvider({ children }) {
