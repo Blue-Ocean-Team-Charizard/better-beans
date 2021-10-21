@@ -95,7 +95,7 @@ header {
 }
 
 #nav .logo {
-  background: url('../public/newlogo.png') no-repeat center;
+  background: url('../public/betterbean-logo.png') no-repeat center;
   background-size: cover;
   width: 100px;
   height: 67px;
@@ -479,3 +479,4 @@ footer {
 .selected {
   filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(140%) contrast(87%);
 }
+
