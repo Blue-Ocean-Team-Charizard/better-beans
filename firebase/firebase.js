@@ -4,12 +4,11 @@ import {
   initializeApp,
   getApp,
   getApps,
-  firebaseApp,
 } from 'firebase/app';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-let app = firebaseApp;
+let app;
 // Your web app's Firebase configuration
 // console.log(env('process.env.NEXT_PUBLIC_FIREBASE_API_KEY'));
 const firebaseConfig = {
