@@ -43,14 +43,18 @@ export default function Profile() {
       </ul>
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active" id="want-bean" role="tabpanel" aria-labelledby="home-tab">
+          <h1 className="title">
+            Want to Bean
+          </h1>
           <VisitBeanList
-            title="Want To Bean"
             shopList={[]}
           />
         </div>
         <div className="tab-pane fade" id="already-bean" role="tabpanel" aria-labelledby="profile-tab">
+          <h1 className="title">
+            Already Bean
+          </h1>
           <VisitBeanList
-            title="Already Bean"
             shopList={[]}
           />
         </div>
