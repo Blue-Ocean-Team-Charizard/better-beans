@@ -4,10 +4,8 @@ import { TiThumbsUp } from 'react-icons/ti';
 import { MdReportGmailerrorred } from 'react-icons/md';
 import ReviewBeanRating from './ReviewBeanRating';
 
-
-
 export default function Review(props) {
-  const {review} = props;
+  const { review } = props;
   console.log('reviews for shop', review.id);
 
   const [helpful, setHelpful] = useState(0);
@@ -31,14 +29,14 @@ export default function Review(props) {
   }
 `;
 
-const { data, loading, err } = useQuery(GET_PHOTOS, {
-  variables: { review_id: review.id },
-});
+  const { data, loading, err } = useQuery(GET_PHOTOS, {
+    variables: { review_id: review.id },
+  });
 
-if (loading) return 'Loading...';
-if (err) return `Error! ${err.message}!`;
+  if (loading) return 'Loading...';
+  if (err) return `Error! ${err.message}!`;
 
-console.log('photo data ', data.photosByReview);
+  console.log('photo data ', data.photosByReview);
   return (
     <div id="review">
       <div id="review-user-info">
@@ -50,12 +48,12 @@ console.log('photo data ', data.photosByReview);
       </div>
 
       <div id="review-center">
-        <ReviewBeanRating rating={review.rating}/>
+        <ReviewBeanRating rating={review.rating} />
         <div id="review-body">{review.body}</div>
       </div>
 
       <div id="review-photos">
-        {data.photosByReview.map((photo) => <img src={photo.url} />)}
+        {data.photosByReview.map((photo) => <img src={photo.url} alt="review" />)}
       </div>
 
       <div id="review-buttons">
@@ -64,7 +62,8 @@ console.log('photo data ', data.photosByReview);
           id="helpful-btn"
           onClick={() => handleHelpfulButton()}
         >
-          <TiThumbsUp /> {review.helpful}
+          <TiThumbsUp />
+          {review.helpful}
         </button>
         <button
           type="button"
