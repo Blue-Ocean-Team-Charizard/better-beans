@@ -58,7 +58,7 @@ export default class Search extends React.Component {
 
   searchCurrentLocation() {
     if (navigator.geolocation) {
-      console.log('getting current location');
+      // console.log('getting current location');
       navigator.geolocation.getCurrentPosition(this.geoSuccess, (err) => {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       });

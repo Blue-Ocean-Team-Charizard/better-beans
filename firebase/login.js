@@ -70,7 +70,7 @@ export default function Login() {
         setLoading(false);
         return;
       }
-      console.log('user', user);
+      // console.log('user', user);
       const userObj = {
         uid: user.uid,
         email: user.email,
