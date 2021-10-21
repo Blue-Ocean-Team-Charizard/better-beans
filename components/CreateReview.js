@@ -117,7 +117,6 @@ export default function CreateReview(props) {
       <form onSubmit={(e) => { handleSubmit(e); }}>
         <div id="select-your-rating">Select your rating.</div>
         <div id="select-beans">
-          <BeanSelected />
         </div>
         <div id="write-review">Write your reviews...</div>
           <textarea
