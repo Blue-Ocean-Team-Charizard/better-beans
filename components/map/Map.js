@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import router from 'next/router';
-import keys from '../../config/config';
+// import keys from '../../config/config';
 import data from './mockData';
 
 let map;
@@ -12,7 +12,7 @@ class Map extends Component {
       markers: data,
     };
     this.loader = new Loader({
-      apiKey: keys.google,
+      apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
       version: 'weekly',
       libraries: ['drawing', 'geometry', 'places'],
     });
