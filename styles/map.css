@@ -1,0 +1,32 @@
+.iw-name {
+  font-size: large;
+}
+.iw-open .dot {
+  background-color: green;
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.iw-closed .dot {
+  background-color: red;
+}
+.info-window :hover {
+  cursor: pointer;
+}
+.gm-style .gm-style-iw-d::-webkit-scrollbar-track,
+.gm-style .gm-style-iw-d::-webkit-scrollbar-track-piece,
+.gm-style .gm-style-iw-c,
+.gm-style .gm-style-iw-t::after {
+  background-color: #440C04;
+  color: white;
+}
+
+/* .gm-style .gm-style-iw-t::after {
+  background-color: #B61C07;
+}
+.gm-style .gm-style-iw-d {
+  background-color: #B61C07;
+} */

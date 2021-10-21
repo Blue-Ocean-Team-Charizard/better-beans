@@ -3,6 +3,7 @@ import SearchContextProvider from '../components/SearchContext';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 import '../styles/review.css';
+import '../styles/map.css';
 import { ApolloProvider } from '@apollo/client';
 import apolloClient from '../graphql/apollo.js';
 
