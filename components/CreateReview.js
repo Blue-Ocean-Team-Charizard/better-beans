@@ -38,7 +38,8 @@ export default function CreateReview(props) {
 
   const CREATE_PHOTO = gql`
     mutation CreatePhoto(
-      $photoArray: [Photo]
+      $review_id: Int!
+      $url: String!
     ) {
       createPhoto(
         review_id: $review_id
@@ -87,6 +88,9 @@ export default function CreateReview(props) {
     })
       .then((res) => {
         handleAPI(res.data.createReview.id);
+      })
+      .then(() => {
+        setPhotos([]);
       })
       .catch((error) => console.log('Error creating review', error));
   };
