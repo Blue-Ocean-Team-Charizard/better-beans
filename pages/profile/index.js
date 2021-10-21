@@ -26,8 +26,10 @@ export default function Profile() {
     }
   `;
 
+  console.log('user id ', authUser);
+
   const { data, reviewLoad, err } = useQuery(GET_REVIEWS, {
-    variables: { shop_id: shopId },
+    variables: { user_id: authUser.uid },
   });
 
   if (reviewLoad) return 'Loading...';
