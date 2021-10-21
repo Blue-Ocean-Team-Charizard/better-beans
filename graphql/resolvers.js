@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 export const resolvers = {
@@ -21,6 +20,12 @@ export const resolvers = {
     },
     photos: async (_, args, ctx) => {
       const photos = await ctx.prisma.photos.findMany();
+      return photos;
+    },
+    photosByReview: async (_, { review_id }, ctx) => {
+      const photos = await ctx.prisma.photos.findMany({
+        where: { review_id },
+      });
       return photos;
     },
   },

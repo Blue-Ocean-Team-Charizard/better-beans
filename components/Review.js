@@ -1,34 +1,46 @@
-// import { useState } from "react";
+import { useState } from "react";
+import ReviewBeanRating from './ReviewBeanRating';
 import { TiThumbsUp } from "react-icons/ti";
 import { MdReportGmailerrorred } from "react-icons/md";
 
 export default function Review() {
-
-  // const review = data.map((review, index) => {});
-
+  const [helpful, setHelpful] = useState(0)
+  const [report, setReport] = useState(0)
+  // const review = data.map((review, index)=> {});
+  const handleHelpfulButton = () => {
+    setHelpful(helpful + 1);
+  }
+  const handleReportButton = () => {
+    setReport(report + 1)
+  }
   return (
     <div id="review">
       <div id="review-user-info">
-        {/* <img src="" id="reviewer-photo"/> */}
+        <img src="" id="reviewer-photo"/>
         <div id="review-user-info-inner">
-          <div id="reviewer-first-name">first name</div>
-          <div id="reviewer-date">date</div>
+          <div id="reviewer-first-name">Anderson</div>
+          <div id="reviewer-date">Today</div>
         </div>
       </div>
 
       <div id="review-center">
-        <span>user rating</span>
-        <div id="review-title">title</div>
-        <div id="review-body">body</div>
+        <ReviewBeanRating />
+        <div id="review-body">This is a test review for testing & text filler!! Would recommend</div>
       </div>
 
       {/* pictures for review */}
 
-      <div id="review-btns">
-        <button id="helpful-btn">
+      <div id="review-buttons">
+        <button
+          id="helpful-btn"
+          onClick={() => handleHelpfulButton()}
+        >
           <TiThumbsUp/>
         </button>
-        <button id="report-btn">
+        <button
+          id="report-btn"
+          onClick={() => handleReportButton()}
+        >
           <MdReportGmailerrorred/>
         </button>
       </div>

@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 const { gql } = require('apollo-server-micro');
@@ -11,7 +10,8 @@ export const typeDefs = gql`
     reviews: [Review]
     reviewsByShop(shop_id: String!): [Review]!
     reviewsByUser(user_id: String!): [Review]!
-    photos: [Photo]
+    photos: [Photo]!
+    photosByReview(review_id: Int!): [Photo]!
   }
 
   type Review {
@@ -40,7 +40,10 @@ export const typeDefs = gql`
       shop_id: String,
       user_id: String,
     ): Review!
-    createPhotos( photoArray: [Photo]): [Photo]
+    createPhoto(
+      review_id: Int!
+      url: String!
+      ): Photo!
   }
 `;
 

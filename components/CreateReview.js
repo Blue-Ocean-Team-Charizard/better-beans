@@ -42,20 +42,22 @@ export default function CreateReview(props) {
       $photoArray: [Photo]
     ) {
       createPhoto(
-        photoArray: $photoArray
-      )
+        review_id: $review_id
+        url: $url
+      ) {
+        id
+      }
     }
   `;
 
   const [createReview, { data, loading, err }] = useMutation(CREATE_REVIEW);
-  const [createPhotos, { photoData }] = useMutation(CREATE_PHOTO);
+  const [createPhoto, { photoData }] = useMutation(CREATE_PHOTO);
 
   if (loading) return 'Submitting...';
   if (err) return `Submission error! $${err.message}`;
 
   // transfer photos to URL
   const handleAPI = (reviewId) => {
-    let URLs = [];
     for (let i = 0; i < files.length; i++) {
       let formData = new FormData();
       formData.append('file', files[i]);
@@ -63,18 +65,15 @@ export default function CreateReview(props) {
 
       axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
         .then((response) => {
-          URLs.push({
-            review_id: reviewId,
-            url: response.data.secure_url,
+          createPhoto({
+            variables: {
+              review_id: reviewId,
+              url: response.data.secure_url,
+            },
           });
-          if (URLs.length === files.length) {
-            console.log(URLs);
-            return URLs;
-          }
-        })
-        .catch((error) => console.log('tranfer URL err', error));
+        });
     }
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,22 +82,14 @@ export default function CreateReview(props) {
         name: authUser.name,
         body: body,
         rating: rating,
-        shop_id: 'Simple',
+        shop_id: props.shopId,
         user_id: authUser.uid,
       },
     })
       .then((res) => {
         handleAPI(res.data.createReview.id);
-        console.log(res, ' response');
-      //   console.log(URLs, 'photo array');
-      //   createPhotos({
-      //     photoArray: URLs,
-      //   })
       })
-      .then((res) => {
-        console.log(res, 'response after handleAPI');
-      });
-    // .then((result) => console.log('Created review:', result));
+      .catch((error) => console.log('Error creating review', error));
   };
 
   const handleImage = (e) => {
@@ -114,74 +105,33 @@ export default function CreateReview(props) {
   };
 
   const renderImg = (source) => {
-    console.log(authUser);
+    // console.log(authUser);
     return source.map(image => {
       return <img src={image} key={image} height="80"></img>;
     });
   };
 
   return (
-
-    <div>
-      {authUser.name}
-      <div id="review">
-        <form onSubmit={(e) => { handleSubmit(e); }}>
-          <div>
-            Select your rating
-            <br />
-            <img src={Bean} className={rating >= 1 ? 'selected' : 'selectBean'} onClick={() => selectRating(1)} />
-            <img src={Bean} className={rating >= 2 ? 'selected' : 'selectBean'} onClick={() => selectRating(2)} />
-            <img src={Bean} className={rating >= 3 ? 'selected' : 'selectBean'} onClick={() => selectRating(3)} />
-            <img src={Bean} className={rating >= 4 ? 'selected' : 'selectBean'} onClick={() => selectRating(4)} />
-            <img src={Bean} className={rating >= 5 ? 'selected' : 'selectBean'} onClick={() => selectRating(5)} />
-            <br />
-            {rating}
-          </div>
-          <br />
-          <label>
-            Write your reviews down
-            <br />
-            <textarea onChange={(e) => { e.preventDefault(); setBody(e.target.value) }} />
-          </label>
-          <br />
-          <label>
-            Your photos(optional)
-          </label>
-          <br />
-
-          <input type='file' multiple={true} onChange={(e) => { handleImage(e) }}></input>
-          <div>
-            {renderImg(photos)}
-          </div>
-          {/* <div onClick = {handleAPI}> confirm photo</div> */}
-
-          <button type="submit"> Submit Review</button>
-
-        </form>
-      </div>
+    <div id="create-review">
+      <form onSubmit={(e) => { handleSubmit(e); }}>
+        <div id="select-your-rating">Select your rating.</div>
+        <div id="select-beans">
+          <BeanSelected />
+        </div>
+        <div id="write-review">Write your reviews...</div>
+          <textarea
+            id="write-review-input"
+            onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}
+            />
+          <input
+            id="input-photo-review"
+            type='file'
+            multiple={true}
+            onChange={(e) => handleImage(e)}>
+          </input>
+        <div>{renderImg(photos)}</div>
+        <button id="submit-review-btn" type="submit"> Submit Review</button>
+      </form>
     </div>
   );
 }
-
-/*
-right now => photos = ['url1', 'url2'];
-
-need to be this => photos = [
-  {
-    review_id: res.review_id,
-    url: 'url1',
-  },
-  {
-    review_id: res.review_id,
-    url: 'url2',
-  },
-]
-for (let i = 0; i < photos.length; i++) {
-  photos[i][review_id] = res.review_id
-}
-*/
-
-// photos = [
-//   { url: 'url1' },
-//   { url: 'url2' },
-// ];
