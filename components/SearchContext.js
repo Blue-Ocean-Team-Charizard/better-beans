@@ -8,7 +8,7 @@ class SearchContextProvider extends Component {
 
     this.state = {
       shopList: [],
-      currentCoords: { lat: 35.1983, lng: -111.6513 },
+      currentCoords: { lat: 55.755826, lng: 37.6172999 },
       selectedShop: {},
     };
 
