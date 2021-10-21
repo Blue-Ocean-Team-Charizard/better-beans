@@ -11,7 +11,8 @@ export const typeDefs = gql`
     reviews: [Review]
     reviewsByShop(shop_id: String!): [Review]!
     reviewsByUser(user_id: String!): [Review]!
-    photos: [Photo]
+    photos: [Photo]!
+    photosByReview(review_id: Int!): [Photo]!
   }
 
   type Review {
@@ -40,7 +41,10 @@ export const typeDefs = gql`
       shop_id: String,
       user_id: String,
     ): Review!
-    createPhoto(review_id: Int!, url: String!): Photo!
+    createPhoto(
+      review_id: Int!
+      url: String!
+      ): Photo!
   }
 `;
 

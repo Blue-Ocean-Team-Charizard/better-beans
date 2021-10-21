@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import BeanSelected from './BeanSelected';
+// import BeanSelected from './BeanSelected';
 import axios from 'axios';
+import { useAuth } from '../firebase/auth_context';
 
-export default function CreateReview() {
+export default function CreateReview(props) {
+  const Bean = '/bean-small.svg';
+  const [rating, setRatings] = useState(0);
+  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
   const [files, setFiles] = useState([]);
+  const { authUser } = useAuth();
+
+  const selectRating = (value) => {
+    setRatings(value);
+  };
 
   const CREATE_REVIEW = gql`
     mutation CreateReview(
@@ -36,33 +45,72 @@ export default function CreateReview() {
       createPhoto(
         review_id: $review_id
         url: $url
-      )
+      ) {
+        id
+      }
     }
   `;
 
   const [createReview, { data, loading, err }] = useMutation(CREATE_REVIEW);
+  const [createPhoto, { photoData }] = useMutation(CREATE_PHOTO);
 
   if (loading) return 'Submitting...';
   if (err) return `Submission error! $${err.message}`;
+
+  // transfer photos to URL
+  const URLs = [];
+  const handleAPI = (reviewId) => {
+    for (let i = 0; i < files.length; i++) {
+      let formData = new FormData();
+      formData.append('file', files[i]);
+      formData.append('upload_preset', 'asosdlts');
+
+      axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
+        .then((response) => {
+          createPhoto({
+            variables: {
+              review_id: reviewId,
+              url: response.data.secure_url,
+            },
+          });
+        });
+        //   URLs.push({
+        //     review_id: reviewId,
+        //     url: response.data.secure_url,
+        //   });
+        //   if (URLs.length === files.length) {
+        //     console.log(URLs);
+        //     return URLs;
+        //     // console.log('url state ', url);
+        //   }
+        // })
+        // .catch((error) => console.log('tranfer URL err', error));
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createReview({
       variables: {
-        name: 'Qinyu for you',
-        body: 'i like coffee',
-        rating: 5,
+        name: authUser.name,
+        body: body,
+        rating: rating,
         shop_id: 'Simple',
-        user_id: 'user id',
+        user_id: authUser.uid,
       },
     })
+      .then((res) => {
+        handleAPI(res.data.createReview.id);
+        // console.log(res, ' response');
+        console.log(URLs, 'photo array');
+      })
       // .then((res) => {
-      //   photos.map((photo) => {
-      //     photo[review_id] = res.createReview.review_id,
+      //   console.log(res, 'response after handleAPI');
+      //   createPhotos({
+      //     photoArray: URLs,
       //   });
-      //   console.log(res.createReview);
       // });
-    // .then((result) => console.log('Created review:', result));
+    .catch((err) => console.log('Error creating review', err));
   };
 
   const handleImage = (e) => {
@@ -73,65 +121,59 @@ export default function CreateReview() {
       setFiles(prevFile => prevFile.concat(selectedFileArray));
       setPhotos(prevImg => prevImg.concat(fileArray));
       Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
+      // handleAPI();
     }
   };
 
   const renderImg = (source) => {
+    // console.log(authUser);
     return source.map(image => {
-      return <img src={image} key={image} height="80" id="upload-image" onClick = {handleAPI}></img>;
+      return <img src={image} key={image} height="80"></img>;
     });
   };
 
-  // transfer photos to URL
-  const handleAPI = () => {
-    let URLs = [];
-    for (let i = 0; i < files.length; i++) {
-      let formData = new FormData();
-      formData.append('file', files[i]);
-      formData.append('upload_preset', 'asosdlts');
-
-      axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
-        .then((data) => {
-          URLs.push({url: data.data.secure_url});
-          if (URLs.length === files.length) {
-            console.log(URLs);
-          }
-        })
-        .catch((err) => console.log('tranfer URL err', err));
-    }
-}
-
-
-
   return (
+
     <div>
+      {authUser.name}
       <div id="review">
         <form onSubmit={(e) => { handleSubmit(e); }}>
-          <BeanSelected />
+          <div>
+            Select your rating
             <br />
-            <label>
-              Title:
-            </label>
-            <label>
-              Write your reviews down
-              <br/>
-              <textarea onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}/>
-            </label>
+            <img src={Bean} className={rating >= 1 ? 'selected' : 'selectBean'} onClick={() => selectRating(1)} />
+            <img src={Bean} className={rating >= 2 ? 'selected' : 'selectBean'} onClick={() => selectRating(2)} />
+            <img src={Bean} className={rating >= 3 ? 'selected' : 'selectBean'} onClick={() => selectRating(3)} />
+            <img src={Bean} className={rating >= 4 ? 'selected' : 'selectBean'} onClick={() => selectRating(4)} />
+            <img src={Bean} className={rating >= 5 ? 'selected' : 'selectBean'} onClick={() => selectRating(5)} />
             <br />
-            <label>
-              Your photos(optional)
-            </label>
+            {rating}
+          </div>
+          <br />
+          <label>
+            Title:
             <br />
+            <input onChange={(e) => { e.preventDefault(); setTitle(e.target.value) }}>
+            </input>
+          </label>
+          <label>
+            Write your reviews down
+            <br />
+            <textarea onChange={(e) => { e.preventDefault(); setBody(e.target.value) }} />
+          </label>
+          <br />
+          <label>
+            Your photos(optional)
+          </label>
+          <br />
 
-            <input type='file' multiple={true} onChange={(e) => handleImage(e)}></input>
-              <div>
-                {renderImg(photos)}
-              </div>
+          <input type='file' multiple={true} onChange={(e) => { handleImage(e) }}></input>
+          <div>
+            {renderImg(photos)}
+          </div>
+          {/* <div onClick = {handleAPI}> confirm photo</div> */}
 
-            <button type="submit"> Submit Review</button>
-
-
-
+          <button type="submit"> Submit Review</button>
 
         </form>
       </div>

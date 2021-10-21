@@ -23,6 +23,12 @@ export const resolvers = {
       const photos = await ctx.prisma.photos.findMany();
       return photos;
     },
+    photosByReview: async (_, { review_id }, ctx) => {
+      const photos = await ctx.prisma.photos.findMany({
+        where: { review_id },
+      });
+      return photos;
+    },
   },
 
   Mutation: {
