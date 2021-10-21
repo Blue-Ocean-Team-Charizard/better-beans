@@ -2,8 +2,10 @@ import Link from 'next/link';
 import Search from './Search';
 import Head from 'next/head';
 import { SearchContext } from './SearchContext';
+import { useAuth } from '../firebase/auth_context';
 
 export default function Header() {
+  const { authUser, logOff } = useAuth();
   return (
     <>
       <Head>
@@ -19,7 +21,9 @@ export default function Header() {
           <div id="nav">
             <Link href="/"><a><div className="logo"></div></a></Link>
             <div className="loginBtn">
-              <button type="button" className="btn">Login</button>
+              {(authUser) ? <Link href="/profile">
+                <button type="button" className="btn" >Profile</button></Link> : <Link href="/login">
+                <button type="button" className="btn">Log in</button></Link>}
             </div>
           </div>
           <SearchContext.Consumer>
