@@ -439,11 +439,3 @@ footer {
  /* HEX: 6b3e2e */
 
 }
-
-.selectBean {
-  filter: invert(96%) sepia(7%) saturate(2145%) hue-rotate(9deg) brightness(88%) contrast(81%);
-}
-
-.selected {
-  filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(140%) contrast(87%);
-}

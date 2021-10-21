@@ -7,6 +7,7 @@ import { useAuth } from '../firebase/auth_context';
 export default function CreateReview(props) {
   const Bean = '/bean-small.svg';
   const [rating, setRatings] = useState(0);
+  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
   const [files, setFiles] = useState([]);
@@ -38,7 +39,8 @@ export default function CreateReview(props) {
 
   const CREATE_PHOTO = gql`
     mutation CreatePhoto(
-      $photoArray: [Photo]
+      $review_id: Int!
+      $url: String!
     ) {
       createPhoto(
         review_id: $review_id
@@ -115,13 +117,7 @@ export default function CreateReview(props) {
       <form onSubmit={(e) => { handleSubmit(e); }}>
         <div id="select-your-rating">Select your rating.</div>
         <div id="select-beans">
-          <div>
-            <img src={Bean} className={rating >= 1 ? 'selected' : 'selectBean'} onClick={() => selectRating(1)} />
-            <img src={Bean} className={rating >= 2 ? 'selected' : 'selectBean'} onClick={() => selectRating(2)} />
-            <img src={Bean} className={rating >= 3 ? 'selected' : 'selectBean'} onClick={() => selectRating(3)} />
-            <img src={Bean} className={rating >= 4 ? 'selected' : 'selectBean'} onClick={() => selectRating(4)} />
-            <img src={Bean} className={rating >= 5 ? 'selected' : 'selectBean'} onClick={() => selectRating(5)} />
-          </div>
+          <BeanSelected />
         </div>
         <div id="write-review">Write your reviews...</div>
           <textarea
