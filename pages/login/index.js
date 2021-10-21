@@ -8,28 +8,68 @@ export default function LoginPage() {
     <>
       <Meta />
       <LoginPageID />
-      <div id="login">
-        <p>Sign up today to save your better <br /> and best beans</p>
-        <button
-          type="button"
-          className="google-btn-container btn btn-google"
-          onClick={signInWithFirebase}
-        >
-          <div className="google-btn">
-            <img
-              className="google-logo"
-              src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-              alt="google"
-              width="25px"
-              height="25px"
-            />
-            <h3 className="google-signin">
-              Continue with Google
-            </h3>
-          </div>
-        </button>
-        <button type="button" className="facebook-btn" onClick={signInWithFacebook}>Continue with Facebook</button>
-        <button type="button" className="github-btn" onClick={signInWithGithub}>Continue with Github</button>
+      <div className="login-btn-container">
+        <div id="login">
+          <p>Sign up today to save your better <br /> and best beans</p>
+          <button
+            type="button"
+            className="btn-google"
+            onClick={signInWithFirebase}
+          >
+            <div className="google-btn">
+              <img
+                className="google-logo"
+                src="/google_logo.png"
+                alt="google"
+                width="25px"
+                height="25px"
+              />
+              <h3 className="google-signin">
+                Continue with Google
+              </h3>
+            </div>
+          </button>
+
+
+          <button
+            type="button"
+            className="btn-facebook"
+            onClick={signInWithFacebook}
+          >
+            <div className="facebook-btn">
+              <img
+                className="facebook-logo"
+                src="/facebook_logo.png"
+                alt="facebook"
+                width="25px"
+                height="25px"
+              />
+              <h3 className="facebook-signin">
+                Continue with Facebook
+              </h3>
+            </div>
+          </button>
+
+
+          <button
+            type="button"
+            className="btn-github"
+            onClick={signInWithGithub}
+          >
+            <div className="google-btn">
+              <img
+                className="github-logo"
+                src="/github_logo.png"
+                alt="github"
+                width="25px"
+                height="25px"
+              />
+              <h3 className="github-signin">
+                Continue with Github
+              </h3>
+            </div>
+          </button>
+        </div>
       </div>
     </>
   );

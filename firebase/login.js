@@ -85,7 +85,7 @@ export default function Login() {
       const userObj = {
         uid: user.uid,
         email: user.email,
-        name: user.displayName,
+        name: user.providerData[0].displayName || user.reloadUserInfo.screenName,
         photo: user.photoURL,
       };
       setLoading(true);
