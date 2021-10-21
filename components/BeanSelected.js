@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import BeanRating from './BeanRating.js'
+import ReviewBeanRating from './ReviewBeanRating.js'
 import { AiOutlineStar } from "react-icons/ai"
+
 
 export default function BeanSelected() {
   let empty = [];
@@ -19,9 +20,7 @@ export default function BeanSelected() {
   // const style = { width: `100%` };
 
   return (
-    <div>
-      Select your rating
-      <div create-beans-outer></div>
+    <div id="create-beans-outer">
       <img src={Bean} onClick={() => selectRating(1)} />
       <img src={Bean} onClick={() => selectRating(2)} />
       <img src={Bean} onClick={() => selectRating(3)} />

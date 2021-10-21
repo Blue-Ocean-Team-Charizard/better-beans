@@ -35,7 +35,7 @@ a:link, a:visited{
   font-size: 18px;
   font-weight: 400;
   line-height: 200%;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   position: relative;
   padding-left: 32px;
   background: url('../public/icon.svg') no-repeat left;
@@ -117,7 +117,7 @@ header {
 }
 
 
-.seach {
+.search {
   margin: auto;
   width: 100%;
 }
@@ -364,7 +364,7 @@ h3, .name {
 
 .login-msg {
   text-align: center;
-  margin: 30px auto;
+  /* margin: 30px auto; */
 }
 
 .login-page {
