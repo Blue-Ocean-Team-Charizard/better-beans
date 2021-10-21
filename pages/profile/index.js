@@ -62,7 +62,7 @@ export default function Profile() {
           <h1 className="title">
             Reviews
           </h1>
-          <ReviewList />
+          <ReviewList reviews={[]} />
         </div>
       </div>
 
