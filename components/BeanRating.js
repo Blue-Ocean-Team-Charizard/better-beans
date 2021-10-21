@@ -14,9 +14,7 @@ export default function BeanRating({ rating, reviews }) {
     usedRating = avgRating();
   }
 
-  // console.log(usedRating);
-
-  const convertedRating = (usedRating / 5) * 100;
+  const convertedRating = usedRating / 5 * 100;
   const roundedRating = (Math.round(convertedRating / 5) * 5);
   const style = { width: `${roundedRating}%` };
   return (

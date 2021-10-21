@@ -5,9 +5,9 @@
         "node": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "airbnb/hooks",
-        "airbnb",
+        // "plugin:react/recommended",
+        // "airbnb/hooks",
+        // "airbnb",
         "plugin:react/jsx-runtime"
     ],
     "globals": {
