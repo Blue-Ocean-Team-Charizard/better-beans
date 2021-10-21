@@ -58,7 +58,6 @@ export default function CreateReview(props) {
   if (err) return `Submission error! $${err.message}`;
 
   // transfer photos to URL
-  const URLs = [];
   const handleAPI = (reviewId) => {
     for (let i = 0; i < files.length; i++) {
       let formData = new FormData();
@@ -74,17 +73,6 @@ export default function CreateReview(props) {
             },
           });
         });
-        //   URLs.push({
-        //     review_id: reviewId,
-        //     url: response.data.secure_url,
-        //   });
-        //   if (URLs.length === files.length) {
-        //     console.log(URLs);
-        //     return URLs;
-        //     // console.log('url state ', url);
-        //   }
-        // })
-        // .catch((error) => console.log('tranfer URL err', error));
     }
   };
 
@@ -101,16 +89,8 @@ export default function CreateReview(props) {
     })
       .then((res) => {
         handleAPI(res.data.createReview.id);
-        // console.log(res, ' response');
-        console.log(URLs, 'photo array');
       })
-      // .then((res) => {
-      //   console.log(res, 'response after handleAPI');
-      //   createPhotos({
-      //     photoArray: URLs,
-      //   });
-      // });
-    .catch((err) => console.log('Error creating review', err));
+      .catch((error) => console.log('Error creating review', error));
   };
 
   const handleImage = (e) => {
@@ -133,7 +113,6 @@ export default function CreateReview(props) {
   };
 
   return (
-
     <div>
       {authUser.name}
       <div id="review">
@@ -153,13 +132,12 @@ export default function CreateReview(props) {
           <label>
             Title:
             <br />
-            <input onChange={(e) => { e.preventDefault(); setTitle(e.target.value) }}>
-            </input>
+            <input onChange={(e) => { e.preventDefault(); setTitle(e.target.value); }} />
           </label>
           <label>
             Write your reviews down
             <br />
-            <textarea onChange={(e) => { e.preventDefault(); setBody(e.target.value) }} />
+            <textarea onChange={(e) => { e.preventDefault(); setBody(e.target.value); }} />
           </label>
           <br />
           <label>
@@ -167,7 +145,7 @@ export default function CreateReview(props) {
           </label>
           <br />
 
-          <input type='file' multiple={true} onChange={(e) => { handleImage(e) }}></input>
+          <input type="file" multiple={true} onChange={(e) => { handleImage(e); }} />
           <div>
             {renderImg(photos)}
           </div>
@@ -180,26 +158,3 @@ export default function CreateReview(props) {
     </div>
   );
 }
-
-/*
-right now => photos = ['url1', 'url2'];
-
-need to be this => photos = [
-  {
-    review_id: res.review_id,
-    url: 'url1',
-  },
-  {
-    review_id: res.review_id,
-    url: 'url2',
-  },
-]
-for (let i = 0; i < photos.length; i++) {
-  photos[i][review_id] = res.review_id
-}
-*/
-
-// photos = [
-//   { url: 'url1' },
-//   { url: 'url2' },
-// ];

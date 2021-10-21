@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 const { gql } = require('apollo-server-micro');
