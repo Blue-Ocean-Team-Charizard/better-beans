@@ -28,6 +28,12 @@ export const resolvers = {
       });
       return photos;
     },
+    beansByUser: async (_, { user_id }, ctx) => {
+      const beans = await ctx.prisma.visited.findMany({
+        where: { user_id },
+      });
+      return beans;
+    },
   },
 
   Mutation: {
@@ -54,6 +60,21 @@ export const resolvers = {
         data: { review_id, url },
       });
       return photo;
+    },
+    createVisited: async (_, { user_id, shop_id, shop_name, visited }, ctx) => {
+      const bean = await ctx.prisma.visited.create({
+        data: { user_id, shop_id, shop_name, visited },
+      });
+
+      return bean;
+    },
+    toggleVisited: async (_, { id, visited }, ctx) => {
+      const updateBean = await ctx.prisma.visited.update({
+        where: { id },
+        data: { visited: visited }
+      });
+
+      return updateBean;
     },
   },
 };
