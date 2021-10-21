@@ -68,21 +68,14 @@ export default function Shop({ googleData, id }) {
   };
 
   // const shopRating = (reviews.length > 0) ? avgRating() : 0;
-<<<<<<< HEAD
-=======
 
   // console.log(data);
->>>>>>> 96f6dbb93976498834a18b5ea6e6648c971bb8c2
 
   return (
     <div>
       <div className="card">
         <h3 className="name">{googleData.name || 'SHOP NAME'}</h3>
-<<<<<<< HEAD
-        {/* <BeanRating rating={shopRating} /> */}
-=======
         <BeanRating reviews={data.reviewsByShop} />
->>>>>>> 96f6dbb93976498834a18b5ea6e6648c971bb8c2
         <div className="opening_hours">{googleData.opening_hours ? googleData.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</div>
         <div className="location">
           {' '}
@@ -119,20 +112,11 @@ export default function Shop({ googleData, id }) {
         </button>
       </h1>
       <div className="login-msg">
-<<<<<<< HEAD
-          {showLoginMsg ? 'Please login first here' : null}
-          {' '}
-        </div>
-
-      {showCreateReview ? <CreateReview shopId={shopId} /> : null}
-      <ReviewList />
-=======
         {showLoginMsg ? 'Please login first here' : null}
         {' '}
       </div>
       {showCreateReview ? <CreateReview shopId={shopId} /> : null}
       <ReviewList reviews={data.reviewsByShop} />
->>>>>>> 96f6dbb93976498834a18b5ea6e6648c971bb8c2
     </div>
   );
 }
