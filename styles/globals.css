@@ -64,7 +64,7 @@ a:link, a:visited{
 
 /*** For Container ***/
 .container {
-  max-width: 1200px;
+  width: 100%;
   margin: 0px auto;
   position: relative;
   padding: 0px 0px 0px 0px;
@@ -95,13 +95,17 @@ header {
 }
 
 #nav .logo {
-  background: url('../public/logo.png') no-repeat center;
+  background: url('../public/newlogo.png') no-repeat center;
   background-size: cover;
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 67px;
   float: left;
   transform: scale(1);
   transition: 0.8s ease-out;
+  transition: 0.8s ease-out;
+  border: 1px solid #602d26;
+  border-radius: 60%;
+  box-shadow: 1px 1px 5px 1px #835757;
 }
 
 #nav .logo:hover  {
