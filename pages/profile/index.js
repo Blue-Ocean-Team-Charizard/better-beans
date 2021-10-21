@@ -73,7 +73,8 @@ export default function Profile() {
             Want to Bean
           </h1>
           <VisitBeanList
-            shopList={[]}
+            userId={authUser ? "Jan" : ""}
+            flag={false}
           />
         </div>
         <div className="tab-pane fade" id="already-bean" role="tabpanel" aria-labelledby="profile-tab">
@@ -81,7 +82,8 @@ export default function Profile() {
             Already Bean
           </h1>
           <VisitBeanList
-            shopList={[]}
+            userId={authUser ? "Jan" : ""}
+            flag={true}
           />
         </div>
         <div className="tab-pane fade" id="my-reviews" role="tabpanel" aria-labelledby="profile-tab">
