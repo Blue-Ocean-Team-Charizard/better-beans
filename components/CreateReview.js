@@ -139,12 +139,6 @@ export default function CreateReview(props) {
           </div>
           <br />
           <label>
-            Title:
-            <br />
-            <input onChange={(e) => { e.preventDefault(); setTitle(e.target.value) }}>
-            </input>
-          </label>
-          <label>
             Write your reviews down
             <br />
             <textarea onChange={(e) => { e.preventDefault(); setBody(e.target.value) }} />
