@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import '../styles/globals.css';
 import '../styles/review.css';
 import '../styles/createReview.css';
+import '../styles/map.css';
 import apolloClient from '../graphql/apollo';
 
 function MyApp({ Component, pageProps }) {
