@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
   signOut,
   deleteUser,
+  FacebookAuthProvider,
 } from 'firebase/auth';
 
 import app from './firebase';
@@ -27,6 +28,16 @@ export default function Login() {
   const signInWithFirebase = async () => {
     try {
       await signInWithPopup(auth, new GoogleAuthProvider());
+    } catch (err) {
+      console.error(err);
+    } finally {
+      router.push('/');
+    }
+  };
+
+  const signInWithFacebook = async () => {
+    try {
+      await signInWithPopup(auth, new FacebookAuthProvider());
     } catch (err) {
       console.error(err);
     } finally {
@@ -79,6 +90,7 @@ export default function Login() {
     signInWithFirebase,
     logOff,
     deleteAccount,
+    signInWithFacebook,
   };
 }
 
