@@ -18,7 +18,7 @@ export default function Review() {
       <div id="review-user-info">
         <img src="" id="reviewer-photo"/>
         <div id="review-user-info-inner">
-          <div id="reviewer-first-name">Stormz</div>
+          <div id="reviewer-first-name">Anderson</div>
           <div id="reviewer-date">Today</div>
         </div>
       </div>
@@ -30,7 +30,7 @@ export default function Review() {
 
       {/* pictures for review */}
 
-      <div id="review-btns">
+      <div id="review-buttons">
         <button
           id="helpful-btn"
           onClick={() => handleHelpfulButton()}

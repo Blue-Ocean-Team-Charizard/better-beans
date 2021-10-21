@@ -72,7 +72,7 @@ white: #FFF
 }
 
 /* review buttons */
-#review-btns {
+#review-buttons {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 5px;
