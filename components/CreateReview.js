@@ -99,39 +99,30 @@ export default function CreateReview() {
         })
         .catch((err) => console.log('tranfer URL err', err));
     }
-}
-
-
+  }
 
   return (
-    <div>
-      <div id="review">
-        <form onSubmit={(e) => { handleSubmit(e); }}>
+    <div id="create-review">
+      <form onSubmit={(e) => { handleSubmit(e); }}>
+        <div id="select-your-rating">Select your rating.</div>
+        <div id="select-beans">
           <BeanSelected />
-            <br />
-            <label>
-              Write your reviews down
-              <br/>
-              <textarea onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}/>
-            </label>
-            <br />
-            <label>
-              Your photos(optional)
-            </label>
-            <br />
+        </div>
+        <div id="write-review">Write your reviews...</div>
+          <textarea
+            id="write-review-input"
+            onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}
+            />
+          <input
+            id="input-photo-review"
+            type='file'
+            multiple={true}
+            onChange={(e) => handleImage(e)}>
+          </input>
+        <div>{renderImg(photos)}</div>
 
-            <input type='file' multiple={true} onChange={(e) => handleImage(e)}></input>
-              <div>
-                {renderImg(photos)}
-              </div>
-
-            <button type="submit"> Submit Review</button>
-
-
-
-
-        </form>
-      </div>
+        <button id="submit-review-btn" type="submit"> Submit Review</button>
+      </form>
     </div>
   );
 }

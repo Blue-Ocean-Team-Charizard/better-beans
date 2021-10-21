@@ -18,14 +18,14 @@ export default function Review() {
       <div id="review-user-info">
         <img src="" id="reviewer-photo"/>
         <div id="review-user-info-inner">
-          <div id="reviewer-first-name">first name</div>
-          <div id="reviewer-date">date</div>
+          <div id="reviewer-first-name">Stormz</div>
+          <div id="reviewer-date">Today</div>
         </div>
       </div>
 
       <div id="review-center">
         <ReviewBeanRating />
-        <div id="review-body">body</div>
+        <div id="review-body">This is a test review for testing & text filler!! Would recommend</div>
       </div>
 
       {/* pictures for review */}

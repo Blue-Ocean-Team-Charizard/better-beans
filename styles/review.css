@@ -1,7 +1,13 @@
+/* red: #B61C07
+redDark: #440C04
+gold: #A57C52
+bgColor: #0D0401
+white: #FFF
+*/
+
 #reviews {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 #gi-coffee-beans-icon {
   font-size: 15px;
@@ -14,10 +20,9 @@
 }
 
 #review {
-  border: 1px solid black;
+  background-color: #440C04;
   border-radius: 4px;
-  min-width: 350px;
-  max-width: 350px;
+  width: 100%;
   margin: 5px;
   padding: 5px;
 }
@@ -33,6 +38,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0 5px;
 }
 /* #reviewer-photo {
   width: 25px;
@@ -41,11 +47,14 @@
 } */
 #reviewer-first-name {
   margin-left: 10px;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 2px;
 }
 #reviewer-date {
   font-size: 12px;
   margin-right: 5px;
+  letter-spacing: 1px;
 }
 
 /* center body for review */
@@ -54,33 +63,45 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 5px 0;
-}
-#review-title {
-  font-size: 14px;
+  margin: 0 5px;
 }
 #review-body {
-  font-size: 13px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 400;
 }
 
 /* review buttons */
 #review-btns {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 5px;
 }
 #helpful-btn {
   margin-right: 10px;
   font-size: 20px;
-  height: 25px;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   background-color: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  /* border-radius: 12px; */
+  border-radius: 7px;
+}
+#helpful-btn:hover {
+  cursor: pointer;
+  color: white;
+  border: 1px solid rgb(77, 116, 77);
 }
 #report-btn {
-  margin-right: 5px;
+  margin-right: 10px;
   font-size: 20px;
-  height: 25px;
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   background-color: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 7px;
+}
+#report-btn:hover {
+  cursor: pointer;
+  color: white;
+  border: 1px solid rgb(117, 54, 54);
 }
 
 /* review bean rating */
@@ -103,7 +124,6 @@
   left: 0;
   white-space: nowrap;
   overflow: hidden;
-  /* width:25%; */
 }
 #review-beans-inner::before {
   content: url("../public/bean-xsmall.svg") url("../public/bean-xsmall.svg")

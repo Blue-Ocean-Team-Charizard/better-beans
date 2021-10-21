@@ -20,15 +20,12 @@ export default function BeanSelected() {
   // const style = { width: `100%` };
 
   return (
-    <div>
-      Select your rating
-      <div id="create-beans-outer">
-        <img src={Bean} onClick={() => selectRating(1)} />
-        <img src={Bean} onClick={() => selectRating(2)} />
-        <img src={Bean} onClick={() => selectRating(3)} />
-        <img src={Bean} onClick={() => selectRating(4)} />
-        <img src={Bean} onClick={() => selectRating(5)} />
-      </div>
+    <div id="create-beans-outer">
+      <img src={Bean} onClick={() => selectRating(1)} />
+      <img src={Bean} onClick={() => selectRating(2)} />
+      <img src={Bean} onClick={() => selectRating(3)} />
+      <img src={Bean} onClick={() => selectRating(4)} />
+      <img src={Bean} onClick={() => selectRating(5)} />
     </div>
   )
 }

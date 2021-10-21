@@ -1,0 +1,60 @@
+#create-review {
+  background-color: #440C04;
+  border-radius: 4px;
+  width: 100%;
+  margin: 5px;
+  padding: 15px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  /* height: 300px; */
+}
+#select-your-rating {
+  font-size: 12px;
+}
+#select-beans {
+  padding-left: 10px;
+}
+#write-review {
+  font-size: 12px;
+}
+#write-review-input {
+  width: 90%;
+  margin: 0 0 5px 15px;
+}
+#input-photo-review {
+  font-size: 12px;
+  letter-spacing: 1px;
+  /* height: ; */
+}
+#submit-review-btn {
+  font-size: 15px;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background-color: transparent;
+  border-radius: 7px;
+  border: 5px;
+  margin: 5px 0 0 150px;
+  /* margin needs to refactor/ display flex doesnt work!! */
+}
+
+
+.create-beans-outer::before {
+  width: 20px;
+  height: 20px;
+  /* content: '\219 \219 \219 \219 \219'; */
+  content: url('../public/bean-small.svg');
+  filter: invert(96%) sepia(7%) saturate(2145%) hue-rotate(9deg) brightness(88%) contrast(81%);
+  /* HEX: #c5c983*/
+}
+.create-beans-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.create-beans-inner::before {
+  content: url('../public/bean-small.svg');
+ filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(101%) contrast(87%);
+ /* HEX: 6b3e2e */
+}
