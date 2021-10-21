@@ -5,6 +5,7 @@ import router from 'next/router';
 // import data from './mockData';
 
 let map;
+let infoWindow;
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -65,16 +66,9 @@ class Map extends Component {
             : ''}
         <div class='iw-vicinity'>${shop.vicinity}</div>
         </div>`;
-        // <div>Open Now: ${shop.opening_hours.open_now ? 'Open' : 'Closed'}</div>
-        const infoWindow = new google.maps.InfoWindow({
-          content: info,
-        });
-        google.maps.event.addListener(infoWindow, 'domready', () => {
-          document.getElementById(`info-${shop.place_id}`).addEventListener('click', () => {
-            selectShop(shop);
-            router.push(`/shop/${shop.place_id}`);
-          });
-        });
+        // const infoWindow = new google.maps.InfoWindow({
+        //   content: info,
+        // });        marker.setMap(map);
         const marker = new google.maps.Marker({
           position: shop.geometry.location,
           title: 'cafe',
@@ -82,16 +76,30 @@ class Map extends Component {
           map,
           icon: '/cafeMarker.svg',
         });
-        map.addListener('click', () => {
-          infoWindow.close();
-        });
-        marker.setMap(map);
         marker.addListener('click', () => {
+          if(infoWindow) {
+            infoWindow.close();
+          }
+          infoWindow = new google.maps.InfoWindow({
+            content: info,
+          });
           infoWindow.open({
             anchor: marker,
             map,
+            content: info,
             shouldFocus: false,
           });
+        google.maps.event.addListener(infoWindow, 'domready', () => {
+          document.getElementById(`info-${shop.place_id}`).addEventListener('click', () => {
+            selectShop(shop);
+            router.push(`/shop/${shop.place_id}`);
+          });
+        });
+
+        map.addListener('click', () => {
+          infoWindow.close();
+        });
+
         });
       });
     });
