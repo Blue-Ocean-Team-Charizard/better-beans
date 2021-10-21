@@ -43,8 +43,6 @@ export default class Search extends React.Component {
     console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
-    // this.setState({ currentLocation: crd });
-    // 34.05223,-118.24368
     updateCoords({
       lat: crd.latitude,
       lng: crd.longitude,
@@ -58,7 +56,7 @@ export default class Search extends React.Component {
 
   searchCurrentLocation() {
     if (navigator.geolocation) {
-      console.log('getting current location');
+      // console.log('getting current location');
       navigator.geolocation.getCurrentPosition(this.geoSuccess, (err) => {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       });
@@ -74,7 +72,7 @@ export default class Search extends React.Component {
           type="text"
           id="search"
           className="form-control"
-          placeholder="Los Angeles"
+          placeholder="Search for a location"
           aria-label="Search location"
           onChange={this.handleChange}
         />

@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import router from 'next/router';
 // import keys from '../../config/config';
-import data from './mockData';
+// import data from './mockData';
 
 let map;
 class Map extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      markers: data,
-    };
+    // this.state = {
+    //   markers: data,
+    // };
     this.loader = new Loader({
       apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
       version: 'weekly',
@@ -40,9 +40,10 @@ class Map extends Component {
   }
 
   initMap() {
+    const { coords } = this.props;
     this.loader.load().then(() => {
       map = new google.maps.Map(document.getElementById('map'), {
-        center: this.props.coords,
+        center: coords,
         zoom: 14,
         mapTypeControl: false,
         streetViewControl: false,
@@ -52,9 +53,9 @@ class Map extends Component {
   }
 
   addMarkers() {
-    const { selectShop } = this.props;
+    const { selectShop, shopList } = this.props;
     this.loader.load().then(() => {
-      this.props.shopList.forEach((shop) => {
+      shopList.forEach((shop) => {
         const info = `
         <div id='info-${shop.place_id}' class="info-window">
         <h3 class='iw-name'>${shop.name}</h3>
