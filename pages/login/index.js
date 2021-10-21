@@ -2,7 +2,7 @@ import { useAuth } from '../../firebase/auth_context';
 import Meta from '../../components/Meta';
 
 export default function LoginPage() {
-  const { signInWithFirebase, signInWithFacebook } = useAuth();
+  const { signInWithFirebase, signInWithFacebook, signInWithGithub } = useAuth();
   return (
     <>
       <Meta />
@@ -27,6 +27,7 @@ export default function LoginPage() {
           </div>
         </button>
         <button type="button" className="facebook-btn" onClick={signInWithFacebook}>Continue with Facebook</button>
+        <button type="button" className="github-btn" onClick={signInWithGithub}>Continue with Github</button>
       </div>
     </>
   );

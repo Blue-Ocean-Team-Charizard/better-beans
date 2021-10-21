@@ -9,6 +9,7 @@ import {
   signOut,
   deleteUser,
   FacebookAuthProvider,
+  GithubAuthProvider
 } from 'firebase/auth';
 
 import app from './firebase';
@@ -38,6 +39,16 @@ export default function Login() {
   const signInWithFacebook = async () => {
     try {
       await signInWithPopup(auth, new FacebookAuthProvider());
+    } catch (err) {
+      console.error(err);
+    } finally {
+      router.push('/');
+    }
+  };
+
+  const signInWithGithub = async () => {
+    try {
+      await signInWithPopup(auth, new GithubAuthProvider());
     } catch (err) {
       console.error(err);
     } finally {
@@ -91,6 +102,7 @@ export default function Login() {
     logOff,
     deleteAccount,
     signInWithFacebook,
+    signInWithGithub,
   };
 }
 
