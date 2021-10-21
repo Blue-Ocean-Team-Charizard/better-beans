@@ -1,5 +1,6 @@
 import Review from "./Review";
-// import { GiCoffeeBeans } from "react-icons/gi";
+
+// const get
 
 export default function ReviewList() {
   return (
@@ -11,3 +12,19 @@ export default function ReviewList() {
     </div>
   );
 }
+
+/*model reviews {
+  id       Int       @id @default(autoincrement())
+  name     String?   @db.VarChar
+  body     String?   @db.VarChar
+  date     DateTime? @db.Timestamp(6)
+  rating   Int?
+  helpful  Int?
+  reported Int?
+  shop_id  String?   @db.VarChar
+  user_id  String?   @db.VarChar
+  photos   photos[]
+
+  @@index([shop_id], map: "reviews_idx_shops")
+}
+*/

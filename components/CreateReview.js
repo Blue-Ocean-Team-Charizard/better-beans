@@ -106,7 +106,6 @@ export default function CreateReview(props) {
   };
 
   const renderImg = (source) => {
-    // console.log(authUser);
     return source.map(image => {
       return <img src={image} key={image} height="80"></img>;
     });
@@ -117,7 +116,7 @@ export default function CreateReview(props) {
       <form onSubmit={(e) => { handleSubmit(e); }}>
         <div id="select-your-rating">Select your rating.</div>
         <div id="select-beans">
-          <BeanSelected />
+          {/* <BeanSelected /> */}
         </div>
         <div id="write-review">Write your reviews...</div>
           <textarea
