@@ -1,6 +1,6 @@
 import Meta from '../../components/Meta';
 import ShopList from '../../components/ShopList';
-import Map from '../../components/map/map';
+import Map from '../../components/map/Map';
 import { SearchContext } from '../../components/SearchContext';
 
 export default function SearchResults() {
@@ -23,7 +23,11 @@ export default function SearchResults() {
             </ul>
             <div className="tab-content" id="myTabContent">
               <div className="tab-pane fade show active" id="map-container" role="tabpanel" aria-labelledby="home-tab">
-                <Map shopList={context.shopList} coords={context.currentCoords} />
+                <Map
+                  shopList={context.shopList}
+                  coords={context.currentCoords}
+                  selectShop={context.selectShop}
+                />
               </div>
               <div className="tab-pane fade" id="shops" role="tabpanel" aria-labelledby="profile-tab">
                 <ShopList shopList={context.shopList} />
