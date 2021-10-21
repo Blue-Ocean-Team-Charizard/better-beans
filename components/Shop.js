@@ -75,7 +75,7 @@ export default function Shop({ googleData, id }) {
     <div>
       <div className="card">
         <h3 className="name">{googleData.name || 'SHOP NAME'}</h3>
-        <BeanRating rating={null} reviews={data.reviewsByShop} />
+        <BeanRating reviews={data.reviewsByShop} />
         <div className="opening_hours">{googleData.opening_hours ? googleData.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</div>
         <div className="location">
           {' '}
