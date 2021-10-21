@@ -311,19 +311,16 @@ h3, .name {
   width: 100%;
   border-radius: 10px !important;
   padding: 5px 0px;
-  margin: 10px 40px 10px 35%;
+  margin: 40px auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
   transition: transparent .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
   max-width: 300px;
 }
 
 .btn-google {
-  /* background-color: white;
-  width: 75%;
+  margin-top: 30px;
   background-color: white;
-  border-radius: 9px;
-  border-color: rgb(207, 205, 205);
-  border-style: solid; */
-  /* box-shadow: 1px 1px 5px 1px #e7e2e2; */
 }
 
 .btn-facebook {
@@ -334,20 +331,32 @@ h3, .name {
   background-color: rgb(88, 83, 83);
 }
 
+.btn-google:hover {
+  background-color: rgb(224, 222, 222);
+}
+
+.btn-facebook:hover {
+  background-color: rgb(54, 89, 170);
+}
+
+.btn-github:hover {
+  background-color: rgb(49, 48, 48);
+}
+
 /*** For Shop ***/
 .btnBack {
   margin-bottom: 20px;
 }
 
 /*** For Login ***/
-.google-btn-container {
+/* .google-btn-container {
   width: 75%;
   background-color: white;
   border-radius: 9px;
   border-color: rgb(211, 208, 208);
   border-style: solid;
   box-shadow: 1px 1px 5px 1px #eb0808;
-}
+} */
 
 /* .google-btn-container:hover {
   box-shadow: 1px 1px 10px 3px #e3e0e0;
