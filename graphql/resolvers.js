@@ -76,5 +76,13 @@ export const resolvers = {
 
       return updateBean;
     },
+    incrementHelpful: async (_, { id, helpful }, ctx) => {
+      const newHelpful = await ctx.prisma.reviews.update({
+        where: { id },
+        data: { helpful: helpful + 1 }
+      });
+
+      return newHelpful;
+    },
   },
 };

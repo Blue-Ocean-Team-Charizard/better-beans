@@ -65,6 +65,10 @@ export const typeDefs = gql`
     toggleVisited(
       id: Int!
     ): Visited!
+    incrementHelpful(
+      id: Int
+      helpful: Int
+    ): Review
   }
 `;
 
