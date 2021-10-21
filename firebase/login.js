@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 import {
   GoogleAuthProvider,
@@ -6,6 +7,8 @@ import {
   getAuth,
   onAuthStateChanged,
   signOut,
+  deleteUser,
+  FacebookAuthProvider,
 } from 'firebase/auth';
 
 import app from './firebase';
@@ -15,6 +18,7 @@ const auth = getAuth(app);
 export default function Login() {
   const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const clear = () => {
     setAuthUser(null);
@@ -26,11 +30,37 @@ export default function Login() {
       await signInWithPopup(auth, new GoogleAuthProvider());
     } catch (err) {
       console.error(err);
+    } finally {
+      router.push('/');
+    }
+  };
+
+  const signInWithFacebook = async () => {
+    try {
+      await signInWithPopup(auth, new FacebookAuthProvider());
+    } catch (err) {
+      console.error(err);
+    } finally {
+      router.push('/');
     }
   };
 
   const logOff = async () => {
     signOut(auth).then(clear);
+  };
+
+  const deleteAccount = async () => {
+    const user = auth.currentUser;
+    try {
+      await deleteUser(user)
+        .then(() => {
+          console.log('Successfully deleted user');
+        });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      router.push('/login');
+    }
   };
 
   useEffect(() => {
@@ -59,6 +89,8 @@ export default function Login() {
     loading,
     signInWithFirebase,
     logOff,
+    deleteAccount,
+    signInWithFacebook,
   };
 }
 
