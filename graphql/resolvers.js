@@ -84,5 +84,13 @@ export const resolvers = {
 
       return newHelpful;
     },
+    incrementReported: async (_, { id, reported }, ctx) => {
+      const newReported = await ctx.prisma.reviews.update({
+        where: { id },
+        data: { reported: reported + 1 }
+      });
+
+      return newReported;
+    }
   },
 };

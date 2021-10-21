@@ -66,9 +66,13 @@ export const typeDefs = gql`
       id: Int!
     ): Visited!
     incrementHelpful(
-      id: Int
-      helpful: Int
-    ): Review
+      id: Int!
+      helpful: Int!
+    ): Review!
+    incrementReported(
+      id: Int!
+      reported: Int!
+    ): Review!
   }
 `;
 
