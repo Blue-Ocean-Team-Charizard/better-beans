@@ -72,7 +72,7 @@ export default class Search extends React.Component {
           type="text"
           id="search"
           className="form-control"
-          placeholder="Los Angeles"
+          placeholder="Search for a location"
           aria-label="Search location"
           onChange={this.handleChange}
         />
