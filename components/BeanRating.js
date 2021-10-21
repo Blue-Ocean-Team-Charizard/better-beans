@@ -20,6 +20,7 @@ export default function BeanRating({ rating, reviews }) {
   return (
     <div className="beans-outer">
       <div className="beans-inner" style={style} />
+      {`   ${reviews.length} Reviews`}
     </div>
   );
 }
