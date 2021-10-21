@@ -69,13 +69,11 @@ class Map extends Component {
           content: info,
         });
         google.maps.event.addListener(infoWindow, 'domready', () => {
-          console.log('domready');
           document.getElementById(`info-${shop.place_id}`).addEventListener('click', () => {
             selectShop(shop);
             router.push(`/shop/${shop.place_id}`);
-            console.log('click');
-          })
-        })
+          });
+        });
         const marker = new google.maps.Marker({
           position: shop.geometry.location,
           title: 'cafe',
