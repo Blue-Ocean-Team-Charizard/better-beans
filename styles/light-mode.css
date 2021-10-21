@@ -1,33 +1,20 @@
-.darkMode {
-  background-color: black;
-  color: white;
-  transition: 0.5s;
-  z-index: 1000;
-}
+
 .mode {
-  position: fixed;
-  top: 30px;
-  right: 30px;
+  display: inline-block;
+    float: right;
+    margin-left: 10px;
+    transform: scale(.3);
+    width: 100px;
+    margin-top: -6px;
+    height: 30px;
 }
 
-.iconMode {
-  background: rgb(224, 224, 224) url="../public/modeicon.png" no-repeat -40px 5px;
-  background-size: 80px;
-  height: 50px;
-  width: 50px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  border-radius: 50%;
-}
+.lightMode  {
 
-.darkMode .iconMode {
-  background: rgb(216, 216, 216) url="../public/modeicon.png" no-repeat 6px 5px;
-  background-size: 80px;
 }
-
 .lightMode {
   color: black;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 }
 .lightMode .login-page {
   background: none;

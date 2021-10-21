@@ -4,13 +4,13 @@ import Footer from './Footer';
 import Meta from './Meta';
 
 const Layout = ({ children }) => {
-  const [lightMode, setLightMode] = useState('container');
+  const [theme, setTheme] = useState('container');
 
   return (
     <>
       <Meta />
-      <div className={lightMode}>
-        <Header toggleTheme={setLightMode}/>
+      <div className={theme}>
+        <Header toggleTheme={setTheme}/>
         <main className="main">{children}</main>
         <Footer />
       </div>
