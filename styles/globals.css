@@ -179,7 +179,7 @@ header li {
   transition: 0.5s ease-out;
 }
 
-.card a>div, .name {
+.card a>div, .card>div, .name {
   margin-bottom: 5px;
 }
 
@@ -191,10 +191,16 @@ header li {
   background-color:rgba(68, 12, 4, 0.7);
 }
 
-#check-bean, .btn-review {
+#check-bean, .btn-review, select.visited {
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+
+select.visited  {
+  padding: 2px;
+  border-radius: 7px;
+  background-color: rgba(255,255,255, 0.8);
 }
 
 h3, .name {
@@ -248,7 +254,7 @@ h3, .name {
   border: none;
   width: 100%;
   border-radius: 10px !important;
-  padding: 10px 0px;
+  padding: 5px 0px;
   margin:40px auto;
   transition: transparent .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
   max-width: 300px;
@@ -332,22 +338,22 @@ footer {
 }
 
 .google-btn-container {
-  width: 75%;
+  /* width: 75%;
   background-color: white;
   border-radius: 9px;
   border-color: rgb(211, 208, 208);
-  border-style: solid;
-  box-shadow: 1px 1px 10px 3px #eeecec;
+  border-style: solid; */
+  box-shadow: 1px 1px 5px 1px #835757;
 }
 
-.google-btn-container:hover {
+/* .google-btn-container:hover {
   box-shadow: 1px 1px 10px 3px #e3e0e0;
-}
+} */
 
-.google-btn {
+/* .google-btn {
   width: 100%;
 
-}
+} */
 
 .google-logo {
   margin-right: 0%;
@@ -357,7 +363,7 @@ footer {
 
 .google-signin {
   display: inline;
-  color: rgb(42, 80, 235);
+  color: rgb(255, 255, 255);
   font-size: 15px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
