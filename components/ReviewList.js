@@ -1,6 +1,4 @@
-import Review from "./Review";
-
-// const get
+import Review from './Review';
 
 export default function ReviewList() {
   return (

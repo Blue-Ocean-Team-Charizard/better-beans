@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Search from './Search';
 import Head from 'next/head';
+import Search from './Search';
 import { SearchContext } from './SearchContext';
 import { useAuth } from '../firebase/auth_context';
 
@@ -10,20 +10,24 @@ export default function Header() {
     <>
       <Head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        {/* <script src="https://kit.fontawesome.com/02899377c4.js" crossorigin="anonymous"></script> */}
-        <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js" integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD" crossOrigin="anonymous"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
+        <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
+        {/* <script src="https://kit.fontawesome.com/02899377c4.js" crossOrigin="anonymous"></script> */}
       </Head>
-
       <header>
         <div className="navbar navbar-dark shadow-sm">
           <div id="nav">
-            <Link href="/"><a><div className="logo"></div></a></Link>
+            <Link href="/"><a><div className="logo" /></a></Link>
             <div className="loginBtn">
-              {(authUser) ? <Link href="/profile">
-                <button type="button" className="btn" >Profile</button></Link> : <Link href="/login">
-                <button type="button" className="btn">Log in</button></Link>}
+              {(authUser) ? (
+                <Link href="/profile">
+                  <button type="button" className="btn">Profile</button>
+                </Link>
+              ) : (
+                <Link href="/login">
+                  <button type="button" className="btn">Log in</button>
+                </Link>
+              )}
             </div>
           </div>
           <SearchContext.Consumer>

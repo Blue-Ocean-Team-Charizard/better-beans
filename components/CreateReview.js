@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-// import BeanSelected from './BeanSelected';
 import axios from 'axios';
+import BeanSelected from './BeanSelected';
 import { useAuth } from '../firebase/auth_context';
 
 export default function CreateReview(props) {
   const Bean = '/bean-small.svg';
   const [rating, setRatings] = useState(0);
-  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
   const [files, setFiles] = useState([]);
@@ -90,6 +89,9 @@ export default function CreateReview(props) {
       .then((res) => {
         handleAPI(res.data.createReview.id);
       })
+      .then(() => {
+        setPhotos([]);
+      })
       .catch((error) => console.log('Error creating review', error));
   };
 
@@ -116,19 +118,25 @@ export default function CreateReview(props) {
       <form onSubmit={(e) => { handleSubmit(e); }}>
         <div id="select-your-rating">Select your rating.</div>
         <div id="select-beans">
-          {/* <BeanSelected /> */}
+          <div>
+            <img src={Bean} className={rating >= 1 ? 'selected' : 'selectBean'} onClick={() => selectRating(1)} />
+            <img src={Bean} className={rating >= 2 ? 'selected' : 'selectBean'} onClick={() => selectRating(2)} />
+            <img src={Bean} className={rating >= 3 ? 'selected' : 'selectBean'} onClick={() => selectRating(3)} />
+            <img src={Bean} className={rating >= 4 ? 'selected' : 'selectBean'} onClick={() => selectRating(4)} />
+            <img src={Bean} className={rating >= 5 ? 'selected' : 'selectBean'} onClick={() => selectRating(5)} />
+          </div>
         </div>
         <div id="write-review">Write your reviews...</div>
-          <textarea
-            id="write-review-input"
-            onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}
-            />
-          <input
-            id="input-photo-review"
-            type='file'
-            multiple={true}
-            onChange={(e) => handleImage(e)}>
-          </input>
+        <textarea
+          id="write-review-input"
+          onChange={(e) => { e.preventDefault(); setBody(e.target.value); }}
+        />
+        <input
+          id="input-photo-review"
+          type="file"
+          multiple={true}
+          onChange={(e) => handleImage(e)}
+        />
         <div>{renderImg(photos)}</div>
         <button id="submit-review-btn" type="submit"> Submit Review</button>
       </form>
