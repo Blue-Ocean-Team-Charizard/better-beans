@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { gql, useQuery } from '@apollo/client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ReviewList from './ReviewList';
 import CreateReview from './CreateReview';
 import BeanRating from './BeanRating';
@@ -18,23 +18,23 @@ export default function Shop({ googleData, id, shopData }) {
   const [visited, setVisited] = useState('no');
   const shopInfo = Object.keys(googleData).length === 0 ? shopData : googleData;
   const GET_REVIEWS = gql`
-  query ReviewsByShop($shop_id: String!) {
-    reviewsByShop(shop_id: $shop_id) {
-      name
-      body
-      rating
-      helpful
-      reported
-      shop_id
-      user_id
+    query ReviewsByShop($shop_id: String!) {
+      reviewsByShop(shop_id: $shop_id) {
+        id
+        name
+        body
+        rating
+        date
+        helpful
+        reported
+        shop_id
+        user_id
+      }
     }
-  }
-`;
+  `;
 
   const { data, loading, err } = useQuery(GET_REVIEWS, {
-    variables: {
-      shop_id: shopId,
-    },
+    variables: { shop_id: shopId },
   });
 
   if (loading) return 'Loading...';

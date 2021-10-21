@@ -1,5 +1,6 @@
+import Link from 'next/link';
+
 const VisitBeanEntry = ({ shop }) => (
-  // console.log(shop);
   <div className="card">
     <Link href={`shop/${shop.place_id}`}>
       <a className="">

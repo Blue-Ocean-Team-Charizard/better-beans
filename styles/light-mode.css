@@ -1,54 +1,44 @@
-
-.lighttmode, body {
+.lightMode {
   color: black;
-  background-color: #ffffff ;
-  background: url('../public/bg-light.jpeg') no-repeat top;
-  background-size: cover;
- }
-
- .login-page {
-   background: none  ;
- }
-
- header {
-   background: linear-gradient(#FFF, #fff5d5);
-   padding: 30px;
- }
-
- .btn {
-   border: 1px solid #d5d5d5;
-   background-color: rgba(165,124,82,1)
- }
-
- #nav .logo {
-   border: 1px solid rgba(165,124,82,1);
-   box-shadow: 1px 1px 5px 1px #c9b8b8;
- }
-
- .title {
-   background: url('../public/icon-gold.svg') no-repeat left;
-   background-size: 26px;
- }
-
- .card {
-   color: #0D0401;
-   background-color:;
-   border: 1px solid #440C04;
-   background-color: rgba(255, 255, 255, 0.6);
- }
-
- .card  a {
-   color: #0D0401;
- }
-
- .btn-google, .facebook-btn {
-   background-color: #B61C07;
- }
-
- .login-page {
-
- }
-
- footer {
-   color: white;
- }
+  background-color: #ffffff;
+  /* background: url('../public/bg-light.jpeg') no-repeat top;
+   background-size: cover; */
+}
+.lightMode .login-page {
+  background: none;
+}
+.lightMode header {
+  background: linear-gradient(#FFF, #fff5d5);
+  padding: 30px;
+  box-shadow: 0px 1px 10px 0px rgba(94, 74, 74, 0.15);
+}
+.lightMode .btn {
+  border: 1px solid #d5d5d5;
+  background-color: #a57c52;
+}
+.lightMode #nav .logo {
+  border: 1px solid #a57c52;
+  box-shadow: 1px 1px 5px 1px #c9b8b8;
+}
+.lightMode .title {
+  background: url('../public/icon-gold.svg') no-repeat left;
+  background-size: 26px;
+}
+.lightMode .card {
+  color: #0D0401;
+  border: 1px solid #440C04;
+  background-color: rgba(255, 255, 240, 0.6);
+}
+.lightMode .card a {
+  color: #0D0401;
+}
+.lightMode .btn-google, .lightMode .facebook-btn {
+  background-color: #B61C07;
+}
+.lightMode .login-page {
+  /* background: url('../public/bg-light.jpeg') no-repeat bottom;
+   background-size: cover; */
+}
+.lightMode footer {
+  color: white;
+}

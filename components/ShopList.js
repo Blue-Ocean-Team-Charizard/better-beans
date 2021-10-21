@@ -9,9 +9,10 @@ class ShopList extends React.Component {
   }
 
   render() {
+    const { shopList } = this.props;
     return (
       <div>
-        { this.props.shopList.map((shop) => <ShopEntry shop={shop} key={shop.id} />)}
+        {shopList.map((shop) => <ShopEntry shop={shop} key={shop.place_id} />)}
       </div>
     );
   }
