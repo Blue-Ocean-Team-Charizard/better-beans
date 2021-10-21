@@ -112,6 +112,7 @@ export default function CreateReview(props) {
     });
   };
 
+<<<<<<< HEAD
   return (
     <div>
       {authUser.name}
@@ -155,6 +156,48 @@ export default function CreateReview(props) {
 
         </form>
       </div>
+=======
+  // transfer photos to URL
+  const handleAPI = () => {
+    let URLs = [];
+    for (let i = 0; i < files.length; i++) {
+      let formData = new FormData();
+      formData.append('file', files[i]);
+      formData.append('upload_preset', 'asosdlts');
+
+      axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
+        .then((data) => {
+          URLs.push({url: data.data.secure_url});
+          if (URLs.length === files.length) {
+            console.log(URLs);
+          }
+        })
+        .catch((err) => console.log('tranfer URL err', err));
+    }
+  }
+
+  return (
+    <div id="create-review">
+      <form onSubmit={(e) => { handleSubmit(e); }}>
+        <div id="select-your-rating">Select your rating.</div>
+        <div id="select-beans">
+          <BeanSelected />
+        </div>
+        <div id="write-review">Write your reviews...</div>
+          <textarea
+            id="write-review-input"
+            onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}
+            />
+          <input
+            id="input-photo-review"
+            type='file'
+            multiple={true}
+            onChange={(e) => handleImage(e)}>
+          </input>
+        <div>{renderImg(photos)}</div>
+        <button id="submit-review-btn" type="submit"> Submit Review</button>
+      </form>
+>>>>>>> 97f56bb05054f4c3b5cd293a761825226d5a642a
     </div>
   );
 }
