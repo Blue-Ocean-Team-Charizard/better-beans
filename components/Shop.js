@@ -10,13 +10,13 @@ const dummyReviews = [
   { rating: 5 }, { rating: 4 },
 ];
 
-export default function Shop({ googleData, id }) {
+export default function Shop({ googleData, id, shopData }) {
   const { authUser } = useAuth();
   const shopId = id;
   const [showCreateReview, setShowCreateReview] = useState(false);
   const [showLoginMsg, setShowLoginMsg] = useState(false);
   const [visited, setVisited] = useState('no');
-
+  const shopInfo = Object.keys(googleData).length === 0 ? shopData : googleData;
   const GET_REVIEWS = gql`
   query ReviewsByShop($shop_id: String!) {
     reviewsByShop(shop_id: $shop_id) {
@@ -30,7 +30,6 @@ export default function Shop({ googleData, id }) {
     }
   }
 `;
-  console.log('THE ID IS:', shopId);
 
   const { data, loading, err } = useQuery(GET_REVIEWS, {
     variables: {
@@ -41,20 +40,7 @@ export default function Shop({ googleData, id }) {
   if (loading) return 'Loading...';
   if (err) return `Error! ${err.message}!`;
 
-  // const reviews = data.reviewsByShop;
-
-  // useEffect(() => {
-  //   getReviews({
-  //     variables: {
-  //       shop_id: shopId,
-  //     },
-  //   });
-  // });
-
-  // const open = operational || true;
   const user = authUser;
-
-  // console.log(authUser);
 
   const handleVisited = (e) => {
     e.preventDefault();
@@ -67,28 +53,24 @@ export default function Shop({ googleData, id }) {
     }
   };
 
-  // const shopRating = (reviews.length > 0) ? avgRating() : 0;
-
-  // console.log(data);
-
   return (
     <div>
       <div className="card">
-        <h3 className="name">{googleData.name || 'SHOP NAME'}</h3>
+        <h3 className="name">{shopInfo.name || 'SHOP NAME'}</h3>
         <BeanRating reviews={data ? data.reviewsByShop : null} />
-        <div className="opening_hours">{googleData.opening_hours ? googleData.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</div>
+        <div className="opening_hours">{shopInfo.opening_hours ? shopInfo.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</div>
         <div className="location">
           {' '}
           Located at:
           {' '}
-          {googleData.vicinity}
+          {shopInfo.vicinity}
           {' '}
         </div>
         <span>
-          <select className="visited" onChange={(e) => handleVisited(e)}>
-            <option value="no" selected={visited === 'no' ? 'selected' : null}>Haven't Bean</option>
-            <option value="want" selected={visited === 'want' ? 'selected' : null}>Want to Bean</option>
-            <option value="yes" selected={visited === 'yes' ? 'selected' : null}>Already Bean</option>
+          <select value={visited} className="visited" onChange={(e) => handleVisited(e)}>
+            <option value="no">Haven't Bean</option>
+            <option value="want">Want to Bean</option>
+            <option value="yes">Already Bean</option>
           </select>
         </span>
         <br />
