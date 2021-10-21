@@ -36,7 +36,7 @@ export default function Header() {
           </div>
           <SearchContext.Consumer>
             {(context) => (
-              <Search updateList={context.updateList} updateCoords={context.updateCoords} />
+              <Search updateList={context.updateList} updateCoords={context.updateCoords} google={context.google}/>
             )}
           </SearchContext.Consumer>
         </div>
