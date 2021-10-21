@@ -1,6 +1,6 @@
 import Meta from '../../components/Meta';
 import ShopList from '../../components/ShopList';
-import Map from '../../components/map/map';
+import Map from '../../components/map/Map';
 import { SearchContext } from '../../components/SearchContext';
 
 export default function SearchResults() {
