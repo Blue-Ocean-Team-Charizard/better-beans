@@ -1,7 +1,7 @@
-import { APIKey } from '../../config/config';
+// import { APIKey } from '../../config/config';
 
 export default function handler(req, res) {
-  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.query.id}&key=${APIKey}`)
+  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${req.query.id}&key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`)
     .then((result) => result.json())
     .then((result) => res.status(200).json(result))
     .catch((err) => {
