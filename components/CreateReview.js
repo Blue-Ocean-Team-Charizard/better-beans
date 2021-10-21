@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-// import BeanSelected from './BeanSelected';
 import axios from 'axios';
+import BeanSelected from './BeanSelected';
 import { useAuth } from '../firebase/auth_context';
 
 export default function CreateReview(props) {
@@ -128,16 +128,16 @@ export default function CreateReview(props) {
           </div>
         </div>
         <div id="write-review">Write your reviews...</div>
-          <textarea
-            id="write-review-input"
-            onChange={(e) => {e.preventDefault(); setBody(e.target.value)}}
-            />
-          <input
-            id="input-photo-review"
-            type='file'
-            multiple={true}
-            onChange={(e) => handleImage(e)}>
-          </input>
+        <textarea
+          id="write-review-input"
+          onChange={(e) => { e.preventDefault(); setBody(e.target.value); }}
+        />
+        <input
+          id="input-photo-review"
+          type="file"
+          multiple={true}
+          onChange={(e) => handleImage(e)}
+        />
         <div>{renderImg(photos)}</div>
         <button id="submit-review-btn" type="submit"> Submit Review</button>
       </form>

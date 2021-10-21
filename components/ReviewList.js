@@ -1,5 +1,4 @@
-import Review from "./Review";
-// import { GiCoffeeBeans } from "react-icons/gi";
+import Review from './Review';
 
 export default function ReviewList() {
   return (
