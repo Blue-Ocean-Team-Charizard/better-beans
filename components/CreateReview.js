@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import BeanSelected from './BeanSelected';
+// import BeanSelected from './BeanSelected';
 import axios from 'axios';
+import { useAuth } from '../firebase/auth_context';
 
-export default function CreateReview() {
+export default function CreateReview(props) {
+  const Bean = '/bean-small.svg';
+  const [rating, setRatings] = useState(0);
+  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [photos, setPhotos] = useState([]);
   const [files, setFiles] = useState([]);
+  const { authUser } = useAuth();
+
+  const selectRating = (value) => {
+    setRatings(value);
+  };
 
   const CREATE_REVIEW = gql`
     mutation CreateReview(
@@ -36,33 +45,52 @@ export default function CreateReview() {
       createPhoto(
         review_id: $review_id
         url: $url
-      )
+      ) {
+        id
+      }
     }
   `;
 
   const [createReview, { data, loading, err }] = useMutation(CREATE_REVIEW);
+  const [createPhoto, { photoData }] = useMutation(CREATE_PHOTO);
 
   if (loading) return 'Submitting...';
   if (err) return `Submission error! $${err.message}`;
+
+  // transfer photos to URL
+  const handleAPI = (reviewId) => {
+    for (let i = 0; i < files.length; i++) {
+      let formData = new FormData();
+      formData.append('file', files[i]);
+      formData.append('upload_preset', 'asosdlts');
+
+      axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
+        .then((response) => {
+          createPhoto({
+            variables: {
+              review_id: reviewId,
+              url: response.data.secure_url,
+            },
+          });
+        });
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createReview({
       variables: {
-        name: 'Qinyu for you',
-        body: 'i like coffee',
-        rating: 5,
-        shop_id: 'Simple',
-        user_id: 'user id',
+        name: authUser.name,
+        body: body,
+        rating: rating,
+        shop_id: props.shopId,
+        user_id: authUser.uid,
       },
     })
-      // .then((res) => {
-      //   photos.map((photo) => {
-      //     photo[review_id] = res.createReview.review_id,
-      //   });
-      //   console.log(res.createReview);
-      // });
-    // .then((result) => console.log('Created review:', result));
+      .then((res) => {
+        handleAPI(res.data.createReview.id);
+      })
+      .catch((error) => console.log('Error creating review', error));
   };
 
   const handleImage = (e) => {
@@ -73,33 +101,16 @@ export default function CreateReview() {
       setFiles(prevFile => prevFile.concat(selectedFileArray));
       setPhotos(prevImg => prevImg.concat(fileArray));
       Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
+      // handleAPI();
     }
   };
 
   const renderImg = (source) => {
+    // console.log(authUser);
     return source.map(image => {
-      return <img src={image} key={image} height="80" id="upload-image" onClick = {handleAPI}></img>;
+      return <img src={image} key={image} height="80"></img>;
     });
   };
-
-  // transfer photos to URL
-  const handleAPI = () => {
-    let URLs = [];
-    for (let i = 0; i < files.length; i++) {
-      let formData = new FormData();
-      formData.append('file', files[i]);
-      formData.append('upload_preset', 'asosdlts');
-
-      axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
-        .then((data) => {
-          URLs.push({url: data.data.secure_url});
-          if (URLs.length === files.length) {
-            console.log(URLs);
-          }
-        })
-        .catch((err) => console.log('tranfer URL err', err));
-    }
-  }
 
   return (
     <div id="create-review">
@@ -125,26 +136,3 @@ export default function CreateReview() {
     </div>
   );
 }
-
-/*
-right now => photos = ['url1', 'url2'];
-
-need to be this => photos = [
-  {
-    review_id: res.review_id,
-    url: 'url1',
-  },
-  {
-    review_id: res.review_id,
-    url: 'url2',
-  },
-]
-for (let i = 0; i < photos.length; i++) {
-  photos[i][review_id] = res.review_id
-}
-*/
-
-// photos = [
-//   { url: 'url1' },
-//   { url: 'url2' },
-// ];
