@@ -1,14 +1,12 @@
 import React from 'react';
 import VisitBeanEntry from './VisitBeanEntry';
 
-export default function VisitBeanList({ shoplist }) {
-  render() {
-    return (
-      <div>
-        {shopList.map((shop) => <VisitBeanEntry shop={shop} key={shop.id} />)}
-      </div>
-    );
-  }
-}
+export default function VisitBeanList({ title, shopList }) {
 
-export default VisitBeanList;
+  return (
+    <div>
+      <h1>{title}</h1>
+      {shopList.map((shop) => <VisitBeanEntry shop={shop} key={shop.id} />)}
+    </div>
+  );
+}
