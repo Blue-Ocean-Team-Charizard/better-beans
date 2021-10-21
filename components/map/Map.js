@@ -61,7 +61,7 @@ class Map extends Component {
         ${shop.opening_hours ? shop.opening_hours.open_now ?
           '<div class="iw-open">Open <span class="dot"/></div>' :
           '<div class="iw-closed">Closed <span class="dot"/></div>'
-            : null}
+            : ''}
         <div class='iw-vicinity'>${shop.vicinity}</div>
         </div>`;
         // <div>Open Now: ${shop.opening_hours.open_now ? 'Open' : 'Closed'}</div>
