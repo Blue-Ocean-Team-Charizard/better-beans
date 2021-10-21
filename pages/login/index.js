@@ -3,7 +3,7 @@ import Meta from '../../components/Meta';
 import LoginPageID from '../../components/AddLoginId';
 
 export default function LoginPage() {
-  const { signInWithFirebase } = useAuth();
+  const { signInWithFirebase, signInWithFacebook } = useAuth();
   return (
     <>
       <Meta />
@@ -28,6 +28,7 @@ export default function LoginPage() {
             </h3>
           </div>
         </button>
+        <button type="button" className="facebook-btn" onClick={signInWithFacebook}>Continue with Facebook</button>
       </div>
     </>
   );
