@@ -17,7 +17,11 @@ export default function Header() {
       <header>
         <div className="navbar navbar-dark shadow-sm">
           <div id="nav">
-            <Link href="/"><a><div className="logo" /></a></Link>
+            <Link href="/">
+              <a href="/" aria-label="logo">
+                <div className="logo" />
+              </a>
+            </Link>
             <div className="loginBtn">
               {(authUser) ? (
                 <Link href="/profile">
