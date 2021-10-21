@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import router from 'next/router';
-import { Loader } from '@googlemaps/js-api-loader';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -10,15 +9,11 @@ export default class Search extends React.Component {
     this.state = {
       location: '',
     };
-    this.loader = new Loader({
-      apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
-      version: 'weekly',
-      libraries: ['drawing', 'geometry', 'places'],
-    });
     this.searchCurrentLocation = this.searchCurrentLocation.bind(this);
     this.geoSuccess = this.geoSuccess.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.initAutocomplete = this.initAutocomplete.bind(this);
   }
 
   handleChange(e) {
@@ -34,7 +29,6 @@ export default class Search extends React.Component {
     fetch(`/api/textsearch?query=${location}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log('in search by text');
         updateList(data.places);
         updateCoords(data.coords);
       })
@@ -45,9 +39,9 @@ export default class Search extends React.Component {
     const { updateCoords, updateList } = this.props;
     const crd = pos.coords;
 
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
+    // console.log('Your current position is:');
+    // console.log(`Latitude : ${crd.latitude}`);
+    // console.log(`Longitude: ${crd.longitude}`);
     updateCoords({
       lat: crd.latitude,
       lng: crd.longitude,
@@ -59,9 +53,21 @@ export default class Search extends React.Component {
       .catch((err) => console.log(err));
   }
 
+  initAutocomplete() {
+    const { google } = this.props;
+    if (google) {
+      const input = document.getElementById('search');
+      const options = {
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+      }
+      const autocomplete = new google.maps.places.Autocomplete(input, options);
+      autocomplete.setFields(["place_id", "geometry", "name"]);
+    }
+  }
+
   searchCurrentLocation() {
     if (navigator.geolocation) {
-      // console.log('getting current location');
       navigator.geolocation.getCurrentPosition(this.geoSuccess, (err) => {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       });
@@ -70,18 +76,14 @@ export default class Search extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.loader.load().then((google) => {
-      this.google = google;
-      const input = document.getElementById('search');
-      const options = {
-        fields: ["address_components", "geometry", "icon", "name"],
-        strictBounds: false,
-      }
-      const autocomplete = new google.maps.places.Autocomplete(input, options);
-      autocomplete.setFields(["place_id", "geometry", "name"]);
+  componentDidUpdate(prevProps) {
+    if (prevProps.google !== this.props.google) {
+      this.initAutocomplete();
+    }
+  }
 
-    })
+  componentDidMount() {
+    this.initAutocomplete();
   }
 
   render() {
