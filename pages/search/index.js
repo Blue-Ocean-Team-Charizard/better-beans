@@ -27,6 +27,7 @@ export default function SearchResults() {
                   shopList={context.shopList}
                   coords={context.currentCoords}
                   selectShop={context.selectShop}
+                  google={context.google}
                 />
               </div>
               <div className="tab-pane fade" id="shops" role="tabpanel" aria-labelledby="profile-tab">
