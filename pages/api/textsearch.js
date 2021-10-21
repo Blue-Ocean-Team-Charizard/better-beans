@@ -1,6 +1,7 @@
 import getPlaces from '../../helpers/nearbySearch';
 import getGeocode from '../../helpers/getGeocode';
 import chains from '../../helpers/chains';
+import filterShops from '../../helpers/filterShops';
 
 export default function handler(req, res) {
   let response = {};
@@ -10,8 +11,7 @@ export default function handler(req, res) {
       return getPlaces(`${coords.lat},${coords.lng}`);
     })
     .then((places) => {
-      const filtered = places.results.filter((place) => (chains.chains.indexOf(place.name) === -1));
-      // console.log(filtered);
+      const filtered = filterShops(places.results);
       response.places = filtered;
       res.status(200).json(response);
     })

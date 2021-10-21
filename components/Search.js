@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import router from 'next/router';
+import { Loader } from '@googlemaps/js-api-loader';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -9,7 +10,11 @@ export default class Search extends React.Component {
     this.state = {
       location: '',
     };
-
+    this.loader = new Loader({
+      apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
+      version: 'weekly',
+      libraries: ['drawing', 'geometry', 'places'],
+    });
     this.searchCurrentLocation = this.searchCurrentLocation.bind(this);
     this.geoSuccess = this.geoSuccess.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -63,6 +68,20 @@ export default class Search extends React.Component {
     } else {
       console.log('location is not enabled');
     }
+  }
+
+  componentDidMount() {
+    this.loader.load().then((google) => {
+      this.google = google;
+      const input = document.getElementById('search');
+      const options = {
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+      }
+      const autocomplete = new google.maps.places.Autocomplete(input, options);
+      autocomplete.setFields(["place_id", "geometry", "name"]);
+
+    })
   }
 
   render() {
