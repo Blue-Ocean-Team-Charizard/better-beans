@@ -115,7 +115,7 @@ export default function CreateReview(props) {
       <form onSubmit={(e) => { handleSubmit(e); }}>
         <div id="select-your-rating">Select your rating.</div>
         <div id="select-beans">
-          <div id="create-beans-outer">
+          <div>
             <img src={Bean} className={rating >= 1 ? 'selected' : 'selectBean'} onClick={() => selectRating(1)} />
             <img src={Bean} className={rating >= 2 ? 'selected' : 'selectBean'} onClick={() => selectRating(2)} />
             <img src={Bean} className={rating >= 3 ? 'selected' : 'selectBean'} onClick={() => selectRating(3)} />
