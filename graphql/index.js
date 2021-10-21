@@ -12,7 +12,10 @@ export const typeDefs = gql`
     reviewsByUser(user_id: String!): [Review]!
     photos: [Photo]!
     photosByReview(review_id: Int!): [Photo]!
-    beansByUser(user_id: String!): [Visited]!
+    beansByUser(
+      user_id: String!
+      visited: Boolean!
+    ): [Visited]!
   }
 
   type Review {
@@ -61,7 +64,6 @@ export const typeDefs = gql`
     ): Visited!
     toggleVisited(
       id: Int!
-      visited: Boolean!
     ): Visited!
   }
 `;
