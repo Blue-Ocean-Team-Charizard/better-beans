@@ -76,7 +76,6 @@ export default class Search extends React.Component {
     this.loader.load().then((google) => {
       this.google = google;
       const input = document.getElementById('search');
-      console.log(input)
       const options = {
         fields: ["address_components", "geometry", "icon", "name"],
         strictBounds: false,
