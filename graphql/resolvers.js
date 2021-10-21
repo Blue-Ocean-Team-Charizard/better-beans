@@ -44,9 +44,9 @@ export const resolvers = {
       });
       return review;
     },
-    createPhoto: async (_, { review_id, url }, ctx) => {
-      const photo = await ctx.prisma.photos.create({
-        data: { review_id, url },
+    createPhotos: async (_, photoArray, ctx) => {
+      const photo = await ctx.prisma.photos.createMany({
+        data: photoArray,
       });
       return photo;
     },

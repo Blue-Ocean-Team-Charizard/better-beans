@@ -40,7 +40,7 @@ export const typeDefs = gql`
       shop_id: String,
       user_id: String,
     ): Review!
-    createPhoto(review_id: Int!, url: String!): Photo!
+    createPhotos( photoArray: [Photo]): [Photo]
   }
 `;
 
