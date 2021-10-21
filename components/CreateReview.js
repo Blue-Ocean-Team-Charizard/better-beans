@@ -112,70 +112,6 @@ export default function CreateReview(props) {
     });
   };
 
-<<<<<<< HEAD
-  return (
-    <div>
-      {authUser.name}
-      <div id="review">
-        <form onSubmit={(e) => { handleSubmit(e); }}>
-          <div>
-            Select your rating
-            <br />
-            <img src={Bean} className={rating >= 1 ? 'selected' : 'selectBean'} onClick={() => selectRating(1)} />
-            <img src={Bean} className={rating >= 2 ? 'selected' : 'selectBean'} onClick={() => selectRating(2)} />
-            <img src={Bean} className={rating >= 3 ? 'selected' : 'selectBean'} onClick={() => selectRating(3)} />
-            <img src={Bean} className={rating >= 4 ? 'selected' : 'selectBean'} onClick={() => selectRating(4)} />
-            <img src={Bean} className={rating >= 5 ? 'selected' : 'selectBean'} onClick={() => selectRating(5)} />
-            <br />
-            {rating}
-          </div>
-          <br />
-          <label>
-            Title:
-            <br />
-            <input onChange={(e) => { e.preventDefault(); setTitle(e.target.value); }} />
-          </label>
-          <label>
-            Write your reviews down
-            <br />
-            <textarea onChange={(e) => { e.preventDefault(); setBody(e.target.value); }} />
-          </label>
-          <br />
-          <label>
-            Your photos(optional)
-          </label>
-          <br />
-
-          <input type="file" multiple={true} onChange={(e) => { handleImage(e); }} />
-          <div>
-            {renderImg(photos)}
-          </div>
-          {/* <div onClick = {handleAPI}> confirm photo</div> */}
-
-          <button type="submit"> Submit Review</button>
-
-        </form>
-      </div>
-=======
-  // transfer photos to URL
-  const handleAPI = () => {
-    let URLs = [];
-    for (let i = 0; i < files.length; i++) {
-      let formData = new FormData();
-      formData.append('file', files[i]);
-      formData.append('upload_preset', 'asosdlts');
-
-      axios.post('https://api.cloudinary.com/v1_1/dkw2yrk06/upload', formData)
-        .then((data) => {
-          URLs.push({url: data.data.secure_url});
-          if (URLs.length === files.length) {
-            console.log(URLs);
-          }
-        })
-        .catch((err) => console.log('tranfer URL err', err));
-    }
-  }
-
   return (
     <div id="create-review">
       <form onSubmit={(e) => { handleSubmit(e); }}>
@@ -197,7 +133,6 @@ export default function CreateReview(props) {
         <div>{renderImg(photos)}</div>
         <button id="submit-review-btn" type="submit"> Submit Review</button>
       </form>
->>>>>>> 97f56bb05054f4c3b5cd293a761825226d5a642a
     </div>
   );
 }
