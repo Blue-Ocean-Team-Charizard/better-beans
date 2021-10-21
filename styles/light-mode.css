@@ -1,0 +1,54 @@
+
+.lighttmode, body {
+  color: black;
+  background-color: #ffffff ;
+  background: url('../public/bg-light.jpeg') no-repeat top;
+  background-size: cover;
+ }
+
+ .login-page {
+   background: none  ;
+ }
+
+ header {
+   background: linear-gradient(#FFF, #fff5d5);
+   padding: 30px;
+ }
+
+ .btn {
+   border: 1px solid #d5d5d5;
+   background-color: rgba(165,124,82,1)
+ }
+
+ #nav .logo {
+   border: 1px solid rgba(165,124,82,1);
+   box-shadow: 1px 1px 5px 1px #c9b8b8;
+ }
+
+ .title {
+   background: url('../public/icon-gold.svg') no-repeat left;
+   background-size: 26px;
+ }
+
+ .card {
+   color: #0D0401;
+   background-color:;
+   border: 1px solid #440C04;
+   background-color: rgba(255, 255, 255, 0.6);
+ }
+
+ .card  a {
+   color: #0D0401;
+ }
+
+ .btn-google, .facebook-btn {
+   background-color: #B61C07;
+ }
+
+ .login-page {
+
+ }
+
+ footer {
+   color: white;
+ }
