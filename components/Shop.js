@@ -5,6 +5,7 @@ import ReviewList from './ReviewList';
 import CreateReview from './CreateReview';
 import BeanRating from './BeanRating';
 import { useAuth } from '../firebase/auth_context';
+import SocialMediaButtons from './SocialMediaButtons';
 
 const dummyReviews = [
   { rating: 5 }, { rating: 4 },
@@ -181,15 +182,16 @@ export default function Shop({ id, shopData }) {
           {shopInfo.vicinity}
           {' '}
         </div>
-        <span>
-          <select value={visits ?
-            visits.beansByUserAndShop.length > 0 ?
-              visits.beansByUserAndShop[0].visited : visited : visited} className="visited" onChange={(e) => handleVisited(e)}>
-            <option value="no">Haven't Bean</option>
-            <option value={`${false}`}>Want to Bean</option>
-            <option value={`${true}`}>Already Bean</option>
-          </select>
-        </span>
+        <div className="social-btns">
+          Share and save on: <SocialMediaButtons name={shopInfo.name} />
+          <span>
+            <select value={visited} className="visited" onChange={(e) => handleVisited(e)}>
+              <option value="no">Haven't Bean</option>
+              <option value={`${false}`}>Want to Bean</option>
+              <option value={`${true}`}>Already Bean</option>
+            </select>
+          </span>
+        </div>
         <br />
       </div>
 
