@@ -45,7 +45,7 @@ export default function Profile() {
 
   return (
     <div className="profile">
-      <Meta />
+      <Meta title={"Your BetterBeans Profile"} />
       <div id="account">
         <div className="photo">
           {(authUser) ? <img className="profile-photo" src={authUser.photo} alt="avatar" /> : null}
