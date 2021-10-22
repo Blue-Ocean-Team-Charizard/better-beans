@@ -8,7 +8,7 @@ export default function Home() {
       <Meta />
       <HomePageID />
       <h1>
-        Start Finding
+        Start Discovering
         <br />
         Local Coffee Shops Today!
       </h1>

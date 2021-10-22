@@ -1,6 +1,6 @@
 #reviews {
   display: flex;
-  flex-direction:column-reverse;
+  flex-direction: column-reverse;
 }
 #gi-coffee-beans-icon {
   font-size: 15px;
