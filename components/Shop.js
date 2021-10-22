@@ -61,17 +61,15 @@ export default function Shop({ id, shopData }) {
 
   const { data: visits, loading: visitLoading, error: visitError } = useQuery(GET_VISIT, {
     variables: {
-      user_id: user ? user.uid : "",
-      shop_id: shopId
+      user_id: user ? user.uid : '',
+      shop_id: shopId,
     },
   });
 
   // if (loading) return 'Loading...';
   // if (visitError) return `Error! ${visitError.message}!`;
 
-
-
-  console.log("REVIEWS", reviews, "VISITS", visits);
+  // console.log("REVIEWS", reviews, "VISITS", visits);
 
   const CREATE_VISIT = gql`
   mutation CreateVisit(
@@ -118,24 +116,24 @@ export default function Shop({ id, shopData }) {
       setVisited(flag);
       if (visits && visits.beansByUserAndShop.length > 0) {
         //toggleVisited
-        if (flag === "true") {
+        if (flag === 'true') {
           toggleVisited({
             variables: {
               toggleVisitedId: visits.beansByUserAndShop[0].id,
-              visited: true
-            }
-          })
-        } else if (flag === "false") {
+              visited: true,
+            },
+          });
+        } else if (flag === 'false') {
           toggleVisited({
             variables: {
               toggleVisitedId: visits.beansByUserAndShop[0].id,
-              visited: false
-            }
-          })
+              visited: false,
+            },
+          });
         }
       } else {
         // create the visit
-        if (flag === "true") {
+        if (flag === 'true') {
           createVisited({
             variables: {
               visited: true,
@@ -144,8 +142,8 @@ export default function Shop({ id, shopData }) {
               shop_name: shopInfo.name,
             },
           });
-          console.log("WENT INTO TRUE")
-        } else if (flag === "false") {
+          // console.log("WENT INTO TRUE")
+        } else if (flag === 'false') {
           createVisited({
             variables: {
               visited: false,
@@ -154,11 +152,10 @@ export default function Shop({ id, shopData }) {
               shop_name: shopInfo.name,
             },
           });
-          console.log("WENT INTO FALSE")
+          // console.log("WENT INTO FALSE")
         }
         // console.log(flag);
         // console.log(user.uid, shopId, shopInfo.name);
-
 
         if (err) return `Error! ${error.message}!`
       }

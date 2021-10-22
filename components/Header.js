@@ -9,14 +9,14 @@ export default function Header(props) {
   const { authUser, logOff } = useAuth();
   const [checkbox, setCheckbox] = useState(false);
 
-  const handleOnClick = (e) => {
+  const handleOnClick = () => {
     setCheckbox(!checkbox);
     if (checkbox) {
       props.toggleTheme('container');
     } else {
-      props.toggleTheme('container lightMode')
+      props.toggleTheme('container lightMode');
     }
-  }
+  };
 
   return (
     <>
@@ -30,19 +30,22 @@ export default function Header(props) {
       <header>
         <div className="navbar navbar-dark shadow-sm">
           <div id="nav">
-            <Link href="/"><a><div className="logo" /></a></Link>
+            <Link href="/">
+              <a href="/" aria-label="logo">
+                <div className="logo" />
+              </a>
+            </Link>
             <div className="mode">
               <input
                 type="checkbox"
                 id="toggle"
                 className="toggle--checkbox"
                 checked={checkbox}
-                onClick={handleOnClick}
+                onChange={handleOnClick}
               />
-              <label for="toggle" className="toggle--label">
-                <span className="toggle--label-background"></span>
+              <label htmlFor="toggle" className="toggle--label">
+                <span className="toggle--label-background" />
               </label>
-              {/* <div class="darkModeIcon iconMode" onClick={() => setLightMode(!lightMode)}></div> */}
             </div>
             <div className="loginBtn">
               {(authUser) ? (
@@ -58,7 +61,11 @@ export default function Header(props) {
           </div>
           <SearchContext.Consumer>
             {(context) => (
-              <Search updateList={context.updateList} updateCoords={context.updateCoords} google={context.google} />
+              <Search
+                updateList={context.updateList}
+                updateCoords={context.updateCoords}
+                google={context.google}
+              />
             )}
           </SearchContext.Consumer>
         </div>

@@ -14,73 +14,76 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    if(this.props.google) {
+    const { google } = this.props;
+    if (google) {
       this.initMap();
       this.addMarkers();
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.google !== this.props.google) {
+    const { google, coords, shopList } = this.props;
+    if (prevProps.google !== google) {
       this.initMap();
       this.addMarkers();
     }
-    if (prevProps.coords !== this.props.coords) {
+    if (prevProps.coords !== coords) {
       this.changeCenter();
     }
-    if (prevProps.shopList !== this.props.shopList) {
+    if (prevProps.shopList !== shopList) {
       this.addMarkers();
     }
   }
 
   changeCenter() {
-    map.panTo(this.props.coords);
+    const { coords } = this.props;
+    map.panTo(coords);
   }
 
   initMap() {
-    const { coords } = this.props;
-      map = new this.props.google.maps.Map(document.getElementById('map'), {
-        center: coords,
-        zoom: 14,
-        mapTypeControl: false,
-        streetViewControl: false,
-        mapId: '7245511982127ecd',
-      });
+    const { coords, google } = this.props;
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: coords,
+      zoom: 14,
+      mapTypeControl: false,
+      streetViewControl: false,
+      mapId: '7245511982127ecd',
+    });
   }
 
   addMarkers() {
     const { selectShop, shopList, google } = this.props;
     selectShopDesktop = selectShop;
-      shopList.forEach((shop) => {
-        const info = `
+    shopList.forEach((shop) => {
+      const info = `
         <div id='info-${shop.place_id}' class="info-window">
         <h3 class='iw-name'>${shop.name}</h3>
         ${shop.opening_hours ? shop.opening_hours.open_now ?
           '<div class="iw-open">Open <span class="dot"/></div>' :
           '<div class="iw-closed">Closed <span class="dot"/></div>'
-            : ''}
+          : ''}
         <div class='iw-vicinity'>${shop.vicinity}</div>
         </div>`;
-        const marker = new google.maps.Marker({
-          position: shop.geometry.location,
-          title: 'cafe',
-          visible: true,
-          map,
-          icon: '/cafeMarker.svg',
+      const marker = new google.maps.Marker({
+        position: shop.geometry.location,
+        title: 'cafe',
+        visible: true,
+        map,
+        icon: '/cafeMarker.svg',
+      });
+      marker.addListener('click', () => {
+        if (infoWindow) {
+          infoWindow.close();
+        }
+        infoWindow = new google.maps.InfoWindow({
+          content: info,
         });
-        marker.addListener('click', () => {
-          if(infoWindow) {
-            infoWindow.close();
-          }
-          infoWindow = new google.maps.InfoWindow({
-            content: info,
-          });
-          infoWindow.open({
-            anchor: marker,
-            map,
-            content: info,
-            shouldFocus: false,
-          });
+        infoWindow.open({
+          anchor: marker,
+          map,
+          content: info,
+          shouldFocus: false,
+        });
         google.maps.event.addListener(infoWindow, 'domready', () => {
           document.getElementById(`info-${shop.place_id}`).addEventListener('click', () => {
             selectShop(shop);
@@ -91,9 +94,8 @@ class Map extends Component {
         map.addListener('click', () => {
           infoWindow.close();
         });
-
-        });
       });
+    });
   }
 
   render() {
@@ -109,12 +111,12 @@ const panToMarker = (shop) => {
   <div id='info-${shop.place_id}' class="info-window">
   <h3 class='iw-name'>${shop.name}</h3>
   ${shop.opening_hours ? shop.opening_hours.open_now ?
-    '<div class="iw-open">Open <span class="dot"/></div>' :
-    '<div class="iw-closed">Closed <span class="dot"/></div>'
+      '<div class="iw-open">Open <span class="dot"/></div>' :
+      '<div class="iw-closed">Closed <span class="dot"/></div>'
       : ''}
   <div class='iw-vicinity'>${shop.vicinity}</div>
   </div>`;
-  if(infoWindow) {
+  if (infoWindow) {
     infoWindow.close();
   }
   infoWindow = new google.maps.InfoWindow({
@@ -133,8 +135,7 @@ const panToMarker = (shop) => {
       router.push(`/shop/${shop.place_id}`);
     });
   });
-
-}
+};
 
 export default Map;
 export { panToMarker };

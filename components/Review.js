@@ -40,15 +40,14 @@ export default function Review(props) {
   const [report, setReport] = useState(0);
   const name = review.name.split(' ')[0];
   const date = new Date(parseInt(review.date)).toString().split(' ');
-  const formattedDate = `${date[1]} ${date[2]} ${date[3]}`
-
+  const formattedDate = `${date[1]} ${date[2]} ${date[3]}`;
 
   const [incrementHelpful, { helpfulData }] = useMutation(UPDATE_HELPFUL, {
-    variables: { id: review.id, helpful: helpful},
+    variables: { id: review.id, helpful: helpful },
   });
 
-  const [incrementReported, { reportedData}] = useMutation(UPDATE_REPORTED, {
-    variables: { id: review.id, reported: report},
+  const [incrementReported, { reportedData }] = useMutation(UPDATE_REPORTED, {
+    variables: { id: review.id, reported: report },
   });
 
   // TODO: incrementReported
@@ -83,19 +82,19 @@ export default function Review(props) {
   }
 `;
 
-const { data, loading, err } = useQuery(GET_PHOTOS, {
-  variables: { review_id: review.id },
-});
+  const { data, loading, err } = useQuery(GET_PHOTOS, {
+    variables: { review_id: review.id },
+  });
 
-if (loading) return 'Loading...';
-if (err) return `Error! ${err.message}!`;
+  if (loading) return 'Loading...';
+  if (err) return `Error! ${err.message}!`;
 
-console.log('photo data ', data.photosByReview);
+  // console.log('photo data ', data.photosByReview);
   return (
     <div id="review">
       <div id="review-user-info">
         {props.notUser
-          ? (<img src={review.avatar} style={{borderRadius: "50%"}} id="reviewer-photo" alt="reviewer" />)
+          ? (<img src={review.avatar} style={{ borderRadius: '50%' }} id="reviewer-photo" alt="reviewer" />)
           : ''}
         <div id="review-user-info-inner">
           <div id="reviewer-first-name">
@@ -106,12 +105,12 @@ console.log('photo data ', data.photosByReview);
       </div>
 
       <div id="review-center">
-        <ReviewBeanRating rating={review.rating}/>
+        <ReviewBeanRating rating={review.rating} />
         <div id="review-body">{review.body}</div>
       </div>
 
       <div id="review-photos">
-        {data.photosByReview.map((photo) => <img id="review-photo" src={photo.url} />)}
+        {data.photosByReview.map((photo) => <img id="review-photo" src={photo.url} alt="review" />)}
       </div>
 
       <div id="review-buttons">
@@ -120,7 +119,8 @@ console.log('photo data ', data.photosByReview);
           id="helpful-btn"
           onClick={() => handleHelpfulButton()}
         >
-          <TiThumbsUp /> {helpful}
+          <TiThumbsUp />
+          {helpful}
         </button>
         <button
           type="button"

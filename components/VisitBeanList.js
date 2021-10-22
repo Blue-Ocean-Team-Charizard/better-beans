@@ -1,6 +1,5 @@
-import React from 'react';
-import VisitBeanEntry from './VisitBeanEntry';
 import { gql, useQuery } from '@apollo/client';
+import VisitBeanEntry from './VisitBeanEntry';
 
 export default function VisitBeanList({ flag, userId }) {
   const GET_REVIEWS = gql`
