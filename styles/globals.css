@@ -493,3 +493,19 @@ footer {
 .selected {
   filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(140%) contrast(87%);
 }
+
+.card {
+  padding: 20px 20px 0px 20px;
+}
+
+select.visited {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+}
+
+.social-btns {
+  width: 100%;
+  text-align: right;
+  margin-bottom: 0px !important;
+}
