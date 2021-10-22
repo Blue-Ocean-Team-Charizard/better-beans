@@ -489,7 +489,3 @@ footer {
 .selected {
   filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(140%) contrast(87%);
 }
-
-.login-msg {
-  margin-top: 30px;
-}

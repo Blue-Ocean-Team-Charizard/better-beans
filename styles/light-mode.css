@@ -48,8 +48,8 @@
   background-size: 26px;
 }
 
-.lightMode .card, .lightMode #create-review {
-  color: #0D0401;
+.lightMode .card, .lightMode #create-review, .lightMode #review {
+  color: #0D0401 !important;
   border: 1px solid #440C04;
   background-color: rgba(255, 255, 240, 0.6);
 }
@@ -58,6 +58,9 @@
   color: #0D0401;
 }
 
+.lightMode  #review-body {
+  color: black;
+}
 
 .lightMode footer {
   color: gray;
@@ -82,15 +85,21 @@
   width: 5px;
 }
 .toggle--checkbox:checked + .toggle--label .toggle--label-background:before {
-  width: 5px;
+  top: -5px;
+  width: 40px;
   height: 5px;
-  top: -25px;
+  /* width: 5px;
+  height: 5px;
+  top: -25px; */
 }
 .toggle--checkbox:checked + .toggle--label .toggle--label-background:after {
-  width: 5px;
+  top: 5px;
+  width: 40px;
+  height: 5px;
+  /* width: 5px;
   height: 5px;
   left: -30px;
-  top: 20px;
+  top: 20px; */
 }
 .toggle--checkbox:checked + .toggle--label:before {
   background: white;
@@ -126,24 +135,32 @@
 .toggle--label-background:before {
   content: "";
   position: absolute;
-  top: -5px;
+  /* top: -5px;
   width: 40px;
-  height: 5px;
+  height: 5px; */
   border-radius: 5px;
   background: white;
   left: -20px;
   transition: all 150ms ease-in;
+    width: 5px;
+  height: 5px;
+  top: -25px;
+
 }
 .toggle--label-background:after {
   content: "";
   position: absolute;
-  top: 5px;
+  /* top: 5px;
   width: 40px;
-  height: 5px;
+  height: 5px; */
   border-radius: 5px;
   background: white;
   left: -10px;
   transition: all 150ms ease-in;
+  width: 5px;
+  height: 5px;
+  left: -30px;
+  top: 20px;
 }
 .toggle--label:before {
   animation-name: reverse;
@@ -230,4 +247,10 @@
 
 .lightMode .btn-github:hover {
   background-color: rgb(49, 48, 48);
+}
+
+
+.lightMode #helpful-btn, .lightMode #report-btn {
+  color: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.75);
 }
