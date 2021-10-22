@@ -40,7 +40,7 @@ export default function SearchResults() {
             :
             <>
               <Meta />
-              <h1 className="title">Shops near me</h1>
+              <h1 className="title">Better Beans Found</h1>
               <div className="desktop-search">
                 <div className="desktop-map">
                   <Map
