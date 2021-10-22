@@ -3,7 +3,16 @@
 const { gql } = require('apollo-server-micro');
 const { PrismaClient } = require('@prisma/client');
 
-const prisma = new PrismaClient();
+let prisma;
+
+if (process.env.NODE_ENV === 'production') {
+  prisma = new PrismaClient();
+} else {
+  if (!global.prisma) {
+    global.prisma = new PrismaClient();
+  }
+  prisma = global.prisma
+}
 
 export const typeDefs = gql`
   type Query {
@@ -12,6 +21,10 @@ export const typeDefs = gql`
     reviewsByUser(user_id: String!): [Review]!
     photos: [Photo]!
     photosByReview(review_id: Int!): [Photo]!
+    beansByUser(
+      user_id: String!
+      visited: Boolean!
+    ): [Visited]!
   }
 
   type Review {
@@ -32,6 +45,14 @@ export const typeDefs = gql`
     url: String
   }
 
+  type Visited {
+    id: Int!
+    user_id: String
+    shop_id: String
+    shop_name: String
+    visited: Boolean!
+  }
+
   type Mutation {
     createReview(
       name: String,
@@ -43,7 +64,16 @@ export const typeDefs = gql`
     createPhoto(
       review_id: Int!
       url: String!
-      ): Photo!
+    ): Photo!
+    createVisited(
+      user_id: String
+      shop_id: String
+      shop_name: String
+      visited: Boolean!
+    ): Visited!
+    toggleVisited(
+      id: Int!
+    ): Visited!
   }
 `;
 
