@@ -24,9 +24,25 @@
   color: white;
 }
 
-/* .gm-style .gm-style-iw-t::after {
-  background-color: #B61C07;
+.desktop-search {
+  display: grid;
+  grid-template-columns: 37% 3% 60%;
+  grid-template-rows: 70vh;
 }
-.gm-style .gm-style-iw-d {
-  background-color: #B61C07;
-} */
+.desktop-map {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+.desktop-map #map {
+  width: 104%;
+  min-height: 100%;
+}
+.desktop-list {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  overflow-y: scroll;
+  scrollbar-width: 0;
+}
+.desktop-list::-webkit-scrollbar {
+  display: none;
+}
