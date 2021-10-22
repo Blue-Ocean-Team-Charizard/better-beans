@@ -19,7 +19,7 @@ export default function Shop({ id, shopData }) {
   const shopInfo = shopData;
 
   const GET_REVIEWS = gql`
-    query ReviewsByShop($shop_id: String!) {
+    query ShopQuery($shop_id: String!) {
       reviewsByShop(shop_id: $shop_id) {
         id
         name
@@ -34,12 +34,12 @@ export default function Shop({ id, shopData }) {
     }
   `;
 
-  const { data, loading, err } = useQuery(GET_REVIEWS, {
+  const { data: reviews, loading: reviewLoading, error: reivewError } = useQuery(GET_REVIEWS, {
     variables: { shop_id: shopId },
   });
 
-  if (loading) return 'Loading...';
-  if (err) return `Error! ${err.message}!`;
+  // if (reviewloading) return 'Loading...';
+  // if (reviewError) return `Error! ${err.message}!`;
 
   const user = authUser;
 
@@ -53,7 +53,7 @@ export default function Shop({ id, shopData }) {
   }
 `;
 
-  const { visitData, visitLoading, error } = useQuery(GET_VISIT, {
+  const { data: visits, loading: visitLoading, error: visitError } = useQuery(GET_VISIT, {
     variables: {
       user_id: user ? user.uid : "",
       shop_id: shopId,
@@ -74,13 +74,13 @@ export default function Shop({ id, shopData }) {
       setShowLoginMsg(true);
     }
   };
-  console.log("DATA", data);
+  console.log("DATA", reviews);
 
   return (
     <div>
       <div className="card">
         <h3 className="name">{shopInfo.name || 'SHOP NAME'}</h3>
-        <BeanRating reviews={data ? data.reviewsByShop : null} />
+        <BeanRating reviews={reviews ? reviews.reviewsByShop : null} />
         <div className="opening_hours">{shopInfo.opening_hours ? shopInfo.opening_hours.open_now ? 'Open Now' : 'Closed' : null}</div>
         <div className="location">
           {' '}
@@ -92,8 +92,8 @@ export default function Shop({ id, shopData }) {
         <span>
           <select value={
             user ?
-              visitData ?
-                `${visitData.beansByUserAndShop[0].visited} `
+              visits ?
+                `${visits.beansByUserAndShop[0].visited} `
                 : "no"
               : "no"
           } className="visited" onChange={(e) => handleVisited(e)}>
@@ -127,7 +127,7 @@ export default function Shop({ id, shopData }) {
         {' '}
       </div>
       {showCreateReview ? <CreateReview shopId={shopId} /> : null}
-      <ReviewList reviews={data ? data.reviewsByShop : []} />
+      <ReviewList reviews={reviews ? reviews.reviewsByShop : []} />
     </div>
   );
 }
