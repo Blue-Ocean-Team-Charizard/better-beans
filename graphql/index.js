@@ -25,17 +25,23 @@ export const typeDefs = gql`
       user_id: String!
       visited: Boolean!
     ): [Visited]!
+    beansByUserAndShop(
+      user_id: String!
+      shop_id: String!
+    ): [Visited]!
   }
 
   type Review {
     id: Int!
     name: String
+    avatar: String
     body: String!
     date: String
     rating: Int
     helpful: Int
     reported: Int
     shop_id: String
+    shop_name: String
     user_id: String
   }
 
@@ -56,9 +62,11 @@ export const typeDefs = gql`
   type Mutation {
     createReview(
       name: String,
+      avatar: String,
       body: String,
       rating: Int,
       shop_id: String,
+      shop_name: String,
       user_id: String,
     ): Review!
     createPhoto(
@@ -73,7 +81,16 @@ export const typeDefs = gql`
     ): Visited!
     toggleVisited(
       id: Int!
+      visited: Boolean!
     ): Visited!
+    incrementHelpful(
+      id: Int!
+      helpful: Int!
+    ): Review!
+    incrementReported(
+      id: Int!
+      reported: Int!
+    ): Review!
   }
 `;
 

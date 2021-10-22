@@ -19,16 +19,20 @@ export default function CreateReview(props) {
   const CREATE_REVIEW = gql`
     mutation CreateReview(
       $name: String!
+      $avatar: String
       $body: String!
       $rating: Int
       $shop_id: String!
+      $shop_name: String
       $user_id: String!
     ){
       createReview(
         name: $name
+        avatar: $avatar
         body: $body
         rating: $rating
         shop_id: $shop_id
+        shop_name: $shop_name
         user_id: $user_id
       ) {
         id
@@ -81,10 +85,11 @@ export default function CreateReview(props) {
     createReview({
       variables: {
         name: authUser.name,
+        avatar: authUser.photo,
         body: body,
         rating: rating,
         shop_id: props.shopId,
-        // shop_name: props.shopName,
+        shop_name: props.shopName,
         user_id: authUser.uid,
       },
     })
@@ -110,9 +115,8 @@ export default function CreateReview(props) {
   };
 
   const renderImg = (source) => {
-    // console.log(authUser);
     return source.map(image => {
-      return <img src={image} key={image} height="80"></img>;
+      return <img src={image} id="uploaded-photo" key={image}/>;
     });
   };
 
@@ -140,8 +144,11 @@ export default function CreateReview(props) {
           multiple={true}
           onChange={(e) => handleImage(e)}
         />
-        <div>{renderImg(photos)}</div>
-        <button id="submit-review-btn" type="submit"> Submit Review</button>
+        <div id="uploaded-photos-section">{renderImg(photos)}</div>
+
+        <div id="submit-review-section">
+          <button id="submit-review-btn" type="submit"> Submit Review</button>
+        </div>
       </form>
     </div>
   );
