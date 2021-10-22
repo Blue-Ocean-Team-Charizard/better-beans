@@ -9,9 +9,6 @@ export default function ReviewList(props) {
 
   return (
     <div id="reviews">
-      <div id="reviews-title">
-      </div>
-      {/* id="review-list" */}
       {review}
     </div>
   );
