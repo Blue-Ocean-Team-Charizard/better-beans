@@ -94,7 +94,7 @@ export default function Review(props) {
     <div id="review">
       <div id="review-user-info">
         {props.notUser
-          ? (<img src={review.avatar} style={{ borderRadius: "50%" }} id="reviewer-photo" alt="reviewer" />)
+          ? (<img src={review.avatar} style={{ borderRadius: '50%' }} id="reviewer-photo" alt="reviewer" />)
           : ''}
         <div id="review-user-info-inner">
           <div id="reviewer-first-name">
