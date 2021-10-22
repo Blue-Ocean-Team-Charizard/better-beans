@@ -17,6 +17,7 @@ export default function Shop({ id, shopData }) {
   const [showLoginMsg, setShowLoginMsg] = useState(false);
   const [visited, setVisited] = useState('no');
   const shopInfo = shopData;
+  const user = authUser;
 
   const GET_REVIEWS = gql`
     query ShopQuery($shop_id: String!) {
@@ -41,13 +42,14 @@ export default function Shop({ id, shopData }) {
   // if (reviewloading) return 'Loading...';
   // if (reviewError) return `Error! ${err.message}!`;
 
-  const user = authUser;
 
 
   const GET_VISIT = gql`
-  query BeansByUserAndShop($user_id: String!, $visited: Boolean!) {
-    beansByUserAndShop(user_id: $user_id, visited: $visited ) {
+  query BeansByUserAndShop($user_id: String!, $shop_id: String!) {
+    beansByUserAndShop(user_id: $user_id, shop_id: $shop_id) {
       id
+      user_id
+      shop_id
       visited
     }
   }
@@ -97,15 +99,26 @@ export default function Shop({ id, shopData }) {
         //toggleVisited
       } else {
         // create the visit
-        if (e.target.value === "true" || e.target.value === "false") {
+        if (e.target.value === "true") {
           createVisited({
             variables: {
-              visited: e.target.value === "true" ? true : false,
+              visited: true,
               user_id: user.uid,
               shop_id: shopId,
               shop_name: shopInfo.name,
             },
           });
+          console.log("WENT INTO TRUE")
+        } else if (e.target.value === "false") {
+          createVisited({
+            variables: {
+              visited: false,
+              user_id: user.uid,
+              shop_id: shopId,
+              shop_name: shopInfo.name,
+            },
+          });
+          console.log("WENT INTO FALSE")
         }
         console.log(e.target.value);
         console.log(user.uid, shopId, shopInfo.name);
@@ -132,13 +145,7 @@ export default function Shop({ id, shopData }) {
           {' '}
         </div>
         <span>
-          <select value={
-            user ?
-              visits ?
-                `${visits.beansByUserAndShop[0].visited} `
-                : "no"
-              : "no"
-          } className="visited" onChange={(e) => handleVisited(e)}>
+          <select value={visited} className="visited" onChange={(e) => handleVisited(e)}>
             <option value="no">Haven't Bean</option>
             <option value={`${false}`}>Want to Bean</option>
             <option value={`${true}`}>Already Bean</option>
