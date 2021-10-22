@@ -33,7 +33,7 @@
   box-shadow: 0px 1px 10px 0px rgba(94, 74, 74, 0.15);
 }
 
-.lightMode .btn {
+.lightMode .btn, .lightMode #submit-review-btn {
   border: 1px solid #d5d5d5;
   background-color: #a57c52;
 }
@@ -48,7 +48,7 @@
   background-size: 26px;
 }
 
-.lightMode .card {
+.lightMode .card, .lightMode #create-review {
   color: #0D0401;
   border: 1px solid #440C04;
   background-color: rgba(255, 255, 240, 0.6);
@@ -58,9 +58,6 @@
   color: #0D0401;
 }
 
-/* .lightMode .btn-google, .lightMode .facebook-btn {
- background-color: #440C04;
-} */
 
 .lightMode footer {
   color: gray;
@@ -107,7 +104,6 @@
   opacity: 1;
 }
 .toggle--label {
-  /** Placeholder element, starting at blue **/
   width: 200px;
   height: 100px;
   background:#a57c52;
@@ -116,9 +112,6 @@
   display: flex;
   position: relative;
   transition: all 350ms ease-in;
-  /** The sun cloud and moon stars **/
-  /** Sun/Moon element **/
-  /** Gray dots on the moon **/
 }
 .toggle--label-background {
   width: 10px;
@@ -173,7 +166,6 @@
   transition: all 250ms ease-in;
   position: absolute;
   content: "";
-  /* box-shadow: var(--gray-dots) -13px 0 0 2px, var(--gray-dots) -24px 14px 0 -2px; */
   left: 143px;
   top: 23px;
   width: 10px;
@@ -239,9 +231,3 @@
 .lightMode .btn-github:hover {
   background-color: rgb(49, 48, 48);
 }
-
-/* <input type="checkbox" id="toggle" className="toggle--checkbox" />
-<label for="toggle" className="toggle--label">
-  <span className="toggle--label-background"></span>
-</label>
- */
