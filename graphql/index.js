@@ -81,6 +81,7 @@ export const typeDefs = gql`
     ): Visited!
     toggleVisited(
       id: Int!
+      visited: Boolean!
     ): Visited!
     incrementHelpful(
       id: Int!
