@@ -10,13 +10,14 @@ const dummyReviews = [
   { rating: 5 }, { rating: 4 },
 ];
 
-export default function Shop({ googleData, id, shopData }) {
+export default function Shop({ id, shopData }) {
   const { authUser } = useAuth();
   const shopId = id;
   const [showCreateReview, setShowCreateReview] = useState(false);
   const [showLoginMsg, setShowLoginMsg] = useState(false);
   const [visited, setVisited] = useState('no');
-  const shopInfo = Object.keys(googleData).length === 0 ? shopData : googleData;
+  const shopInfo = shopData;
+
   const GET_REVIEWS = gql`
     query ReviewsByShop($shop_id: String!) {
       reviewsByShop(shop_id: $shop_id) {
@@ -42,6 +43,27 @@ export default function Shop({ googleData, id, shopData }) {
 
   const user = authUser;
 
+
+  const GET_VISIT = gql`
+  query BeansByUserAndShop($user_id: String!, $visited: Boolean!) {
+    beansByUserAndShop(user_id: $user_id, visited: $visited ) {
+      id
+      visited
+    }
+  }
+`;
+
+  const { visitData, visitLoading, error } = useQuery(GET_VISIT, {
+    variables: {
+      user_id: user ? user.uid : "",
+      shop_id: shopId,
+    },
+  });
+
+  // if (loading) return 'Loading...';
+  // if (error) return `Error! ${error.message}!`;
+
+
   const handleVisited = (e) => {
     e.preventDefault();
     // console.log('set visited to:', e.target.value);
@@ -49,9 +71,10 @@ export default function Shop({ googleData, id, shopData }) {
       setVisited(e.target.value);
       // DB CALL TO THE VISITED OF USER
     } else {
-      // redirect to login
+      setShowLoginMsg(true);
     }
   };
+  console.log("DATA", data);
 
   return (
     <div>
@@ -67,10 +90,16 @@ export default function Shop({ googleData, id, shopData }) {
           {' '}
         </div>
         <span>
-          <select value={visited} className="visited" onChange={(e) => handleVisited(e)}>
+          <select value={
+            user ?
+              visitData ?
+                `${visitData.beansByUserAndShop[0].visited} `
+                : "no"
+              : "no"
+          } className="visited" onChange={(e) => handleVisited(e)}>
             <option value="no">Haven't Bean</option>
-            <option value="want">Want to Bean</option>
-            <option value="yes">Already Bean</option>
+            <option value={`${false}`}>Want to Bean</option>
+            <option value={`${true}`}>Already Bean</option>
           </select>
         </span>
         <br />

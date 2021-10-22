@@ -10,7 +10,7 @@ export default function SearchResults() {
         {(context) => (
           <>
             <Meta />
-            <h1 className="title">Shops near me</h1>
+            <h1 className="title">Better Beans Found</h1>
             <ul className="nav nav-tabs" id="myTab" role="tablist">
               <li className="nav-item" role="presentation">
                 <button className="nav-link active" id="map-tab" data-bs-toggle="tab" data-bs-target="#map-container" type="button" role="tab" aria-controls="map" aria-selected="true">Map</button>
