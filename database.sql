@@ -1,21 +1,22 @@
-DROP TABLE IF EXISTS photos;
 DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS shops;
+DROP TABLE IF EXISTS photos;
+DROP TABLE IF EXISTS visited;
 
 DROP INDEX IF EXISTS photos_idx_reviews;
-DROP INDEX IF EXISTS reviews_idx_users;
 DROP INDEX IF EXISTS reviews_idx_shops;
+DROP INDEX IF EXISTS visited_idx_user_id;
 
 CREATE TABLE reviews (
   id serial PRIMARY KEY,
   name varchar,
+  avatar varchar,
   body varchar,
   date timestamp,
   rating integer,
   helpful integer,
   reported integer,
   shop_id varchar,
+  shop_name varchar,
   user_id varchar
 );
 
