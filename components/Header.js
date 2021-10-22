@@ -24,6 +24,7 @@ export default function Header(props) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
         <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet" />
+        <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
         {/* <script src="https://kit.fontawesome.com/02899377c4.js" crossOrigin="anonymous"></script> */}
       </Head>
       <header>
@@ -57,7 +58,7 @@ export default function Header(props) {
           </div>
           <SearchContext.Consumer>
             {(context) => (
-              <Search updateList={context.updateList} updateCoords={context.updateCoords} google={context.google}/>
+              <Search updateList={context.updateList} updateCoords={context.updateCoords} google={context.google} />
             )}
           </SearchContext.Consumer>
         </div>
