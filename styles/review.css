@@ -33,11 +33,11 @@
   justify-content: space-between;
   /* margin: 0 5px; */
 }
-/* #reviewer-photo {
+#reviewer-photo {
   width: 25px;
   height: 25px;
-  border-radius: 12px;
-} */
+  border-radius: 50%;
+}
 #reviewer-first-name {
   /* margin-left: 10px; */
   font-size: 14px;
