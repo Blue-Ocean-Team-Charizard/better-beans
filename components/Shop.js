@@ -24,12 +24,14 @@ export default function Shop({ id, shopData }) {
       reviewsByShop(shop_id: $shop_id) {
         id
         name
+        avatar
         body
         rating
         date
         helpful
         reported
         shop_id
+        shop_name
         user_id
       }
     }
@@ -179,7 +181,7 @@ export default function Shop({ id, shopData }) {
         {' '}
       </div>
       {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} /> : null}
-      <ReviewList reviews={reviews ? reviews.reviewsByShop : []} />
+      <ReviewList reviews={data ? data.reviewsByShop : []} notUser={true} />
     </div>
   );
 }

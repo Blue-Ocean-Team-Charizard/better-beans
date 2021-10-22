@@ -34,12 +34,14 @@ export const typeDefs = gql`
   type Review {
     id: Int!
     name: String
+    avatar: String
     body: String!
     date: String
     rating: Int
     helpful: Int
     reported: Int
     shop_id: String
+    shop_name: String
     user_id: String
   }
 
@@ -60,9 +62,11 @@ export const typeDefs = gql`
   type Mutation {
     createReview(
       name: String,
+      avatar: String,
       body: String,
       rating: Int,
       shop_id: String,
+      shop_name: String,
       user_id: String,
     ): Review!
     createPhoto(
@@ -78,6 +82,14 @@ export const typeDefs = gql`
     toggleVisited(
       id: Int!
     ): Visited!
+    incrementHelpful(
+      id: Int!
+      helpful: Int!
+    ): Review!
+    incrementReported(
+      id: Int!
+      reported: Int!
+    ): Review!
   }
 `;
 
