@@ -502,10 +502,15 @@ select.visited {
   position: absolute;
   bottom: 20px;
   left: 15px;
+  width: 120px;
 }
 
 .social-btns {
   width: 100%;
   text-align: right;
   margin-bottom: 0px !important;
+}
+
+.po-soc-med-btns a {
+  margin-left: 5px;
 }
