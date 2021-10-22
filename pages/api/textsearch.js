@@ -1,10 +1,9 @@
 import getPlaces from '../../helpers/nearbySearch';
 import getGeocode from '../../helpers/getGeocode';
-import chains from '../../helpers/chains';
 import filterShops from '../../helpers/filterShops';
 
 export default function handler(req, res) {
-  let response = {};
+  const response = {};
   getGeocode(req.query.query)
     .then((coords) => {
       response.coords = coords;

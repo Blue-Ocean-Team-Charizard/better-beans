@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
   if (!global.prisma) {
     global.prisma = new PrismaClient();
   }
-  prisma = global.prisma
+  prisma = global.prisma;
 }
 
 export const typeDefs = gql`
@@ -69,16 +69,19 @@ export const typeDefs = gql`
       shop_name: String,
       user_id: String,
     ): Review!
+
     createPhoto(
       review_id: Int!
       url: String!
     ): Photo!
+
     createVisited(
       user_id: String
       shop_id: String
       shop_name: String
       visited: Boolean!
     ): Visited!
+
     toggleVisited(
       id: Int!
       visited: Boolean!

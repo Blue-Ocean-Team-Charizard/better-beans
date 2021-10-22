@@ -26,7 +26,7 @@
 
 .desktop-search {
   display: grid;
-  grid-template-columns: 37% 3% 60%;
+  grid-template-columns: 37% 3% 58% 2%;
   grid-template-rows: 70vh;
 }
 .desktop-map {
