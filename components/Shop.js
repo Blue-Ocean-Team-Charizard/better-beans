@@ -22,12 +22,14 @@ export default function Shop({ googleData, id, shopData }) {
       reviewsByShop(shop_id: $shop_id) {
         id
         name
+        avatar
         body
         rating
         date
         helpful
         reported
         shop_id
+        shop_name
         user_id
       }
     }
