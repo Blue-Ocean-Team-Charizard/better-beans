@@ -76,10 +76,10 @@ export const resolvers = {
 
       return bean;
     },
-    toggleVisited: async (_, { id }, ctx) => {
+    toggleVisited: async (_, { id, visited }, ctx) => {
       const updateBean = await ctx.prisma.visited.update({
         where: { id },
-        data: { visited: true }
+        data: { visited }
       });
 
       return updateBean;
