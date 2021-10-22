@@ -109,7 +109,7 @@ export default function CreateReview(props) {
 
   const renderImg = (source) => {
     return source.map(image => {
-      return <img src={image} key={image} height="80"></img>;
+      return <img src={image} id="uploaded-photo" key={image}/>;
     });
   };
 
@@ -137,8 +137,11 @@ export default function CreateReview(props) {
           multiple={true}
           onChange={(e) => handleImage(e)}
         />
-        <div>{renderImg(photos)}</div>
-        <button id="submit-review-btn" type="submit"> Submit Review</button>
+        <div id="uploaded-photos-section">{renderImg(photos)}</div>
+
+        <div id="submit-review-section">
+          <button id="submit-review-btn" type="submit"> Submit Review</button>
+        </div>
       </form>
     </div>
   );

@@ -12,7 +12,7 @@ class ShopList extends React.Component {
     const { shopList } = this.props;
     return (
       <div>
-        {shopList.map((shop) => <ShopEntry shop={shop} key={shop.id} />)}
+        {shopList.map((shop, index) => <ShopEntry shop={shop} key={index} />)}
       </div>
     );
   }
