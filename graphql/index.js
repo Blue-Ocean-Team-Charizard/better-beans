@@ -25,6 +25,10 @@ export const typeDefs = gql`
       user_id: String!
       visited: Boolean!
     ): [Visited]!
+    beansByUserAndShop(
+      user_id: String!
+      shop_id: String!
+    ): [Visited]!
   }
 
   type Review {

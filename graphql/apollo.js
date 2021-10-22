@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 // http://localhost:3000
 
 const apolloClient = new ApolloClient({
-  uri: 'https://better-beans.vercel.app/api/graphql',
+  uri: process.env.APOLLO_URI,
   cache: new InMemoryCache(),
 });
 
