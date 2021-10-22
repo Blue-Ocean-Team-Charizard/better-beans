@@ -182,7 +182,9 @@ export default function Shop({ id, shopData }) {
           {' '}
         </div>
         <span>
-          <select value={visits ? visits.beansByUserAndShop[0].visited : visited} className="visited" onChange={(e) => handleVisited(e)}>
+          <select value={visits ?
+            visits.beansByUserAndShop.length > 0 ?
+              visits.beansByUserAndShop[0].visited : visited : visited} className="visited" onChange={(e) => handleVisited(e)}>
             <option value="no">Haven't Bean</option>
             <option value={`${false}`}>Want to Bean</option>
             <option value={`${true}`}>Already Bean</option>
