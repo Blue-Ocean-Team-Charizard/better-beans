@@ -68,9 +68,13 @@ console.log('photo data ', data.photosByReview);
   return (
     <div id="review">
       <div id="review-user-info">
-        <img src={review.avatar} style={{borderRadius: "50%"}} id="reviewer-photo" alt="reviewer" />
+        {props.notUser
+          ? (<img src={review.avatar} style={{borderRadius: "50%"}} id="reviewer-photo" alt="reviewer" />)
+          : ''}
         <div id="review-user-info-inner">
-          <div id="reviewer-first-name">{review.name}</div>
+          <div id="reviewer-first-name">
+            {props.notUser ? review.name : review.shop_name}
+          </div>
           <div id="reviewer-date">{review.date}</div>
         </div>
       </div>

@@ -15,12 +15,14 @@ export default function Profile() {
       reviewsByUser(user_id: $user_id) {
         id
         name
+        avatar
         body
         rating
         date
         helpful
         reported
         shop_id
+        shop_name
         user_id
       }
     }
@@ -88,7 +90,7 @@ export default function Profile() {
           <h1 className="title">
             Reviews
           </h1>
-          <ReviewList reviews={data ? data.reviewsByUser : []} />
+          <ReviewList reviews={data ? data.reviewsByUser : []} notUser={false}/>
         </div>
       </div>
 

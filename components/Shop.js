@@ -99,8 +99,8 @@ export default function Shop({ googleData, id, shopData }) {
         {showLoginMsg ? 'Please login first here' : null}
         {' '}
       </div>
-      {showCreateReview ? <CreateReview shopId={shopId} /> : null}
-      <ReviewList reviews={data ? data.reviewsByShop : []} />
+      {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} /> : null}
+      <ReviewList reviews={data ? data.reviewsByShop : []} notUser={true} />
     </div>
   );
 }
