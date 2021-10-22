@@ -11,7 +11,7 @@ export default function SearchResults() {
         {(context) => (
           context.isMobile ?
             <>
-              <Meta />
+              <Meta title={"Searching for Better Beans"} />
               <h1 className="title">Better Beans Found</h1>
               <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
@@ -39,7 +39,7 @@ export default function SearchResults() {
             </>
             :
             <>
-              <Meta />
+              <Meta title={"Searching for Better Beans"} />
               <h1 className="title">Better Beans Found</h1>
               <div className="desktop-search">
                 <div className="desktop-map">
