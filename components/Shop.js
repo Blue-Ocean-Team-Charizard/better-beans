@@ -38,18 +38,19 @@ export default function Shop({ id, shopData }) {
   const { data: reviews, loading: reviewLoading, error: reivewError } = useQuery(GET_REVIEWS, {
     variables: { shop_id: shopId },
   });
-
   // if (reviewloading) return 'Loading...';
   // if (reviewError) return `Error! ${err.message}!`;
 
-
-
   const GET_VISIT = gql`
-  query BeansByUserAndShop($user_id: String!, $shop_id: String!) {
-    beansByUserAndShop(user_id: $user_id, shop_id: $shop_id) {
+  query BeansByUserAndShop(
+    $user_id: String!
+    $shop_id: String!
+    ) {
+    beansByUserAndShop(
+      user_id: $user_id
+      shop_id: $shop_id
+      ) {
       id
-      user_id
-      shop_id
       visited
     }
   }
@@ -58,12 +59,12 @@ export default function Shop({ id, shopData }) {
   const { data: visits, loading: visitLoading, error: visitError } = useQuery(GET_VISIT, {
     variables: {
       user_id: user ? user.uid : "",
-      shop_id: shopId,
+      shop_id: shopId
     },
   });
 
   // if (loading) return 'Loading...';
-  // if (error) return `Error! ${error.message}!`;
+  // if (visitError) return `Error! ${visitError.message}!`;
 
 
 
@@ -130,6 +131,8 @@ export default function Shop({ id, shopData }) {
       setShowLoginMsg(true);
     }
   };
+  user ? console.log("USER", user.uid) : null;
+  // if (visitError) return `Error! ${visitError.message}!`;
 
   return (
     <div>
@@ -175,7 +178,7 @@ export default function Shop({ id, shopData }) {
         {showLoginMsg ? 'Please login first here' : null}
         {' '}
       </div>
-      {showCreateReview ? <CreateReview shopId={shopId} /> : null}
+      {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} /> : null}
       <ReviewList reviews={reviews ? reviews.reviewsByShop : []} />
     </div>
   );
