@@ -1,5 +1,4 @@
 import getPlaces from '../../helpers/nearbySearch';
-import chains from '../../helpers/chains';
 import filterShops from '../../helpers/filterShops';
 
 export default function handler(req, res) {

@@ -1,5 +1,3 @@
-// import APIKey from '../config/config';
-
 export default function getPlaces(coords) {
   // console.log('inside getPlaces');
   // console.log(typeof coords);

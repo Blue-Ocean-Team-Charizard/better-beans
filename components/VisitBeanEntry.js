@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { gql, useQuery } from '@apollo/client';
 import BeanRating from './BeanRating';
 
-
 const VisitBeanEntry = ({ shop }) => {
   const GET_REVIEWS = gql`
   query ReviewsByShop($shop_id: String!) {
@@ -30,7 +29,7 @@ const VisitBeanEntry = ({ shop }) => {
   return (
     <div className="card">
       <Link href={`shop/${shop.shop_id}`}>
-        <a className="">
+        <a className="" href={`shop/${shop.shop_id}`}>
           <h3 className="name">{shop.shop_name}</h3>
           <BeanRating reviews={data ? data.reviewsByShop : null} />
           {/* {shop.opening_hours

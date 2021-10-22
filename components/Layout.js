@@ -10,14 +10,12 @@ const Layout = ({ children }) => {
     <>
       <Meta />
       <div className={theme}>
-        <Header toggleTheme={setTheme}/>
+        <Header toggleTheme={setTheme} />
         <main className="main">{children}</main>
         <Footer />
       </div>
     </>
-  )
-}
-
-
+  );
+};
 
 export default Layout;
