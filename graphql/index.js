@@ -25,6 +25,10 @@ export const typeDefs = gql`
       user_id: String!
       visited: Boolean!
     ): [Visited]!
+    beansByUserAndShop(
+      user_id: String!
+      shop_id: String!
+    ): [Visited]!
   }
 
   type Review {
@@ -80,6 +84,7 @@ export const typeDefs = gql`
 
     toggleVisited(
       id: Int!
+      visited: Boolean!
     ): Visited!
     incrementHelpful(
       id: Int!
