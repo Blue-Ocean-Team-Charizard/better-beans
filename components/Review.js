@@ -22,6 +22,20 @@ export default function Review(props) {
     }
   `;
 
+  const UPDATE_REPORTED = gql`
+    mutation IncrementReported(
+      $id: Int!
+      $reported: Int!
+    ) {
+      incrementReported(
+        id: $id
+        reported: $reported
+      ) {
+        id
+      }
+    }
+  `;
+
   const [helpful, setHelpful] = useState(review.helpful);
   const [report, setReport] = useState(0);
   const name = review.name.split(' ')[0];
@@ -32,7 +46,9 @@ export default function Review(props) {
     variables: { id: review.id, helpful: helpful},
   });
 
-  // const []
+  const [incrementReported, { reportedData}] = useMutation(UPDATE_REPORTED, {
+    variables: { id: review.id, reported: report},
+  });
 
   // TODO: incrementReported
 
@@ -47,7 +63,13 @@ export default function Review(props) {
       });
   };
   const handleReportButton = () => {
-    setReport(report + 1);
+    incrementReported()
+      .then(() => {
+        setReport(report + 1);
+      })
+      .catch((error) => {
+        console.error('Error incrementing', error);
+      });
   };
 
   const GET_PHOTOS = gql`

@@ -80,7 +80,7 @@ export default function Profile() {
             Want to Bean
           </h1> */}
           <VisitBeanList
-            userId={authUser ? "Jan" : ""}
+            userId={authUser ? authUser.uid : ""}
             flag={false}
           />
         </div>
@@ -89,7 +89,7 @@ export default function Profile() {
             Already Bean
           </h1> */}
           <VisitBeanList
-            userId={authUser ? "Jan" : ""}
+            userId={authUser ? authUser.uid : ""}
             flag={true}
           />
         </div>
