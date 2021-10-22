@@ -16,6 +16,18 @@ export default class Search extends React.Component {
     this.initAutocomplete = this.initAutocomplete.bind(this);
   }
 
+  componentDidMount() {
+    this.initAutocomplete();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { google } = this.props;
+
+    if (prevProps.google !== google) {
+      this.initAutocomplete();
+    }
+  }
+
   handleChange(e) {
     this.setState({ location: e.target.value });
   }
@@ -58,11 +70,11 @@ export default class Search extends React.Component {
     if (google) {
       const input = document.getElementById('search');
       const options = {
-        fields: ["address_components", "geometry", "icon", "name"],
+        fields: ['address_components', 'geometry', 'icon', 'name'],
         strictBounds: false,
-      }
+      };
       const autocomplete = new google.maps.places.Autocomplete(input, options);
-      autocomplete.setFields(["place_id", "geometry", "name"]);
+      autocomplete.setFields(['place_id', 'geometry', 'name']);
     }
   }
 
@@ -74,16 +86,6 @@ export default class Search extends React.Component {
     } else {
       console.log('location is not enabled');
     }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.google !== this.props.google) {
-      this.initAutocomplete();
-    }
-  }
-
-  componentDidMount() {
-    this.initAutocomplete();
   }
 
   render() {

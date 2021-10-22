@@ -27,7 +27,7 @@ class SearchContextProvider extends Component {
 
   componentDidMount() {
     this.loader.load().then((google) => {
-      this.setState({ google: google });
+      this.setState({ google });
     });
     this.setState({ isMobile: mobileCheck() });
   }
