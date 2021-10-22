@@ -43,11 +43,11 @@ export default function Review(props) {
   const formattedDate = `${date[1]} ${date[2]} ${date[3]}`;
 
   const [incrementHelpful, { helpfulData }] = useMutation(UPDATE_HELPFUL, {
-    variables: { id: review.id, helpful: helpful},
+    variables: { id: review.id, helpful: helpful },
   });
 
-  const [incrementReported, { reportedData}] = useMutation(UPDATE_REPORTED, {
-    variables: { id: review.id, reported: report},
+  const [incrementReported, { reportedData }] = useMutation(UPDATE_REPORTED, {
+    variables: { id: review.id, reported: report },
   });
 
   // TODO: incrementReported
@@ -89,12 +89,12 @@ export default function Review(props) {
   if (loading) return 'Loading...';
   if (err) return `Error! ${err.message}!`;
 
-  console.log('photo data ', data.photosByReview);
+  // console.log('photo data ', data.photosByReview);
   return (
     <div id="review">
       <div id="review-user-info">
         {props.notUser
-          ? (<img src={review.avatar} style={{borderRadius: "50%"}} id="reviewer-photo" alt="reviewer" />)
+          ? (<img src={review.avatar} style={{ borderRadius: "50%" }} id="reviewer-photo" alt="reviewer" />)
           : ''}
         <div id="review-user-info-inner">
           <div id="reviewer-first-name">
