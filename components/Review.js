@@ -55,7 +55,7 @@ console.log('photo data ', data.photosByReview);
       </div>
 
       <div id="review-photos">
-        {data.photosByReview.map((photo) => <img src={photo.url} />)}
+        {data.photosByReview.map((photo) => <img id="review-photo" src={photo.url} />)}
       </div>
 
       <div id="review-buttons">

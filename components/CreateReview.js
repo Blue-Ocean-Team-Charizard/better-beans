@@ -75,6 +75,7 @@ export default function CreateReview(props) {
     }
   };
 
+  // TODO: Mark visited === true
   const handleSubmit = (e) => {
     e.preventDefault();
     createReview({
@@ -83,6 +84,7 @@ export default function CreateReview(props) {
         body: body,
         rating: rating,
         shop_id: props.shopId,
+        // shop_name: props.shopName,
         user_id: authUser.uid,
       },
     })

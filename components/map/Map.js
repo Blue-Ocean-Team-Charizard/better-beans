@@ -1,32 +1,29 @@
 import { Component } from 'react';
-import { Loader } from '@googlemaps/js-api-loader';
 import router from 'next/router';
-// import keys from '../../config/config';
-// import data from './mockData';
 
 let map;
+let infoWindow;
 class Map extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   markers: data,
-    // };
-    this.loader = new Loader({
-      apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
-      version: 'weekly',
-      libraries: ['drawing', 'geometry', 'places'],
-    });
+
     this.initMap = this.initMap.bind(this);
     this.addMarkers = this.addMarkers.bind(this);
     this.changeCenter = this.changeCenter.bind(this);
   }
 
   componentDidMount() {
-    this.initMap();
-    this.addMarkers();
+    if(this.props.google) {
+      this.initMap();
+      this.addMarkers();
+    }
   }
 
   componentDidUpdate(prevProps) {
+    if (prevProps.google !== this.props.google) {
+      this.initMap();
+      this.addMarkers();
+    }
     if (prevProps.coords !== this.props.coords) {
       this.changeCenter();
     }
@@ -41,20 +38,17 @@ class Map extends Component {
 
   initMap() {
     const { coords } = this.props;
-    this.loader.load().then(() => {
-      map = new google.maps.Map(document.getElementById('map'), {
+      map = new this.props.google.maps.Map(document.getElementById('map'), {
         center: coords,
         zoom: 14,
         mapTypeControl: false,
         streetViewControl: false,
         mapId: '7245511982127ecd',
       });
-    });
   }
 
   addMarkers() {
-    const { selectShop, shopList } = this.props;
-    this.loader.load().then(() => {
+    const { selectShop, shopList, google } = this.props;
       shopList.forEach((shop) => {
         const info = `
         <div id='info-${shop.place_id}' class="info-window">
@@ -65,16 +59,6 @@ class Map extends Component {
             : ''}
         <div class='iw-vicinity'>${shop.vicinity}</div>
         </div>`;
-        // <div>Open Now: ${shop.opening_hours.open_now ? 'Open' : 'Closed'}</div>
-        const infoWindow = new google.maps.InfoWindow({
-          content: info,
-        });
-        google.maps.event.addListener(infoWindow, 'domready', () => {
-          document.getElementById(`info-${shop.place_id}`).addEventListener('click', () => {
-            selectShop(shop);
-            router.push(`/shop/${shop.place_id}`);
-          });
-        });
         const marker = new google.maps.Marker({
           position: shop.geometry.location,
           title: 'cafe',
@@ -82,19 +66,32 @@ class Map extends Component {
           map,
           icon: '/cafeMarker.svg',
         });
-        map.addListener('click', () => {
-          infoWindow.close();
-        });
-        marker.setMap(map);
         marker.addListener('click', () => {
+          if(infoWindow) {
+            infoWindow.close();
+          }
+          infoWindow = new google.maps.InfoWindow({
+            content: info,
+          });
           infoWindow.open({
             anchor: marker,
             map,
+            content: info,
             shouldFocus: false,
           });
+        google.maps.event.addListener(infoWindow, 'domready', () => {
+          document.getElementById(`info-${shop.place_id}`).addEventListener('click', () => {
+            selectShop(shop);
+            router.push(`/shop/${shop.place_id}`);
+          });
+        });
+
+        map.addListener('click', () => {
+          infoWindow.close();
+        });
+
         });
       });
-    });
   }
 
   render() {
