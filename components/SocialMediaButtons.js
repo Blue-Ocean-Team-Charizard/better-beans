@@ -1,6 +1,6 @@
 
 
-export default function SocialMediaButtons(props) {
+export default function SocialMediaButtons({ name }) {
   return (
     <div className='po-soc-med-btns'>
       <a

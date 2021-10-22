@@ -151,7 +151,7 @@ export default function Shop({ id, shopData }) {
           {' '}
         </div>
         <div className="social-btns">
-          Share and save on: <SocialMediaButtons />
+          Share and save on: <SocialMediaButtons name={shopInfo.name} />
           <span>
             <select value={visited} className="visited" onChange={(e) => handleVisited(e)}>
               <option value="no">Haven't Bean</option>
