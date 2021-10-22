@@ -191,6 +191,10 @@ export default function Shop({ id, shopData }) {
         </div>
         <br />
       </div>
+      <div className="login-msg">
+        {showLoginMsg ? 'Please login first here' : null}
+        {' '}
+      </div>
 
       <h1 className="title">
         Reviews
@@ -209,10 +213,6 @@ export default function Shop({ id, shopData }) {
           Write a Review
         </button>
       </h1>
-      <div className="login-msg">
-        {showLoginMsg ? 'Please login first here' : null}
-        {' '}
-      </div>
       {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} /> : null}
       <ReviewList reviews={reviews ? reviews.reviewsByShop : []} notUser={true} />
     </div>
