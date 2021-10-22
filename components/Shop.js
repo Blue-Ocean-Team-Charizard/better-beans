@@ -180,7 +180,7 @@ export default function Shop({ id, shopData }) {
         {showLoginMsg ? 'Please login first here' : null}
         {' '}
       </div>
-      {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} /> : null}
+      {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} reviews={reviews ? reviews.reviewsByShop : []} /> : null}
       <ReviewList reviews={reviews ? reviews.reviewsByShop : []} notUser={true} />
     </div>
   );

@@ -98,6 +98,8 @@ export default function CreateReview(props) {
       })
       .then(() => {
         setPhotos([]);
+        setFiles([]);
+        console.log('review data ', data);
       })
       .catch((error) => console.log('Error creating review', error));
   };
@@ -122,7 +124,10 @@ export default function CreateReview(props) {
 
   return (
     <div id="create-review">
-      <form onSubmit={(e) => { handleSubmit(e); }}>
+      <form onSubmit={(e) => {
+        handleSubmit(e);
+        // props.reviews.unshift();
+        }}>
         <div id="select-your-rating">Select your rating.</div>
         <div id="select-beans">
           <div>
