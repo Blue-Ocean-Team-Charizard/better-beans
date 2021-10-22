@@ -46,7 +46,7 @@ export default function Shop({ id, shopData }) {
     $user_id: String!
     $shop_id: String!
     ) {
-    beansByUserAndShop(
+      beansByUserAndShop(
       user_id: $user_id
       shop_id: $shop_id
       ) {
