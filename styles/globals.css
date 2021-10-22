@@ -344,6 +344,10 @@ h3, .name {
   background-color: rgb(49, 48, 48);
 }
 
+.delete-btn {
+  margin-left: 5%;
+}
+
 /*** For Shop ***/
 .btnBack {
   margin-bottom: 20px;

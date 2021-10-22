@@ -104,7 +104,7 @@ export default function Profile() {
       <br />
 
       <button type="button" className="btn" onClick={logOff}>Sign Out</button>
-      <button type="button" className="btn" onClick={deleteAccount}>Delete Account</button>
+      <button type="button" className="btn delete-btn" onClick={deleteAccount}>Delete Account</button>
     </div>
   );
 }
