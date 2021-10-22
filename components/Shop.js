@@ -181,7 +181,7 @@ export default function Shop({ id, shopData }) {
         {' '}
       </div>
       {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} /> : null}
-      <ReviewList reviews={data ? data.reviewsByShop : []} notUser={true} />
+      <ReviewList reviews={reviews ? reviews.reviewsByShop : []} notUser={true} />
     </div>
   );
 }
