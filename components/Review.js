@@ -24,6 +24,10 @@ export default function Review(props) {
 
   const [helpful, setHelpful] = useState(review.helpful);
   const [report, setReport] = useState(0);
+  const name = review.name.split(' ')[0];
+  const date = new Date(parseInt(review.date)).toString().split(' ');
+  const formattedDate = `${date[1]} ${date[2]} ${date[3]}`
+
 
   const [incrementHelpful, { helpfulData }] = useMutation(UPDATE_HELPFUL, {
     variables: { id: review.id, helpful: helpful},
@@ -75,7 +79,7 @@ console.log('photo data ', data.photosByReview);
           <div id="reviewer-first-name">
             {props.notUser ? review.name : review.shop_name}
           </div>
-          <div id="reviewer-date">{review.date}</div>
+          <div id="reviewer-date">{formattedDate}</div>
         </div>
       </div>
 
@@ -85,7 +89,7 @@ console.log('photo data ', data.photosByReview);
       </div>
 
       <div id="review-photos">
-        {data.photosByReview.map((photo) => <img src={photo.url} />)}
+        {data.photosByReview.map((photo) => <img id="review-photo" src={photo.url} />)}
       </div>
 
       <div id="review-buttons">
