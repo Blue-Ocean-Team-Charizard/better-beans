@@ -21,7 +21,7 @@
   font-size: 14px;
 }
 #write-review-input {
-  width: 90%;
+  width: 100%;
   margin: 0 0 5px 0;
 }
 #input-photo-review {
@@ -34,6 +34,7 @@
   border-radius: 8px;
   box-shadow: 0 0 1.5px rgba(255, 255, 255, 0.5);
   color: white;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 #uploaded-photos-section {
@@ -44,6 +45,9 @@
   height: 65px;
   width: auto;
   margin: 5px 5px 0 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
 }
 #submit-review-section {
   display: flex;
@@ -53,6 +57,7 @@
 #submit-review-btn {
   border: 5px;
   border-radius: 7px;
+  margin-top: 5px;
   font-size: 15px;
   color: white;
   border: white 1px solid;

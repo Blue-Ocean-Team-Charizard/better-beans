@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 5px;
+  /* margin: 0 5px; */
 }
 /* #reviewer-photo {
   width: 25px;
@@ -39,14 +39,15 @@
   border-radius: 12px;
 } */
 #reviewer-first-name {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   font-size: 14px;
   font-weight: 300;
   letter-spacing: 2px;
+  margin: 0 5px;
 }
 #reviewer-date {
-  font-size: 12px;
-  margin-right: 5px;
+  font-size: 10px;
+  margin-right: 10px;
   letter-spacing: 1px;
 }
 
@@ -55,11 +56,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 5px 0;
-  margin: 0 5px;
+  /* padding: 5px 0; */
+  margin: 0 15px;
 }
 #review-body {
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 1px;
   font-weight: 400;
 }
@@ -68,11 +69,15 @@
 #review-photos {
   display: flex;
   flex-wrap: wrap;
+  margin: 5px 15px 10px;
 }
 #review-photo {
   height: 65px;
   width: auto;
-  margin: 5px 5px 0 0;
+  margin-right: 7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
 }
 
 /* review buttons */
@@ -86,12 +91,14 @@
   font-size: 20px;
   color: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 1px 1px 1.5px rgba(255, 255, 255, 0.25);
   background-color: transparent;
   border-radius: 7px;
 }
 #helpful-btn:hover {
   cursor: pointer;
   color: white;
+  box-shadow: 1px 1px 1.5px rgba(255, 255, 255, 0.25);
   border: 1px solid rgb(77, 116, 77);
 }
 #report-btn {
@@ -99,6 +106,7 @@
   font-size: 20px;
   color: rgba(255, 255, 255, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 1px 1px 1.5px rgba(255, 255, 255, 0.2);
   background-color: transparent;
   border-radius: 7px;
 }
