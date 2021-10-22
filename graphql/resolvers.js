@@ -69,7 +69,7 @@ export const resolvers = {
     },
     createVisited: async (_, { user_id, shop_id, shop_name, visited }, ctx) => {
       const bean = await ctx.prisma.visited.create({
-        data: { user_id, shop_id, shop_name, visited: false },
+        data: { user_id, shop_id, shop_name, visited },
       });
 
       return bean;

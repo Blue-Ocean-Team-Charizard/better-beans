@@ -69,23 +69,23 @@ export default function Shop({ id, shopData }) {
 
   const CREATE_VISIT = gql`
   mutation CreateVisit(
+    $visited: Boolean!
     $user_id: String!
     $shop_id: String!
     $shop_name: String!
-    $visited: Boolean!
   ) {
     createVisited(
+      visited: $visited
       user_id: $user_id
       shop_id: $shop_id
       shop_name: $shop_name
-      visited: $visited
     ) {
-      id
+      visited
     }
   }
 `;
 
-  const [createVisit, { data, loading, err }] = useMutation(CREATE_VISIT);
+  const [createVisited, { data, loading, err }] = useMutation(CREATE_VISIT);
 
   const handleVisited = (e) => {
     e.preventDefault();
@@ -97,15 +97,21 @@ export default function Shop({ id, shopData }) {
         //toggleVisited
       } else {
         // create the visit
+        if (e.target.value === "true" || e.target.value === "false") {
+          createVisited({
+            variables: {
+              visited: e.target.value === "true" ? true : false,
+              user_id: user.uid,
+              shop_id: shopId,
+              shop_name: shopInfo.name,
+            },
+          });
+        }
         console.log(e.target.value);
-        createVisit({
-          variables: {
-            user_id: user.uid,
-            shop_id: shopId,
-            shop_name: shopInfo.name,
-            visited: e.target.value,
-          }
-        });
+        console.log(user.uid, shopId, shopInfo.name);
+
+
+        if (err) return `Error! ${error.message}!`
       }
     } else {
       setShowLoginMsg(true);
