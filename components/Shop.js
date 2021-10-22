@@ -6,6 +6,7 @@ import CreateReview from './CreateReview';
 import BeanRating from './BeanRating';
 import { useAuth } from '../firebase/auth_context';
 import SocialMediaButtons from './SocialMediaButtons';
+import Link from 'next/link';
 
 const dummyReviews = [
   { rating: 5 }, { rating: 4 },
@@ -192,7 +193,9 @@ export default function Shop({ id, shopData }) {
         <br />
       </div>
       <div className="login-msg">
-        {showLoginMsg ? 'Please login first here' : null}
+        {showLoginMsg ? (<span>Please login first <Link href={"/login"}>
+          <a style={{ textDecoration: "underline" }} href={"/login"}>here</a>
+        </Link></span>) : null}
         {' '}
       </div>
 
@@ -213,8 +216,8 @@ export default function Shop({ id, shopData }) {
           Write a Review
         </button>
       </h1>
-      {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} /> : null}
+      {showCreateReview ? <CreateReview shopId={shopId} shopName={shopInfo.name} reviews={reviews ? reviews.reviewsByShop : []} /> : null}
       <ReviewList reviews={reviews ? reviews.reviewsByShop : []} notUser={true} />
-    </div>
+    </div >
   );
 }
