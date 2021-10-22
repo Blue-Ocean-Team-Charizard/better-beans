@@ -90,19 +90,51 @@ export default function Shop({ id, shopData }) {
   }
 `;
 
-  const [createVisited, { data, loading, err }] = useMutation(CREATE_VISIT);
+  const [createVisited, { data: createVisitData, loading: createVisitLoading, err: createVisitErr }] = useMutation(CREATE_VISIT);
+
+  const TOGGLE_VISIT = gql`
+  mutation ToggleVisitedMutation(
+    $toggleVisitedId: Int!
+    $visited: Boolean!
+    ) {
+    toggleVisited(
+      id: $toggleVisitedId
+      visited: $visited) {
+      id
+      visited
+    }
+  }
+`;
+
+  const [toggleVisited, { data: toggleData, loading: toggleLoading, err }] = useMutation(TOGGLE_VISIT);
 
   const handleVisited = (e) => {
     e.preventDefault();
     // console.log('set visited to:', e.target.value);
     // DB CALL TO THE VISITED OF USER
+    const flag = e.target.value;
     if (user) {
-      setVisited(e.target.value);
-      if (visits) {
+      setVisited(flag);
+      if (visits && visits.beansByUserAndShop.length > 0) {
         //toggleVisited
+        if (flag === "true") {
+          toggleVisited({
+            variables: {
+              toggleVisitedId: visits.beansByUserAndShop[0].id,
+              visited: true
+            }
+          })
+        } else if (flag === "false") {
+          toggleVisited({
+            variables: {
+              toggleVisitedId: visits.beansByUserAndShop[0].id,
+              visited: false
+            }
+          })
+        }
       } else {
         // create the visit
-        if (e.target.value === "true") {
+        if (flag === "true") {
           createVisited({
             variables: {
               visited: true,
@@ -112,7 +144,7 @@ export default function Shop({ id, shopData }) {
             },
           });
           console.log("WENT INTO TRUE")
-        } else if (e.target.value === "false") {
+        } else if (flag === "false") {
           createVisited({
             variables: {
               visited: false,
@@ -123,8 +155,8 @@ export default function Shop({ id, shopData }) {
           });
           console.log("WENT INTO FALSE")
         }
-        console.log(e.target.value);
-        console.log(user.uid, shopId, shopInfo.name);
+        // console.log(flag);
+        // console.log(user.uid, shopId, shopInfo.name);
 
 
         if (err) return `Error! ${error.message}!`
@@ -150,7 +182,9 @@ export default function Shop({ id, shopData }) {
           {' '}
         </div>
         <span>
-          <select value={visited} className="visited" onChange={(e) => handleVisited(e)}>
+          <select value={visits ?
+            visits.beansByUserAndShop.length > 0 ?
+              visits.beansByUserAndShop[0].visited : visited : visited} className="visited" onChange={(e) => handleVisited(e)}>
             <option value="no">Haven't Bean</option>
             <option value={`${false}`}>Want to Bean</option>
             <option value={`${true}`}>Already Bean</option>
