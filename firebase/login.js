@@ -9,7 +9,7 @@ import {
   signOut,
   deleteUser,
   FacebookAuthProvider,
-  GithubAuthProvider
+  GithubAuthProvider,
 } from 'firebase/auth';
 
 import app from './firebase';

@@ -3,7 +3,7 @@ import Link from 'next/link';
 const VisitBeanEntry = ({ shop }) => (
   <div className="card">
     <Link href={`shop/${shop.place_id}`}>
-      <a className="">
+      <a href={`shop/${shop.place_id}`}>
         <h3 className="name">{shop.name}</h3>
         <BeanRating rating={shop.rating} />
         {shop.opening_hours

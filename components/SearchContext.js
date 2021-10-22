@@ -1,9 +1,8 @@
 import { createContext, Component } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import mobileCheck from './mobileCheck.js'
+import mobileCheck from './mobileCheck';
 
 export const SearchContext = createContext();
-
 
 class SearchContextProvider extends Component {
   constructor(props) {
@@ -24,7 +23,13 @@ class SearchContextProvider extends Component {
     this.updateList = this.updateList.bind(this);
     this.updateCoords = this.updateCoords.bind(this);
     this.selectShop = this.selectShop.bind(this);
+  }
 
+  componentDidMount() {
+    this.loader.load().then((google) => {
+      this.setState({ google: google });
+    });
+    this.setState({ isMobile: mobileCheck() });
   }
 
   updateList(list) {
@@ -37,13 +42,6 @@ class SearchContextProvider extends Component {
 
   selectShop(shop) {
     this.setState({ selectedShop: shop });
-  }
-
-  componentDidMount() {
-    this.loader.load().then((google) => {
-      this.setState({google: google})
-    });
-    this.setState({isMobile: mobileCheck()});
   }
 
   render() {

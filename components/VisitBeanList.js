@@ -1,8 +1,6 @@
-import React from 'react';
 import VisitBeanEntry from './VisitBeanEntry';
 
 export default function VisitBeanList({ title, shopList }) {
-
   return (
     <div>
       <h1>{title}</h1>
