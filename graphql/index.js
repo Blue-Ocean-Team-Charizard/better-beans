@@ -61,19 +61,32 @@ export const typeDefs = gql`
       shop_id: String,
       user_id: String,
     ): Review!
+
     createPhoto(
       review_id: Int!
       url: String!
     ): Photo!
+
     createVisited(
       user_id: String
       shop_id: String
       shop_name: String
       visited: Boolean!
     ): Visited!
+
     toggleVisited(
       id: Int!
     ): Visited!
+
+    incrementHelpful(
+      id: Int!
+      helpful: Int!
+    ): Review!
+
+    incrementReported(
+      id: Int!
+      reported: Int!
+    ): Review!
   }
 `;
 

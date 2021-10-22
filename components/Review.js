@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 import { TiThumbsUp } from 'react-icons/ti';
 import { MdReportGmailerrorred } from 'react-icons/md';
 import ReviewBeanRating from './ReviewBeanRating';
@@ -7,15 +7,38 @@ import ReviewBeanRating from './ReviewBeanRating';
 
 
 export default function Review(props) {
-  const {review} = props;
+  const { review } = props;
+  // const { id } = review;
   console.log('reviews for shop', review.id);
+
+  const UPDATE_HELPFUL = gql`
+    mutation IncrementHelpful(
+      $id: Int!
+      $helpful: Int!
+    ){
+      incrementHelpful(
+        id: $id
+        helpful: $helpful
+      ) {
+        id
+      }
+    }
+  `;
 
   const [helpful, setHelpful] = useState(0);
   const [report, setReport] = useState(0);
 
+  const [incrementHelpful, { helpfulData }] = useMutation(UPDATE_HELPFUL);
+
   // const review = data.map((review, index)=> {});
   const handleHelpfulButton = () => {
     setHelpful(helpful + 1);
+    incrementHelpful({
+      variables: {
+        id: review.id,
+        helpful: review.helpful + 1
+      },
+    });
   };
   const handleReportButton = () => {
     setReport(report + 1);
@@ -31,14 +54,14 @@ export default function Review(props) {
   }
 `;
 
-const { data, loading, err } = useQuery(GET_PHOTOS, {
-  variables: { review_id: review.id },
-});
+  const { data, loading, err } = useQuery(GET_PHOTOS, {
+    variables: { review_id: review.id },
+  });
 
-if (loading) return 'Loading...';
-if (err) return `Error! ${err.message}!`;
+  if (loading) return 'Loading...';
+  if (err) return `Error! ${err.message}!`;
 
-console.log('photo data ', data.photosByReview);
+  console.log('photo data ', data.photosByReview);
   return (
     <div id="review">
       <div id="review-user-info">
@@ -50,7 +73,7 @@ console.log('photo data ', data.photosByReview);
       </div>
 
       <div id="review-center">
-        <ReviewBeanRating rating={review.rating}/>
+        <ReviewBeanRating rating={review.rating} />
         <div id="review-body">{review.body}</div>
       </div>
 
