@@ -41,7 +41,7 @@ export default function Header(props) {
                 checked={checkbox}
                 onChange={handleOnClick}
               />
-              <label for="toggle" className="toggle--label">
+              <label htmlFor="toggle" className="toggle--label">
                 <span className="toggle--label-background" />
               </label>
             </div>

@@ -13,6 +13,7 @@ export default class Search extends React.Component {
     this.geoSuccess = this.geoSuccess.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.initAutocomplete = this.initAutocomplete.bind(this);
   }
 
@@ -45,6 +46,13 @@ export default class Search extends React.Component {
         updateCoords(data.coords);
       })
       .catch((err) => console.log(err));
+  }
+
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      // console.log(`you clicked enter and searched for ${this.state.location}`);
+      this.handleSubmit(e);
+    }
   }
 
   geoSuccess(pos) {
@@ -98,8 +106,11 @@ export default class Search extends React.Component {
           placeholder="Search for a location"
           aria-label="Search location"
           onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
         />
-        <button className="btn btn-outline-secondary" type="button" onClick={this.handleSubmit}>GO</button>
+        <button className="btn btn-outline-secondary" type="button" onClick={this.handleSubmit}>
+          GO
+        </button>
         <Link href="/search">
           <button className="btn btn-outline-secondary btn-near-me" type="button" onClick={this.searchCurrentLocation}>Near Me</button>
         </Link>
