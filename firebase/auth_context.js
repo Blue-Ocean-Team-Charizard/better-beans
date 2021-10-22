@@ -9,6 +9,7 @@ const authUserContext = createContext({
   logOff: async () => {},
   deleteAccount: async () => {},
   signInWithFacebook: async () => {},
+  signInWithGithub: async () => {},
 });
 
 export function AuthUserProvider({ children }) {
