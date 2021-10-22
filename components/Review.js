@@ -8,12 +8,14 @@ import ReviewBeanRating from './ReviewBeanRating';
 
 export default function Review(props) {
   const {review} = props;
-  console.log('reviews for shop', review.id);
 
   const [helpful, setHelpful] = useState(0);
   const [report, setReport] = useState(0);
+  const name = review.name.split(' ')[0];
+  const date = new Date(parseInt(review.date)).toString().split(' ');
+  const formattedDate = `${date[1]} ${date[2]} ${date[3]}`
 
-  // const review = data.map((review, index)=> {});
+
   const handleHelpfulButton = () => {
     setHelpful(helpful + 1);
   };
@@ -42,10 +44,9 @@ console.log('photo data ', data.photosByReview);
   return (
     <div id="review">
       <div id="review-user-info">
-        <img src="" id="reviewer-photo" alt="reviewer" />
         <div id="review-user-info-inner">
-          <div id="reviewer-first-name">{review.name}</div>
-          <div id="reviewer-date">{review.date}</div>
+          <div id="reviewer-first-name">{name}</div>
+          <div id="reviewer-date">{formattedDate}</div>
         </div>
       </div>
 
@@ -55,7 +56,7 @@ console.log('photo data ', data.photosByReview);
       </div>
 
       <div id="review-photos">
-        {data.photosByReview.map((photo) => <img src={photo.url} />)}
+        {data.photosByReview.map((photo) => <img id="review-photo" src={photo.url} />)}
       </div>
 
       <div id="review-buttons">
