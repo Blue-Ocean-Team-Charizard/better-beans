@@ -9,11 +9,11 @@ export default function LoginPage() {
   const { signInWithFirebase, signInWithFacebook, signInWithGithub } = useAuth();
   return (
     <>
-      <Meta />
+      <Meta title={"Log in to BetterBeans"} />
       <LoginPageID />
       <div className="login-btn-container">
         <div id="login">
-          <p>Sign up today to save your better <br /> and best beans</p>
+          <p>Sign up or log in today to save your better <br /> and best beans</p>
           <GoogleSignIn />
           <FacebookSignIn />
           <GithubSignIn />

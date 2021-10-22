@@ -6,7 +6,7 @@ import { SearchContext } from '../../../components/SearchContext';
 export default function Shops({ id, shopData }) {
   return (
     <div>
-      <Meta />
+      <Meta title={`${shopData.name} on BetterBeans`} />
       {/* <SearchContext.Consumer>
         {(context) => ( */}
       <Shop googleData={{}} id={id} shopData={shopData} />
