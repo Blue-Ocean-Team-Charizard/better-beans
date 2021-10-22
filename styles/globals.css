@@ -70,6 +70,7 @@ a:link, a:visited{
   padding: 0px 0px 0px 0px;
   min-height: calc(100vh - 60px);
   padding-bottom: 50px;
+  max-width: 100%;
 }
 
 main {
@@ -227,7 +228,7 @@ video {
   position: relative;
   display: block;
   background-color: #440C04;
-  border: 0px solid rgba(0,0,0,.125);
+  border: 1px solid #440C04;
   border-radius: 10px;
   margin-bottom: 25px;
   padding: 20px 20px 15px 20px;
@@ -488,4 +489,3 @@ footer {
 .selected {
   filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(140%) contrast(87%);
 }
-
