@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { SearchContext } from './SearchContext';
 import BeanRating from './BeanRating';
+import { panToMarker } from './map/Map';
 
 const ShopEntry = ({ shop }) => (
   // console.log(shop);
   <SearchContext.Consumer>
     {(context) => (
-      <div className="card" onClick={() => context.selectShop(shop)}>
+      <div className="card" onClick={() => context.selectShop(shop)} onMouseOver={()=> panToMarker(shop)}>
         <Link href={`shop/${shop.place_id}`}>
           <a className="">
             <h3 className="name">{shop.name}</h3>
