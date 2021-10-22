@@ -22,18 +22,33 @@ export default function Review(props) {
     }
   `;
 
+  const UPDATE_REPORTED = gql`
+    mutation IncrementReported(
+      $id: Int!
+      $reported: Int!
+    ) {
+      incrementReported(
+        id: $id
+        reported: $reported
+      ) {
+        id
+      }
+    }
+  `;
+
   const [helpful, setHelpful] = useState(review.helpful);
   const [report, setReport] = useState(0);
   const name = review.name.split(' ')[0];
   const date = new Date(parseInt(review.date)).toString().split(' ');
-  const formattedDate = `${date[1]} ${date[2]} ${date[3]}`
-
+  const formattedDate = `${date[1]} ${date[2]} ${date[3]}`;
 
   const [incrementHelpful, { helpfulData }] = useMutation(UPDATE_HELPFUL, {
-    variables: { id: review.id, helpful: helpful},
+    variables: { id: review.id, helpful: helpful },
   });
 
-  // const []
+  const [incrementReported, { reportedData }] = useMutation(UPDATE_REPORTED, {
+    variables: { id: review.id, reported: report },
+  });
 
   // TODO: incrementReported
 
@@ -48,7 +63,13 @@ export default function Review(props) {
       });
   };
   const handleReportButton = () => {
-    setReport(report + 1);
+    incrementReported()
+      .then(() => {
+        setReport(report + 1);
+      })
+      .catch((error) => {
+        console.error('Error incrementing', error);
+      });
   };
 
   const GET_PHOTOS = gql`
@@ -68,12 +89,12 @@ export default function Review(props) {
   if (loading) return 'Loading...';
   if (err) return `Error! ${err.message}!`;
 
-  console.log('photo data ', data.photosByReview);
+  // console.log('photo data ', data.photosByReview);
   return (
     <div id="review">
       <div id="review-user-info">
         {props.notUser
-          ? (<img src={review.avatar} style={{borderRadius: "50%"}} id="reviewer-photo" alt="reviewer" />)
+          ? (<img src={review.avatar} style={{ borderRadius: '50%' }} id="reviewer-photo" alt="reviewer" />)
           : ''}
         <div id="review-user-info-inner">
           <div id="reviewer-first-name">
@@ -89,7 +110,7 @@ export default function Review(props) {
       </div>
 
       <div id="review-photos">
-        {data.photosByReview.map((photo) => <img id="review-photo" src={photo.url} />)}
+        {data.photosByReview.map((photo) => <img id="review-photo" src={photo.url} alt="review" />)}
       </div>
 
       <div id="review-buttons">
@@ -98,7 +119,8 @@ export default function Review(props) {
           id="helpful-btn"
           onClick={() => handleHelpfulButton()}
         >
-          <TiThumbsUp /> {helpful}
+          <TiThumbsUp />
+          {helpful}
         </button>
         <button
           type="button"

@@ -3,6 +3,7 @@ import { gql, useMutation } from '@apollo/client';
 import axios from 'axios';
 import BeanSelected from './BeanSelected';
 import { useAuth } from '../firebase/auth_context';
+import { useRouter } from 'next/router';
 
 export default function CreateReview(props) {
   const Bean = '/bean-small.svg';
@@ -15,6 +16,8 @@ export default function CreateReview(props) {
   const selectRating = (value) => {
     setRatings(value);
   };
+
+  const router = useRouter();
 
   const CREATE_REVIEW = gql`
     mutation CreateReview(
@@ -76,7 +79,7 @@ export default function CreateReview(props) {
             },
           });
         });
-    }
+    };
   };
 
   // TODO: Mark visited === true
@@ -98,8 +101,6 @@ export default function CreateReview(props) {
       })
       .then(() => {
         setPhotos([]);
-        setFiles([]);
-        console.log('review data ', data);
       })
       .catch((error) => console.log('Error creating review', error));
   };
@@ -118,7 +119,7 @@ export default function CreateReview(props) {
 
   const renderImg = (source) => {
     return source.map(image => {
-      return <img src={image} id="uploaded-photo" key={image}/>;
+      return <img src={image} id="uploaded-photo" key={image} />;
     });
   };
 
@@ -126,8 +127,8 @@ export default function CreateReview(props) {
     <div id="create-review">
       <form onSubmit={(e) => {
         handleSubmit(e);
-        // props.reviews.unshift();
-        }}>
+        setTimeout(() => router.reload(`/shop/${props.shopId}`), 2000);
+      }}>
         <div id="select-your-rating">Select your rating.</div>
         <div id="select-beans">
           <div>
