@@ -115,7 +115,7 @@ export default function Shop({ id, shopData }) {
     const flag = e.target.value;
     if (user) {
       setVisited(flag);
-      if (visits) {
+      if (visits && visits.beansByUserAndShop.length > 0) {
         //toggleVisited
         if (flag === "true") {
           toggleVisited({
