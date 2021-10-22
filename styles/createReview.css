@@ -6,6 +6,7 @@
   padding: 15px;
   letter-spacing: 1px;
   font-weight: 400;
+  transition: 0.5s ease-out;
 }
 
 #create-review  form {
