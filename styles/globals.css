@@ -510,3 +510,7 @@ select.visited {
   text-align: right;
   margin-bottom: 0px !important;
 }
+
+.po-soc-med-btns a {
+  margin-left: 5px;
+}
