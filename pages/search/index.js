@@ -37,24 +37,24 @@ export default function SearchResults() {
                 </div>
               </div>
             </>
-          :
-          <>
-          <Meta />
-          <h1 className="title">Shops near me</h1>
-          <div className="desktop-search">
-            <div className="desktop-map">
-              <Map
-                shopList={context.shopList}
-                coords={context.currentCoords}
-                selectShop={context.selectShop}
-                google={context.google}
-              />
-            </div>
-            <div className="desktop-list">
-              <ShopList shopList={context.shopList} />
-            </div>
-          </div>
-        </>
+            :
+            <>
+              <Meta />
+              <h1 className="title">Shops near me</h1>
+              <div className="desktop-search">
+                <div className="desktop-map">
+                  <Map
+                    shopList={context.shopList}
+                    coords={context.currentCoords}
+                    selectShop={context.selectShop}
+                    google={context.google}
+                  />
+                </div>
+                <div className="desktop-list">
+                  <ShopList shopList={context.shopList} />
+                </div>
+              </div>
+            </>
         )}
       </SearchContext.Consumer>
     </div>

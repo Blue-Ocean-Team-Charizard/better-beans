@@ -7,11 +7,11 @@ export default function Shops({ id, shopData }) {
   return (
     <div>
       <Meta />
-      <SearchContext.Consumer>
-        {(context) => (
-          <Shop googleData={context.selectedShop} id={id} shopData={shopData} />
-        )}
-      </SearchContext.Consumer>
+      {/* <SearchContext.Consumer>
+        {(context) => ( */}
+      <Shop googleData={{}} id={id} shopData={shopData} />
+      {/* )}
+      </SearchContext.Consumer> */}
     </div>
   );
 }
