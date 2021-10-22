@@ -1,15 +1,19 @@
 
 
 export default function SocialMediaButtons({ name }) {
+  const message = `Check out ${name}, a coffee shop I discovered on Better Beans App! You can start discovering local coffee shops today too!`;
+  const uri = "https%3A%2F%2Fbetter-beans.vercel.app%2F";
+
   return (
     <div className='po-soc-med-btns'>
       <a
-        href='https://www.facebook.com/dialog/share?app_id=184484190795&href=http%3A%2F%2F18.144.33.249%2F&quote=Check%20out%20these%20flaming%20hot%20styles%20at%20Fire%20Nation%20Fashion!'
+        href={`https://www.facebook.com/dialog/share?app_id=900416050597770&href=${uri}&quote=${message}`}
         target='_blank'>
         <i className='fab fa-facebook fa-2x soc-btn'></i>
       </a>
       <a
         href='https://twitter.com/intent/tweet?hashtags=FireNationFashion&original_referer=http%3A%2F%2F18.144.33.249%2F&text=Check%20out%20these%20flaming%20hot%20styles!&url=http%3A%2F%2F18.144.33.249%2F'
+        // href={`https://twitter.com/intent/tweet?hashtags=#BetterBeansApp&original_referer=${uri}&text=${message}&url=${uri}`}
         target='_blank' >
         <i className='fab fa-twitter fa-2x soc-btn'></i>
       </a>
