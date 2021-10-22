@@ -1,5 +1,6 @@
 import { createContext, Component } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
+import mobileCheck from './mobileCheck.js'
 
 export const SearchContext = createContext();
 
@@ -13,6 +14,7 @@ class SearchContextProvider extends Component {
       currentCoords: { lat: 55.755826, lng: 37.6172999 },
       selectedShop: {},
       google: undefined,
+      isMobile: false,
     };
     this.loader = new Loader({
       apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
@@ -41,6 +43,7 @@ class SearchContextProvider extends Component {
     this.loader.load().then((google) => {
       this.setState({google: google})
     });
+    this.setState({isMobile: mobileCheck()});
   }
 
   render() {

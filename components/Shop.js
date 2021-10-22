@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 import { useState } from 'react';
 import ReviewList from './ReviewList';
 import CreateReview from './CreateReview';
@@ -64,17 +64,53 @@ export default function Shop({ id, shopData }) {
   // if (error) return `Error! ${error.message}!`;
 
 
+
+  console.log("REVIEWS", reviews, "VISITS", visits);
+
+  const CREATE_VISIT = gql`
+  mutation CreateVisit(
+    $user_id: String!
+    $shop_id: String!
+    $shop_name: String!
+    $visited: Boolean!
+  ) {
+    createVisited(
+      user_id: $user_id
+      shop_id: $shop_id
+      shop_name: $shop_name
+      visited: $visited
+    ) {
+      id
+    }
+  }
+`;
+
+  const [createVisit, { data, loading, err }] = useMutation(CREATE_VISIT);
+
   const handleVisited = (e) => {
     e.preventDefault();
     // console.log('set visited to:', e.target.value);
+    // DB CALL TO THE VISITED OF USER
     if (user) {
       setVisited(e.target.value);
-      // DB CALL TO THE VISITED OF USER
+      if (visits) {
+        //toggleVisited
+      } else {
+        // create the visit
+        console.log(e.target.value);
+        createVisit({
+          variables: {
+            user_id: user.uid,
+            shop_id: shopId,
+            shop_name: shopInfo.name,
+            visited: e.target.value,
+          }
+        });
+      }
     } else {
       setShowLoginMsg(true);
     }
   };
-  console.log("DATA", reviews);
 
   return (
     <div>

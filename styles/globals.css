@@ -70,6 +70,7 @@ a:link, a:visited{
   padding: 0px 0px 0px 0px;
   min-height: calc(100vh - 60px);
   padding-bottom: 50px;
+  max-width: 100%;
 }
 
 main {
@@ -203,7 +204,7 @@ video {
   border: none;
 }
 
-.nav-tabs .nav-link:hover, .btn-google:hover {
+.nav-tabs .nav-link:hover {
   background-color: rgba(102, 16, 5, 0.8);
 }
 
@@ -227,7 +228,7 @@ video {
   position: relative;
   display: block;
   background-color: #440C04;
-  border: 0px solid rgba(0,0,0,.125);
+  border: 1px solid #440C04;
   border-radius: 10px;
   margin-bottom: 25px;
   padding: 20px 20px 15px 20px;
@@ -305,16 +306,42 @@ h3, .name {
 }
 
 .btn-google,
-.facebook-btn {
-  background-color: #B61C07;
-  color: #fff;
+.btn-facebook,
+.btn-github {
   border: none;
   width: 100%;
   border-radius: 10px !important;
   padding: 5px 0px;
-  margin:40px auto;
+  margin: 40px auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
   transition: transparent .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
   max-width: 300px;
+}
+
+.btn-google {
+  margin-top: 30px;
+  background-color: white;
+}
+
+.btn-facebook {
+  background-color: rgb(86, 117, 190);
+}
+
+.btn-github {
+  background-color: rgb(88, 83, 83);
+}
+
+.btn-google:hover {
+  background-color: rgb(224, 222, 222);
+}
+
+.btn-facebook:hover {
+  background-color: rgb(54, 89, 170);
+}
+
+.btn-github:hover {
+  background-color: rgb(49, 48, 48);
 }
 
 /*** For Shop ***/
@@ -323,14 +350,14 @@ h3, .name {
 }
 
 /*** For Login ***/
-.google-btn-container {
-  /* width: 75%;
+/* .google-btn-container {
+  width: 75%;
   background-color: white;
   border-radius: 9px;
   border-color: rgb(211, 208, 208);
-  border-style: solid; */
-  box-shadow: 1px 1px 5px 1px #835757;
-}
+  border-style: solid;
+  box-shadow: 1px 1px 5px 1px #eb0808;
+} */
 
 /* .google-btn-container:hover {
   box-shadow: 1px 1px 10px 3px #e3e0e0;
@@ -341,20 +368,35 @@ h3, .name {
 
 } */
 
-.google-logo {
+.google-logo,
+.facebook-logo,
+.github-logo {
   margin-right: 0%;
-  margin-top: 4%;
+  margin-top: 3%;
   margin-bottom: 4%;
 }
 
-.google-signin {
+.google-signin,
+.facebook-signin,
+.github-signin {
   display: inline;
-  color: rgb(255, 255, 255);
   font-size: 15px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   margin: 0 5% 0 10%;
   font-weight: 700;
+}
+
+.google-signin {
+  color: rgb(24, 75, 218);
+}
+
+.facebook-signin {
+  color: rgb(255, 255, 255)
+}
+
+.github-signin {
+  color: white
 }
 
 .profile-photo {
@@ -447,4 +489,3 @@ footer {
 .selected {
   filter: invert(22%) sepia(39%) saturate(718%) hue-rotate(331deg) brightness(140%) contrast(87%);
 }
-

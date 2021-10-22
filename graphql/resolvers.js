@@ -38,7 +38,7 @@ export const resolvers = {
       const beans = await ctx.prisma.visited.findMany({
         where: { user_id, shop_id },
       });
-      return beans;
+      return beans
     },
   },
 

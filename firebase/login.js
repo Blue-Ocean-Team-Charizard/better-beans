@@ -9,6 +9,7 @@ import {
   signOut,
   deleteUser,
   FacebookAuthProvider,
+  GithubAuthProvider
 } from 'firebase/auth';
 
 import app from './firebase';
@@ -45,6 +46,16 @@ export default function Login() {
     }
   };
 
+  const signInWithGithub = async () => {
+    try {
+      await signInWithPopup(auth, new GithubAuthProvider());
+    } catch (err) {
+      console.error(err);
+    } finally {
+      router.push('/');
+    }
+  };
+
   const logOff = async () => {
     signOut(auth).then(clear);
   };
@@ -74,7 +85,7 @@ export default function Login() {
       const userObj = {
         uid: user.uid,
         email: user.email,
-        name: user.displayName,
+        name: user.providerData[0].displayName || user.reloadUserInfo.screenName,
         photo: user.photoURL,
       };
       setLoading(true);
@@ -91,5 +102,6 @@ export default function Login() {
     logOff,
     deleteAccount,
     signInWithFacebook,
+    signInWithGithub,
   };
 }

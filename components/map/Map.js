@@ -3,6 +3,7 @@ import router from 'next/router';
 
 let map;
 let infoWindow;
+let selectShopDesktop;
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +50,7 @@ class Map extends Component {
 
   addMarkers() {
     const { selectShop, shopList, google } = this.props;
+    selectShopDesktop = selectShop;
       shopList.forEach((shop) => {
         const info = `
         <div id='info-${shop.place_id}' class="info-window">
@@ -101,4 +103,38 @@ class Map extends Component {
   }
 }
 
+const panToMarker = (shop) => {
+  map.panTo(shop.geometry.location);
+  const info = `
+  <div id='info-${shop.place_id}' class="info-window">
+  <h3 class='iw-name'>${shop.name}</h3>
+  ${shop.opening_hours ? shop.opening_hours.open_now ?
+    '<div class="iw-open">Open <span class="dot"/></div>' :
+    '<div class="iw-closed">Closed <span class="dot"/></div>'
+      : ''}
+  <div class='iw-vicinity'>${shop.vicinity}</div>
+  </div>`;
+  if(infoWindow) {
+    infoWindow.close();
+  }
+  infoWindow = new google.maps.InfoWindow({
+    content: info,
+    position: shop.geometry.location,
+    pixelOffset: new google.maps.Size(0, -55),
+  });
+  infoWindow.open({
+    map,
+    content: info,
+    shouldFocus: false,
+  });
+  google.maps.event.addListener(infoWindow, 'domready', () => {
+    document.getElementById(`info-${shop.place_id}`).addEventListener('click', () => {
+      selectShopDesktop(shop);
+      router.push(`/shop/${shop.place_id}`);
+    });
+  });
+
+}
+
 export default Map;
+export { panToMarker };
