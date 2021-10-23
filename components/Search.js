@@ -39,7 +39,7 @@ export default class Search extends React.Component {
     e.preventDefault();
     router.push('/search');
 
-    fetch(`/api/textsearch?query=${location}`)
+    fetch(`/api/textsearch?query=${document.getElementById('search').value}`)
       .then((res) => res.json())
       .then((data) => {
         updateList(data.places);
