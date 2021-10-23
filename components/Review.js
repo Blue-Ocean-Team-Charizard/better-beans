@@ -86,7 +86,7 @@ export default function Review(props) {
     variables: { review_id: review.id },
   });
 
-  if (loading) return 'Loading...';
+  if (loading) return null;
   if (err) return `Error! ${err.message}!`;
 
   // console.log('photo data ', data.photosByReview);
