@@ -36,6 +36,22 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+## Firebase Authentication set-up
+You will need a firebase account to get started. 
+Create a project, and an application for the project.
+
+Once you have your keys, add them to a global .env file. You will need these to initialize firebase.
+In Next.js, the convention for naming environment variables is that they have to start with NEXT_PUBLIC.
+```
+NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY=<YOUR_API_KEY>
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<YOUR_DOMAIN>
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=<YOUR_PROJECT_ID>
+```
+
+The app is currently set up to use Google/Facebook/Github authentication. You will need to activate those sign-in methods on firebase or remove the sign-in components you do not wish to use from pages/login/index.js.
+
+
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
