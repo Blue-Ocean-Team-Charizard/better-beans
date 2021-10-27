@@ -98,7 +98,7 @@ export default function Review(props) {
           : ''}
         <div id="review-user-info-inner">
           <div id="reviewer-first-name">
-            {props.notUser ? review.name : review.shop_name}
+            {props.notUser ? name : review.shop_name}
           </div>
           <div id="reviewer-date">{formattedDate}</div>
         </div>
