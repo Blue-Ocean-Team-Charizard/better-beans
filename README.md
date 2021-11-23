@@ -42,9 +42,9 @@ Better Beans is a Yelp/GoodReads fusion for coffee aficionados to find local cof
 ### Backend Architecture and Database
 
 - Developed by [Andy Fang](https://github.com/fang-andy), [Jan Deocampo](https://github.com/Darumin), [Stormi Hashimoto](https://github.com/stormikph), and [Qinyu Zhu](https://github.com/zhuzhuxia078)
--
+- Postgres databased with GraphQL integration for standardized queries.
 
-### UI Ownwer
+### UI Owner
 - Developed by [Van Nguyen](https://github.com/vannguyen-vn)
 - Created the initial visual design proposals for the client and responsible for the app design, colors, and light mode.
 
