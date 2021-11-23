@@ -1,10 +1,10 @@
 # Better Beans
 
-Welcome to our app.
+Better Beans is a Yelp/GoodReads fusion for coffee aficionados to find local coffee shops, with popular chain branches filtered out. The app generates a shop page these coffee shops based on Google Places data with integrated mapping. Users can leave reviews and build a list of shops they've "bean" too and want to visit.
 
 ---
 
-### Technologies
+## Technologies
 
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
@@ -16,9 +16,39 @@ Welcome to our app.
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## App Components
 
-## Getting Started
+### Log In and Sign Up
+
+- Developed by [Jesus Gonzalez](https://github.com/JGon26) and [Jan Deocampo](https://github.com/Darumin)
+- Users can log in with their Google, Facebook, or GitHub accounts.
+
+### Map and Search
+
+- Developed by [Ya Liu](https://github.com/ya-liu) and [Daniel Prejs](https://github.com/dprejs)
+- Google Places and Map integrated search function for local coffee shops that uses Regex to filter out chain locations. Results show in list and map form on desktop while mobile users have the option to toggle.
+
+### Shop and Reviews
+
+- Developed by [Izzy Lee](https://github.com/isabell-lee), [Stormi Hashimoto](https://github.com/stormikph), and [Qinyu Zhu](https://github.com/zhuzhuxia078)
+- Each shop is dynamically generated based on Google Places data and any existing review/visit data. Logged in users can leave reviews and ratings on shops they've been to, as well as add shops to their list of shops they've "bean" to or want to visit.
+
+### Profile
+
+- Developed by [Izzy Lee](https://github.com/isabell-lee) and [Jesus Gonzalez](https://github.com/JGon26)
+- Users can see the reviews they've left, see what shops they've "bean" to, and which ones they want to visit next.
+
+
+### Backend Architecture and Database
+
+- Developed by [Andy Fang](https://github.com/fang-andy), [Jan Deocampo](https://github.com/Darumin), [Stormi Hashimoto](https://github.com/stormikph), and [Qinyu Zhu](https://github.com/zhuzhuxia078)
+-
+
+### UI Ownwer
+- Developed by [Van Nguyen](https://github.com/vannguyen-vn)
+- Created the initial visual design proposals for the client and responsible for the app design, colors, and light mode.
+
+<!-- ## Getting Started
 
 First, run the development server:
 
@@ -37,7 +67,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Firebase Authentication set-up
-You will need a firebase account to get started. 
+You will need a firebase account to get started.
 Create a project, and an application for the project.
 
 Once you have your keys, add them to a global .env file. You will need these to initialize firebase.
@@ -65,4 +95,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details. -->
