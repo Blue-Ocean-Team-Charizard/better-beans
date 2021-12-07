@@ -1,6 +1,28 @@
 # Better Beans
 
-Welcome to our app.
+A web app for finding, rating, and traking local coffee shops.
+
+---
+
+## Contributers
+
+Daniel Prejs [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/daniel-prejs-7842611a9/)](https://www.linkedin.com/in/daniel-prejs-7842611a9/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/dprejs)](https://github.com/dprejs)
+
+Izzy Lee [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/isabell-lee)](https://www.linkedin.com/in/isabell-lee) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/isabell-lee)](https://github.com/isabell-lee)
+
+Ya Liu [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/ya-liu1)](https://www.linkedin.com/in/ya-liu1) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/ya-liu)](https://github.com/ya-liu)
+
+Jan Deocampo [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/jandeo)](https://www.linkedin.com/in/jandeo) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Darumin)](https://github.com/Darumin)
+
+Andy Fang [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/andy-fang)](https://www.linkedin.com/in/andy-fang) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/fang-andy)](https://github.com/fang-andy)
+
+Stormi Hashimoto [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/stormikph)](https://www.linkedin.com/in/stormikph) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/stormikph)](https://github.com/stormikph)
+
+Jesus Gonzales [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/gonzales-jesus)](https://www.linkedin.com/in/gonzales-jesus) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/JGon26)](https://github.com/JGon26)
+
+Qinyu Zhu [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/qinyu-867152181/)](https://www.linkedin.com/in/qinyu-867152181/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/zhuzhuxia078)](https://github.com/zhuzhuxia078)
+
+Van Nguyen [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/vannguyen-home/)](https://www.linkedin.com/in/vannguyen-home/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/vannguyen-vn)](https://github.com/vannguyen-vn)
 
 ---
 
@@ -37,6 +59,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Firebase Authentication set-up
+
 You will need a firebase account to get started. 
 Create a project, and an application for the project.
 
@@ -50,7 +73,16 @@ NEXT_PUBLIC_FIREBASE_PROJECT_ID=<YOUR_PROJECT_ID>
 
 The app is currently set up to use Google/Facebook/Github authentication. You will need to activate those sign-in methods on firebase or remove the sign-in components you do not wish to use from pages/login/index.js.
 
+## Google Maps API set-up 
 
+- You will need a google maps API key to get started.
+- You can create a key here: https://console.cloud.google.com/google/maps-apis/start
+- Click on the credentials tab on the left side of the page
+- Click on the Create Credentials button at the top of the page and follow the instructions
+- After you have your key you need to add it to the .env file
+```
+NEXT_PUBLIC_GOOGLE_API_KEY=<YOUR_API_KEY>
+```
 
 ## Learn More
 
