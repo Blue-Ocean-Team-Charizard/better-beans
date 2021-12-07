@@ -5,6 +5,7 @@ import { useAuth } from '../../firebase/auth_context';
 import Meta from '../../components/Meta';
 import ReviewList from '../../components/ReviewList';
 import VisitBeanList from '../../components/VisitBeanList';
+import Link from 'next/link';
 
 export default function Profile() {
   const { authUser, loading, logOff, deleteAccount } = useAuth();
@@ -105,6 +106,26 @@ export default function Profile() {
 
       <button type="button" className="btn" onClick={logOff}>Sign Out</button>
       <button type="button" className="btn delete-btn" onClick={deleteAccount}>Delete Account</button>
+      <button
+        style={
+          {
+            backgroundColor: "#0f0f2f",
+            cursor: "pointer",
+            position: "absolute",
+            width: "5rem",
+            left: "36%",
+            bottom: "1.1%",
+            borderRadius: ".8rem",
+            border: "none",
+            fontSize: ".5rem",
+            fontFamily: "Bitter",
+          }
+        }
+      >
+        <Link href="easteregg">
+          the very best
+        </Link>
+      </button>
     </div>
   );
 }

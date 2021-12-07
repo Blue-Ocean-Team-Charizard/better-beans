@@ -86,7 +86,7 @@ export default function Review(props) {
     variables: { review_id: review.id },
   });
 
-  if (loading) return 'Loading...';
+  if (loading) return null;
   if (err) return `Error! ${err.message}!`;
 
   // console.log('photo data ', data.photosByReview);
@@ -98,7 +98,7 @@ export default function Review(props) {
           : ''}
         <div id="review-user-info-inner">
           <div id="reviewer-first-name">
-            {props.notUser ? review.name : review.shop_name}
+            {props.notUser ? name : review.shop_name}
           </div>
           <div id="reviewer-date">{formattedDate}</div>
         </div>
