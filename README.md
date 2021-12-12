@@ -1,6 +1,6 @@
 # Better Beans
 
-Better Beans is a web app fusion for coffee aficionados to find local coffee shops, with popular chain branches filtered out. The app generates a shop page these coffee shops based on Google Places data with integrated mapping. Users can leave reviews and track the shops they've "bean" to.
+Better Beans is a web app fusion for coffee aficionados to find local coffee shops, with popular chain branches filtered out. The app generates a shop page for each coffee shop based on Google Places data with integrated mapping. Users can leave reviews and track the shops they've "bean" to.
 
 
 ---
@@ -73,8 +73,47 @@ Qinyu Zhu [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5
 
 Van Nguyen [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/vannguyen-home/)](https://www.linkedin.com/in/vannguyen-home/) [![GitHub: GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/vannguyen-vn)](https://github.com/vannguyen-vn)
 
+## Installation
 
-## Getting Started
+npm is the package management system for this project.
+
+1. Install dependencies
+
+   ```sh
+   npm install
+   ```
+
+2. Create a `.env` file in the root directory
+
+   ```js
+   # Set to production when deploying to production
+   NODE_ENV=development
+
+   # Database URL
+   DATABASE_URL=<YOUR_DATABASE_URL>
+   
+   # Apollo Graphql client server URI
+   APOLLO_URI=<YOUR_APOLLO_URI>
+
+   # Firebase Variables
+   NEXT_PUBLIC_FIREBASE_API_KEY=<YOUR_API_KEY>
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<YOUR_DOMAIN>
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=<YOUR_PROJECT_ID>
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=<YOUR_STORAGE_BUCKET>
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=<YOUR_MESSAGING_SENDER_ID>
+   NEXT_PUBLIC_FIREBASE_APP_ID=<YOUR_APP_ID>
+
+   # Google Places API
+   NEXT_PUBLIC_GOOGLE_API_KEY=<YOUR_GOOGLE_PLACES_API_KEY>
+   ```
+
+3. Run production client
+
+   ```sh
+   npm run build
+   ```
+
+## Using the app in development mode
 
 First, run the development server:
 
@@ -96,23 +135,15 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 You will need a firebase account to get started.
 Create a project, and an application for the project.
 
-Once you have your keys, add them to a global .env file. You will need these to initialize firebase.
-In Next.js, the convention for naming environment variables is that they have to start with NEXT_PUBLIC.
-```
-NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY=<YOUR_API_KEY>
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=<YOUR_DOMAIN>
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=<YOUR_PROJECT_ID>
-```
+Once you have your keys, add them to the `.env` file in the root directory. You will need these to initialize firebase.
 
-The app is currently set up to use Google/Facebook/Github authentication. You will need to activate those sign-in methods on firebase or remove the sign-in components you do not wish to use from pages/login/index.js.
+In `Next.js`, the convention for naming environment variables is that they have to start with NEXT_PUBLIC.
+
+The app is currently set up to use Google/Facebook/Github authentication. You will need to activate those sign-in methods on firebase or remove the sign-in components you do not wish to use from `pages/login/index.js`.
 
 ## Google Maps API set-up
 
-- You will need a google maps API key to get started.
+- You will need a Google Maps API key to get started.
 - You can create a key here: https://console.cloud.google.com/google/maps-apis/start
 - Click on the credentials tab on the left side of the page
 - Click on the Create Credentials button at the top of the page and follow the instructions
-- After you have your key you need to add it to the .env file
-```
-NEXT_PUBLIC_GOOGLE_API_KEY=<YOUR_API_KEY>
-```
